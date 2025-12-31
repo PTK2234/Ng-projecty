@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Editor - Urban Memories</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="editor-styles.css">
+</head>
+<body>
+    <div class="editor-container">
+        <!-- Header -->
+        <header class="editor-header">
+            <div class="header-content">
+                <h1 class="editor-title">Location Editor</h1>
+                <p class="editor-subtitle">Manage dots and stories for your urban memories experience</p>
+            </div>
+            <div class="header-actions">
+                <button id="add-location-btn" class="btn btn-primary">
+                    <span class="btn-icon">+</span>
+                    Add Location
+                </button>
+                <button id="export-btn" class="btn btn-secondary">
+                    <span class="btn-icon">↓</span>
+                    Export Data
+                </button>
+                <button id="import-btn" class="btn btn-secondary">
+                    <span class="btn-icon">↑</span>
+                    Import Data
+                </button>
+                <a href="index.html" class="btn btn-accent">
+                    <span class="btn-icon">👁</span>
+                    View Site
+                </a>
+            </div>
+        </header>
+
+        <div class="editor-layout">
+            <!-- Sidebar: Location List -->
+            <aside class="locations-sidebar">
+                <div class="sidebar-header">
+                    <h2>Locations</h2>
+                    <span class="location-count" id="location-count">0</span>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search locations...">
+                </div>
+                <div class="locations-list" id="locations-list">
+                    <!-- Location items will be dynamically added here -->
+                </div>
+            </aside>
+
+            <!-- Main: Editor Form -->
+            <main class="editor-main">
+                <div class="editor-form-container" id="editor-form-container">
+                    <div class="empty-state">
+                        <div class="empty-icon">📍</div>
+                        <h3>No Location Selected</h3>
+                        <p>Select a location from the list or add a new one to start editing</p>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Map Preview -->
+            <aside class="map-preview">
+                <div class="preview-header">
+                    <h2>Map Preview</h2>
+                    <button id="center-map-btn" class="icon-btn" title="Center on selected">
+                        <span>🎯</span>
+                    </button>
+                </div>
+                <div id="preview-map"></div>
+                <div class="map-info">
+                    <div class="info-item">
+                        <span class="info-label">Click map to set coordinates</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Modal for Import -->
+        <div id="import-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Import Locations Data</h2>
+                    <button class="modal-close" id="close-import-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Paste your locations JSON data below:</p>
+                    <textarea id="import-textarea" placeholder='[{"id": 1, "lat": 48.8738, "lng": 2.2950, ...}]'></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="cancel-import">Cancel</button>
+                    <button class="btn btn-primary" id="confirm-import">Import</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hidden file input for import -->
+        <input type="file" id="file-input" accept=".json" style="display: none;">
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="locations-data.js"></script>
+    <script src="editor-script.js"></script>
+</body>
+</html>

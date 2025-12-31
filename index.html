@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Memories - A Horse's Journey</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">Urban Memories</h1>
+            <p class="subtitle">Connect the dots to reveal a hidden story</p>
+            <div class="stats">
+                <span class="stat-item">
+                    <span class="stat-number" id="discovered">0</span>
+                    <span class="stat-label">Discovered</span>
+                </span>
+                <span class="stat-divider">/</span>
+                <span class="stat-item">
+                    <span class="stat-number" id="total">0</span>
+                    <span class="stat-label">Locations</span>
+                </span>
+            </div>
+        </header>
+
+        <!-- Map Container -->
+        <div id="map"></div>
+
+        <!-- Tooltip -->
+        <div id="custom-tooltip" class="custom-tooltip">
+            <div class="tooltip-number"></div>
+            <div class="tooltip-content">
+                <h3 class="tooltip-title"></h3>
+                <p class="tooltip-address"></p>
+                <p class="tooltip-story"></p>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions">
+            <div class="instruction-item">
+                <span class="instruction-icon">🔍</span>
+                <span>Hover over dots to reveal stories</span>
+            </div>
+            <div class="instruction-item">
+                <span class="instruction-icon">✨</span>
+                <span>Watch the shape emerge as you explore</span>
+            </div>
+        </div>
+
+        <!-- Story Panel -->
+        <div id="story-panel" class="story-panel">
+            <div class="story-content">
+                <h2>The Spirit of the City</h2>
+                <p>In the heart of this urban landscape, a horse once roamed freely through these very streets. Each location marks a memory, a moment in time where hoofbeats echoed against cobblestones.</p>
+                <p class="story-highlight">Discover all locations to complete the journey.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="locations-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
