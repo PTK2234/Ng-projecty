@@ -45,6 +45,7 @@ function init() {
     setupImageUpload();
     setupButtons();
     setupBorderEditor();
+    setupToolbarButtons();
     
     // Add initial default stickers if none exist
     if (stickers.length === 0) {
@@ -86,6 +87,39 @@ function setupLibrary() {
             const y = 50 + (Math.random() - 0.5) * 40;
             addSticker(emoji, x, y);
         });
+    });
+}
+
+// Setup toolbar button clicks
+function setupToolbarButtons() {
+    const toolbarItems = document.querySelectorAll('.toolbar-item');
+    
+    toolbarItems.forEach(item => {
+        const btn = item.querySelector('.toolbar-btn');
+        const panel = item.querySelector('.toolbar-panel');
+        
+        if (btn && panel) {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                // Close all other panels
+                toolbarItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current panel
+                item.classList.toggle('active');
+            });
+        }
+    });
+    
+    // Close panels when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.toolbar-item')) {
+            toolbarItems.forEach(item => item.classList.remove('active'));
+        }
     });
 }
 
@@ -327,10 +361,15 @@ function renderSticker(sticker) {
     const deleteBtn = document.createElement('div');
     deleteBtn.className = 'sticker-control-btn delete-btn';
     deleteBtn.innerHTML = '×';
-    deleteBtn.addEventListener('click', (e) => {
+    
+    const handleDelete = (e) => {
         e.stopPropagation();
+        e.preventDefault();
         deleteSticker(sticker.id);
-    });
+    };
+    
+    deleteBtn.addEventListener('click', handleDelete);
+    deleteBtn.addEventListener('touchend', handleDelete);
     
     controls.appendChild(deleteBtn);
     stickerEl.appendChild(controls);

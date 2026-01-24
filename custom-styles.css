@@ -174,6 +174,13 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
     pointer-events: all;
 }
 
+.toolbar-item.active .toolbar-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: all;
+}
+
 .toolbar-panel label {
     display: block;
     font-weight: 600;
@@ -383,8 +390,8 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
 }
 
 .sticker-control-btn {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: #667eea;
     color: white;
@@ -393,9 +400,11 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 16px;
     transition: all 0.2s ease;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .sticker-control-btn:hover {
@@ -405,6 +414,7 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
 
 .sticker-control-btn.delete-btn {
     background: #ff6b6b;
+    font-weight: bold;
 }
 
 .sticker-control-btn.delete-btn:hover {
