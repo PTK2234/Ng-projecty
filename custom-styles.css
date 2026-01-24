@@ -43,22 +43,26 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
 }
 
 .back-btn {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255,255,255,0.2);
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(102, 126, 234, 0.3);
+    backdrop-filter: blur(15px);
     color: white;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border-radius: 25px;
     font-weight: bold;
     transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 200;
 }
 
 .back-btn:hover {
-    background: rgba(255,255,255,0.3);
-    transform: translateY(-50%) scale(1.05);
+    background: rgba(102, 126, 234, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .title {
@@ -90,7 +94,7 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
     right: 0;
     background: transparent;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 10px;
     padding: 0 20px;
     z-index: 100;
@@ -145,8 +149,8 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
 }
 
 .toolbar-panel {
-    position: absolute;
-    bottom: 100%;
+    position: fixed;
+    bottom: 110px;
     left: 50%;
     transform: translateX(-50%) translateY(10px);
     background: rgba(255, 255, 255, 0.95);
