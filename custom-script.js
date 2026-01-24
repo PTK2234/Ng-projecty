@@ -122,15 +122,31 @@ function setupToolbarButtons() {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 
-                // Close all other panels
+                const wasActive = item.classList.contains('active');
+                
+                // Close all other panels and reset their button colors
                 toolbarItems.forEach(otherItem => {
                     if (otherItem !== item) {
                         otherItem.classList.remove('active');
+                        const otherBtn = otherItem.querySelector('.toolbar-btn');
+                        if (otherBtn && otherBtn.id !== 'saveBtn') {
+                            otherBtn.style.background = '';
+                        }
                     }
                 });
                 
                 // Toggle current panel
-                item.classList.toggle('active');
+                if (wasActive) {
+                    item.classList.remove('active');
+                    if (btn.id !== 'saveBtn') {
+                        btn.style.background = '';
+                    }
+                } else {
+                    item.classList.add('active');
+                    if (btn.id !== 'saveBtn') {
+                        btn.style.background = 'rgba(255, 107, 107, 0.5)';
+                    }
+                }
             });
         }
     });
@@ -138,7 +154,13 @@ function setupToolbarButtons() {
     // Close panels when clicking outside
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.toolbar-item') && !e.target.closest('#drawingCanvas') && !e.target.closest('.vinyl-preview')) {
-            toolbarItems.forEach(item => item.classList.remove('active'));
+            toolbarItems.forEach(item => {
+                item.classList.remove('active');
+                const btn = item.querySelector('.toolbar-btn');
+                if (btn && btn.id !== 'saveBtn') {
+                    btn.style.background = '';
+                }
+            });
         }
     });
 }
