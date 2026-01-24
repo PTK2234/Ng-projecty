@@ -10,6 +10,7 @@
     <div class="container">
         <div class="header">
             <a href="index.html" class="back-btn">← Back to Player</a>
+            <button class="save-btn" id="saveBtn">💾 Save</button>
             <h1 class="title">🎨 Create Your Custom Vinyl</h1>
         </div>
         
@@ -137,14 +138,6 @@
                 <button class="btn-clear-draw" id="clearDrawBtn" style="margin-top: 10px; background: #ff6b6b;">Clear All</button>
             </div>
         </div>
-        
-        <!-- Save Button -->
-        <div class="toolbar-item">
-            <button class="toolbar-btn" id="saveBtn">
-                <span>💾</span>
-                <small>Save</small>
-            </button>
-        </div>
     </div>
     
     <!-- Border Editor Panel -->
@@ -184,6 +177,7 @@
         <button class="border-editor-close" id="closeBorderEditor">Done</button>
     </div>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="custom-script.js"></script>
 </body>
 </html>

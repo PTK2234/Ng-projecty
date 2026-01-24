@@ -118,9 +118,10 @@ function setupToolbarButtons() {
         const btn = item.querySelector('.toolbar-btn');
         const panel = item.querySelector('.toolbar-panel');
         
-        if (btn && panel) {
+        if (btn) {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
+                e.preventDefault();
                 
                 const wasActive = item.classList.contains('active');
                 
@@ -137,16 +138,32 @@ function setupToolbarButtons() {
                 
                 // Toggle current panel
                 if (wasActive) {
+                    // Close if already open
                     item.classList.remove('active');
                     if (btn.id !== 'saveBtn') {
                         btn.style.background = '';
                     }
                 } else {
+                    // Open panel
                     item.classList.add('active');
                     if (btn.id !== 'saveBtn') {
                         btn.style.background = 'rgba(255, 107, 107, 0.5)';
                     }
+                    
+                    // Scroll button into view on mobile
+                    if (window.innerWidth <= 768) {
+                        setTimeout(() => {
+                            btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                        }, 100);
+                    }
                 }
+            });
+        }
+        
+        // Prevent panel clicks from closing
+        if (panel) {
+            panel.addEventListener('click', (e) => {
+                e.stopPropagation();
             });
         }
     });
@@ -589,12 +606,30 @@ function saveCustomization() {
     
     localStorage.setItem('customVinyl', JSON.stringify(customData));
     
-    saveBtn.textContent = '✅ Saved!';
+    // Capture vinyl as image
+    saveBtn.innerHTML = '<span>💾</span><small>Saving...</small>';
     
-    setTimeout(() => {
-        saveBtn.textContent = '💾 Save & Play';
-        window.location.href = 'index.html';
-    }, 1000);
+    // Use html2canvas to capture the vinyl
+    html2canvas(vinylPreview, {
+        backgroundColor: null,
+        scale: 2,
+        logging: false
+    }).then(canvas => {
+        const imageData = canvas.toDataURL('image/png');
+        localStorage.setItem('savedVinylImage', imageData);
+        
+        saveBtn.innerHTML = '<span>✅</span><small>Saved!</small>';
+        
+        setTimeout(() => {
+            window.location.href = 'result.html';
+        }, 500);
+    }).catch(error => {
+        console.error('Error saving image:', error);
+        // Fallback: just redirect without image
+        setTimeout(() => {
+            window.location.href = 'result.html';
+        }, 500);
+    });
 }
 
 // Load customization

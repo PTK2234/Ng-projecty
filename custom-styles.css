@@ -67,6 +67,30 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
+.save-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(102, 126, 234, 0.3);
+    backdrop-filter: blur(15px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 200;
+}
+
+.save-btn:hover {
+    background: rgba(102, 126, 234, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
 .title {
     color: white;
     font-size: 2.5rem;
@@ -108,12 +132,39 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
     scrollbar-width: none;
 }
 
+.bottom-toolbar::before,
+.bottom-toolbar::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.bottom-toolbar::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(102, 126, 234, 0.3), transparent);
+}
+
+.bottom-toolbar::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(102, 126, 234, 0.3), transparent);
+}
+
 .bottom-toolbar::-webkit-scrollbar {
     display: none;
 }
 
 .toolbar-item {
     position: relative;
+}
+
+.toolbar-item {
+    position: relative;
+    flex-shrink: 0;
+    scroll-snap-align: center;
 }
 
 .toolbar-btn {
@@ -134,6 +185,8 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     flex-shrink: 0;
     scroll-snap-align: start;
+    position: relative;
+    z-index: 2;
 }
 
 .toolbar-btn span {
@@ -178,10 +231,19 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
 }
 
 .toolbar-item.active .toolbar-panel {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-    pointer-events: all;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateX(-50%) translateY(0) !important;
+    pointer-events: all !important;
+}
+
+/* Disable hover on touch devices */
+@media (hover: none) {
+    .toolbar-item:hover .toolbar-panel {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
 }
 
 .toolbar-panel label {
@@ -1047,15 +1109,30 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
 
 @media (max-width: 480px) {
     body {
-        padding: 5px 5px 100px 5px;
+        padding: 5px 5px 120px 5px;
     }
     
     .custom-wrapper {
-        padding-bottom: 110px;
+        padding-bottom: 130px;
+    }
+    
+    .back-btn,
+    .save-btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        top: 10px;
+    }
+    
+    .back-btn {
+        left: 10px;
+    }
+    
+    .save-btn {
+        right: 10px;
     }
     
     .title {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
     
     .vinyl-preview {
@@ -1074,52 +1151,83 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
     
     .bottom-toolbar {
         bottom: 10px;
-        gap: 6px;
+        gap: 8px;
         padding: 0 10px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        justify-content: flex-start;
     }
     
-    .toolbar-btn {
-        min-width: 60px;
-        padding: 8px 10px;
-        border-radius: 12px;
+    .bottom-toolbar::before,
+    .bottom-toolbar::after {
+        width: 20px;
     }
     
     .toolbar-btn span {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
     
     .toolbar-btn small {
-        font-size: 0.6rem;
+        font-size: 0.65rem;
     }
     
     .toolbar-panel {
-        min-width: 200px;
-        padding: 12px;
+        min-width: 280px;
+        max-width: 90vw;
+        padding: 15px;
+        bottom: 90px;
     }
     
     .stickers-panel {
-        min-width: 260px;
+        min-width: 300px;
     }
     
     .sticker-library-mini {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 6px;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
     }
     
     .library-item {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
+        padding: 8px;
     }
     
     .color-btn, .center-color-btn, .text-color-btn {
-        width: 35px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .pen-color-btn {
+        width: 38px;
+        height: 38px;
+    }
+    
+    input[type="range"] {
         height: 35px;
+    }
+    
+    .border-editor {
+        bottom: 90px;
+        max-width: 85vw;
+        max-height: 250px;
+    }
+    
+    .btn-text-add, .btn-image-upload, .btn-clear-draw, .btn-eraser {
+        padding: 12px;
+        font-size: 0.9rem;
+        touch-action: manipulation;
     }
 }
 
 /* Media query for very small screens */
 @media (max-width: 360px) {
+    body {
+        padding: 5px 5px 110px 5px;
+    }
+    
     .custom-wrapper {
-        padding-bottom: 100px;
+        padding-bottom: 120px;
     }
     
     .vinyl-preview {
@@ -1134,17 +1242,17 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
     
     .bottom-toolbar {
         bottom: 8px;
-        gap: 5px;
+        gap: 6px;
         padding: 0 8px;
     }
     
     .toolbar-btn {
-        min-width: 55px;
+        min-width: 60px;
         padding: 8px 10px;
     }
     
     .toolbar-btn span {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
     }
     
     .toolbar-btn small {
@@ -1152,12 +1260,21 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
     }
     
     .toolbar-panel {
-        min-width: 200px;
+        min-width: 260px;
+        max-width: 92vw;
         padding: 12px;
-        max-width: 85vw;
     }
     
     .stickers-panel {
-        min-width: 220px;
+        min-width: 280px;
+    }
+    
+    .sticker-library-mini {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .color-btn, .center-color-btn {
+        width: 36px;
+        height: 36px;
     }
 }
