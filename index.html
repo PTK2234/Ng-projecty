@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vinyl Record Player</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">🎵 Vinyl Record Player</h1>
+        
+        <div class="player-wrapper">
+            <!-- Vinyl Record -->
+            <div class="vinyl-container" id="vinyl">
+                <!-- Lyrics Display -->
+                <div class="vinyl-center">
+                    <div class="lyrics-display" id="lyricsDisplay">Click a sticker</div>
+                </div>
+                
+                <!-- Grooves -->
+                <div class="grooves"></div>
+                
+                <!-- Stickers on the vinyl -->
+                <div class="sticker sticker-1" data-song="1" style="top: 15%; left: 50%;">
+                    <span class="sticker-emoji">🎸</span>
+                    <span class="sticker-label">Rock</span>
+                </div>
+                
+                <div class="sticker sticker-2" data-song="2" style="top: 35%; left: 85%;">
+                    <span class="sticker-emoji">🎹</span>
+                    <span class="sticker-label">Jazz</span>
+                </div>
+                
+                <div class="sticker sticker-3" data-song="3" style="top: 65%; left: 85%;">
+                    <span class="sticker-emoji">🎺</span>
+                    <span class="sticker-label">Blues</span>
+                </div>
+                
+                <div class="sticker sticker-4" data-song="4" style="top: 85%; left: 50%;">
+                    <span class="sticker-emoji">🎵</span>
+                    <span class="sticker-label">Pop</span>
+                </div>
+                
+                <div class="sticker sticker-5" data-song="5" style="top: 50%; left: 15%;">
+                    <span class="sticker-emoji">🎼</span>
+                    <span class="sticker-label">Classic</span>
+                </div>
+            </div>
+            
+            <!-- Tone Arm -->
+            <div class="tone-arm" id="toneArm"></div>
+        </div>
+        
+        <!-- Now Playing Info -->
+        <div class="now-playing" id="nowPlaying">
+            <p class="track-info">Click a sticker to play music</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p class="time-info"><span id="currentTime">0:00</span> / <span id="duration">0:30</span></p>
+        </div>
+        
+        <!-- Control Buttons -->
+        <div class="controls">
+            <button class="btn btn-stop" id="stopBtn">⏹ Stop</button>
+            <a href="custom.html" class="btn btn-custom">🎨 Custom Vinyl</a>
+        </div>
+    </div>
+    
+    <!-- Audio Elements (using placeholder audio - replace with your own) -->
+    <audio id="audio1" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audio2" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audio3" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audio4" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audio5" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script src="script.js"></script>
+</body>
+</html>

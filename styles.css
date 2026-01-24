@@ -1,0 +1,479 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Improve touch interactions */
+button, .sticker, .btn {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.vinyl-container {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+}
+
+.title {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: fadeIn 1s ease-in;
+}
+
+.player-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+/* Vinyl Record Styles */
+.vinyl-container {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.vinyl-container.spinning {
+    animation: spin 3s linear infinite;
+}
+
+.vinyl-container:hover {
+    transform: scale(1.02);
+}
+
+/* Vinyl Grooves */
+.grooves {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    background: repeating-radial-gradient(
+        circle at center,
+        transparent 0px,
+        transparent 3px,
+        rgba(255,255,255,0.03) 3px,
+        rgba(255,255,255,0.03) 4px
+    );
+    pointer-events: none;
+}
+
+/* Center Label */
+.vinyl-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(255,107,107,0.5);
+    z-index: 1;
+}
+
+/* Counter-rotate lyrics when vinyl spins */
+.vinyl-container.spinning .vinyl-center {
+    animation: counterSpin 3s linear infinite;
+}
+
+@keyframes counterSpin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+/* Lyrics Display */
+.lyrics-display {
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 0.7rem;
+    line-height: 1.5;
+    overflow: hidden;
+    text-align: center;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.lyrics-display p {
+    margin: 3px 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    animation: fadeInLyric 0.5s ease-in;
+}
+
+@keyframes fadeInLyric {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Stickers */
+.sticker {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    border: 3px solid white;
+}
+
+/* Counter-rotate stickers to keep them upright when vinyl spins */
+.vinyl-container.spinning .sticker {
+    animation: counterSpin 3s linear infinite;
+}
+
+.sticker:hover {
+    transform: translate(-50%, -50%) scale(1.15);
+    box-shadow: 0 6px 25px rgba(255,255,255,0.4);
+}
+
+.sticker.active {
+    animation: pulse 0.5s ease-in-out;
+    box-shadow: 0 0 30px rgba(255,255,255,0.8);
+}
+
+.sticker-emoji {
+    font-size: 1.8rem;
+    margin-bottom: 2px;
+}
+
+.sticker-label {
+    font-size: 0.65rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Different colors for stickers */
+.sticker-1 { background: linear-gradient(135deg, #FA8BFF 0%, #2BD2FF 90%); }
+.sticker-2 { background: linear-gradient(135deg, #FDEB71 0%, #F8D800 100%); }
+.sticker-3 { background: linear-gradient(135deg, #A8EDEA 0%, #FED6E3 100%); }
+.sticker-4 { background: linear-gradient(135deg, #FFA8A8 0%, #FCFF00 100%); }
+.sticker-5 { background: linear-gradient(135deg, #C471F5 0%, #FA71CD 100%); }
+
+/* Tone Arm */
+.tone-arm {
+    position: absolute;
+    width: 8px;
+    height: 180px;
+    background: linear-gradient(to bottom, #333 0%, #666 100%);
+    border-radius: 4px;
+    top: 10%;
+    right: -20px;
+    transform-origin: top center;
+    transition: transform 0.5s ease;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+}
+
+.tone-arm::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: #888;
+    border-radius: 50%;
+}
+
+.tone-arm::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 12px solid #999;
+}
+
+.tone-arm.playing {
+    transform: rotate(-25deg);
+}
+
+/* Now Playing Section */
+.now-playing {
+    background: rgba(255,255,255,0.95);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.track-info {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+.time-info {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn {
+    padding: 12px 30px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.btn-stop {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+    color: white;
+}
+
+.btn-custom {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Animations */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 15px 10px;
+    }
+    
+    .title {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+    
+    .vinyl-container {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .vinyl-center {
+        width: 95px;
+        height: 95px;
+    }
+    
+    .lyrics-display {
+        font-size: 0.6rem;
+        padding: 12px;
+    }
+    
+    .lyrics-display p {
+        margin: 2px 0;
+    }
+    
+    .sticker {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .sticker-emoji {
+        font-size: 1.4rem;
+    }
+    
+    .sticker-label {
+        font-size: 0.55rem;
+    }
+    
+    .tone-arm {
+        height: 140px;
+        right: -15px;
+    }
+    
+    .now-playing {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .track-info {
+        font-size: 1rem;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 14px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px 5px;
+    }
+    
+    .title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .vinyl-container {
+        width: 260px;
+        height: 260px;
+    }
+    
+    .vinyl-center {
+        width: 75px;
+        height: 75px;
+    }
+    
+    .lyrics-display {
+        font-size: 0.5rem;
+        padding: 8px;
+        line-height: 1.4;
+    }
+    
+    .lyrics-display p {
+        margin: 2px 0;
+    }
+    
+    .sticker {
+        width: 48px;
+        height: 48px;
+        border-width: 2px;
+    }
+    
+    .sticker-emoji {
+        font-size: 1.2rem;
+    }
+    
+    .sticker-label {
+        font-size: 0.5rem;
+    }
+    
+    .tone-arm {
+        height: 110px;
+        width: 6px;
+    }
+    
+    .now-playing {
+        padding: 12px;
+    }
+    
+    .track-info {
+        font-size: 0.95rem;
+    }
+    
+    .btn {
+        padding: 12px 16px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .vinyl-container {
+        width: 240px;
+        height: 240px;
+    }
+    
+    .sticker {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .sticker-emoji {
+        font-size: 1rem;
+    }
+}
