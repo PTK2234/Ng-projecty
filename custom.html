@@ -116,6 +116,28 @@
             </div>
         </div>
         
+        <!-- Draw Button -->
+        <div class="toolbar-item">
+            <button class="toolbar-btn" id="drawBtn">
+                <span>✏️</span>
+                <small>Draw</small>
+            </button>
+            <div class="toolbar-panel">
+                <label>Pen Color</label>
+                <div class="color-options" style="margin: 10px 0;">
+                    <button class="pen-color-btn active" data-pencolor="black" style="background: #000;"></button>
+                    <button class="pen-color-btn" data-pencolor="red" style="background: #ff6b6b;"></button>
+                    <button class="pen-color-btn" data-pencolor="blue" style="background: #667eea;"></button>
+                    <button class="pen-color-btn" data-pencolor="green" style="background: #13f287;"></button>
+                    <button class="pen-color-btn" data-pencolor="white" style="background: #fff; border: 2px solid #ddd;"></button>
+                </div>
+                <label>Pen Size: <span id="penSizeValue">3</span>px</label>
+                <input type="range" id="penSizeSlider" min="1" max="10" value="3" style="width: 100%;">
+                <button class="btn-eraser" id="eraserBtn" style="margin-top: 10px; width: 100%; padding: 10px; background: #f5f5f5; color: #333; border: 2px solid #ddd; border-radius: 8px; font-weight: bold; cursor: pointer;">🧹 Eraser</button>
+                <button class="btn-clear-draw" id="clearDrawBtn" style="margin-top: 10px; background: #ff6b6b;">Clear All</button>
+            </div>
+        </div>
+        
         <!-- Save Button -->
         <div class="toolbar-item">
             <button class="toolbar-btn" id="saveBtn">

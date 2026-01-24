@@ -760,6 +760,46 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
     box-shadow: 0 0 15px rgba(102, 126, 234, 0.5);
 }
 
+/* Pen color buttons */
+.pen-color-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pen-color-btn:hover {
+    transform: scale(1.1);
+}
+
+.pen-color-btn.active {
+    border-color: #667eea;
+    box-shadow: 0 0 15px rgba(102, 126, 234, 0.5);
+}
+
+.btn-clear-draw {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-clear-draw:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+/* Drawing canvas */
+#drawingCanvas {
+    border-radius: 50%;
+}
+
 /* Sticker Library (Instagram-style) */
 .sticker-library-wrapper {
     position: relative;

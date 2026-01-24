@@ -11,6 +11,14 @@ const imageInput = document.getElementById('imageInput');
 const uploadImageBtn = document.getElementById('uploadImageBtn');
 const uploadFilename = document.getElementById('uploadFilename');
 
+// Draw elements
+const drawBtn = document.getElementById('drawBtn');
+const penSizeSlider = document.getElementById('penSizeSlider');
+const penSizeValue = document.getElementById('penSizeValue');
+const clearDrawBtn = document.getElementById('clearDrawBtn');
+const eraserBtn = document.getElementById('eraserBtn');
+const penColorButtons = document.querySelectorAll('.pen-color-btn');
+
 // Border editor elements
 const borderEditor = document.getElementById('borderEditor');
 const stickerSizeSlider = document.getElementById('stickerSizeSlider');
@@ -27,6 +35,17 @@ const centerColorButtons = document.querySelectorAll('.center-color-btn');
 
 // Library items
 const libraryItems = document.querySelectorAll('.library-item');
+
+// Drawing state
+let isDrawing = false;
+let drawingMode = false;
+let eraserMode = false;
+let penColor = 'black';
+let penSize = 3;
+let drawingCanvas = null;
+let drawingCtx = null;
+let lastX = 0;
+let lastY = 0;
 
 // State
 let stickers = [];
@@ -46,6 +65,7 @@ function init() {
     setupButtons();
     setupBorderEditor();
     setupToolbarButtons();
+    setupDrawing();
     
     // Add initial default stickers if none exist
     if (stickers.length === 0) {
@@ -117,7 +137,7 @@ function setupToolbarButtons() {
     
     // Close panels when clicking outside
     document.addEventListener('click', (e) => {
-        if (!e.target.closest('.toolbar-item')) {
+        if (!e.target.closest('.toolbar-item') && !e.target.closest('#drawingCanvas') && !e.target.closest('.vinyl-preview')) {
             toolbarItems.forEach(item => item.classList.remove('active'));
         }
     });
@@ -611,6 +631,203 @@ vinylPreview.addEventListener('click', (e) => {
         selectedSticker = null;
     }
 });
+
+// Setup drawing functionality
+function setupDrawing() {
+    // Create canvas for drawing
+    if (!drawingCanvas) {
+        drawingCanvas = document.createElement('canvas');
+        drawingCanvas.id = 'drawingCanvas';
+        drawingCanvas.width = vinylPreview.offsetWidth;
+        drawingCanvas.height = vinylPreview.offsetHeight;
+        drawingCanvas.style.position = 'absolute';
+        drawingCanvas.style.top = '0';
+        drawingCanvas.style.left = '0';
+        drawingCanvas.style.pointerEvents = 'none';
+        drawingCanvas.style.zIndex = '5';
+        vinylPreview.appendChild(drawingCanvas);
+        drawingCtx = drawingCanvas.getContext('2d');
+        drawingCtx.lineCap = 'round';
+        drawingCtx.lineJoin = 'round';
+    }
+    
+    // Create custom cursor circle
+    const cursorCircle = document.createElement('div');
+    cursorCircle.id = 'eraserCursor';
+    cursorCircle.style.cssText = `
+        position: fixed;
+        width: ${penSize * 3 * 2}px;
+        height: ${penSize * 3 * 2}px;
+        border: 2px solid white;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        display: none;
+        transform: translate(-50%, -50%);
+    `;
+    document.body.appendChild(cursorCircle);
+    
+    // Toggle drawing mode
+    drawBtn.addEventListener('click', () => {
+        drawingMode = !drawingMode;
+        const cursorCircle = document.getElementById('eraserCursor');
+        if (drawingMode) {
+            drawBtn.style.background = 'rgba(255, 107, 107, 0.5)';
+            drawingCanvas.style.pointerEvents = 'auto';
+            if (eraserMode) {
+                vinylPreview.style.cursor = 'none';
+                if (cursorCircle) cursorCircle.style.display = 'block';
+            } else {
+                vinylPreview.style.cursor = 'crosshair';
+            }
+        } else {
+            drawBtn.style.background = '';
+            drawingCanvas.style.pointerEvents = 'none';
+            vinylPreview.style.cursor = 'move';
+            if (cursorCircle) cursorCircle.style.display = 'none';
+        }
+    });
+    
+    // Pen color selection
+    penColorButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            penColorButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            penColor = btn.dataset.pencolor;
+            eraserMode = false;
+            eraserBtn.style.background = '';
+            eraserBtn.style.color = '';
+            eraserBtn.style.borderColor = '';
+            const cursorCircle = document.getElementById('eraserCursor');
+            if (cursorCircle) cursorCircle.style.display = 'none';
+            if (drawingMode) vinylPreview.style.cursor = 'crosshair';
+        });
+    });
+    
+    // Eraser button
+    eraserBtn.addEventListener('click', () => {
+        eraserMode = !eraserMode;
+        const cursorCircle = document.getElementById('eraserCursor');
+        if (eraserMode) {
+            penColorButtons.forEach(b => b.classList.remove('active'));
+            eraserBtn.style.background = '#667eea';
+            eraserBtn.style.color = 'white';
+            eraserBtn.style.borderColor = '#667eea';
+            if (drawingMode && cursorCircle) {
+                cursorCircle.style.display = 'block';
+                vinylPreview.style.cursor = 'none';
+            }
+        } else {
+            eraserBtn.style.background = '';
+            eraserBtn.style.color = '';
+            eraserBtn.style.borderColor = '';
+            if (cursorCircle) {
+                cursorCircle.style.display = 'none';
+            }
+            if (drawingMode) {
+                vinylPreview.style.cursor = 'crosshair';
+            }
+        }
+    });
+    
+    // Pen size slider
+    penSizeSlider.addEventListener('input', () => {
+        penSize = penSizeSlider.value;
+        penSizeValue.textContent = penSize;
+        const cursorCircle = document.getElementById('eraserCursor');
+        if (cursorCircle && eraserMode) {
+            const size = penSize * 3 * 2;
+            cursorCircle.style.width = size + 'px';
+            cursorCircle.style.height = size + 'px';
+        }
+    });
+    
+    // Clear drawing
+    clearDrawBtn.addEventListener('click', () => {
+        if (drawingCtx) {
+            drawingCtx.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
+        }
+    });
+    
+    // Drawing events
+    drawingCanvas.addEventListener('mousedown', startDrawing);
+    drawingCanvas.addEventListener('mousemove', draw);
+    drawingCanvas.addEventListener('mouseup', stopDrawing);
+    drawingCanvas.addEventListener('mouseout', stopDrawing);
+    
+    // Cursor circle follow mouse
+    document.addEventListener('mousemove', (e) => {
+        const cursorCircle = document.getElementById('eraserCursor');
+        if (cursorCircle && eraserMode && drawingMode) {
+            cursorCircle.style.left = e.clientX + 'px';
+            cursorCircle.style.top = e.clientY + 'px';
+        }
+    });
+    
+    // Touch events for mobile
+    drawingCanvas.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        const touch = e.touches[0];
+        const mouseEvent = new MouseEvent('mousedown', {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        });
+        drawingCanvas.dispatchEvent(mouseEvent);
+    });
+    
+    drawingCanvas.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        const touch = e.touches[0];
+        const mouseEvent = new MouseEvent('mousemove', {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        });
+        drawingCanvas.dispatchEvent(mouseEvent);
+    });
+    
+    drawingCanvas.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        const mouseEvent = new MouseEvent('mouseup', {});
+        drawingCanvas.dispatchEvent(mouseEvent);
+    });
+}
+
+function startDrawing(e) {
+    if (!drawingMode) return;
+    isDrawing = true;
+    const rect = drawingCanvas.getBoundingClientRect();
+    lastX = e.clientX - rect.left;
+    lastY = e.clientY - rect.top;
+}
+
+function draw(e) {
+    if (!isDrawing || !drawingMode) return;
+    
+    const rect = drawingCanvas.getBoundingClientRect();
+    const currentX = e.clientX - rect.left;
+    const currentY = e.clientY - rect.top;
+    
+    if (eraserMode) {
+        drawingCtx.globalCompositeOperation = 'destination-out';
+        drawingCtx.lineWidth = penSize * 3;
+    } else {
+        drawingCtx.globalCompositeOperation = 'source-over';
+        drawingCtx.strokeStyle = penColor;
+        drawingCtx.lineWidth = penSize;
+    }
+    
+    drawingCtx.beginPath();
+    drawingCtx.moveTo(lastX, lastY);
+    drawingCtx.lineTo(currentX, currentY);
+    drawingCtx.stroke();
+    
+    lastX = currentX;
+    lastY = currentY;
+}
+
+function stopDrawing() {
+    isDrawing = false;
+}
 
 // Initialize on load
 document.addEventListener('DOMContentLoaded', init);
