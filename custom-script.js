@@ -10,8 +10,6 @@ const addTextBtn = document.getElementById('addTextBtn');
 const imageInput = document.getElementById('imageInput');
 const uploadImageBtn = document.getElementById('uploadImageBtn');
 const uploadFilename = document.getElementById('uploadFilename');
-const libraryToggle = document.getElementById('libraryToggle');
-const stickerLibrary = document.getElementById('stickerLibrary');
 
 // Border editor elements
 const borderEditor = document.getElementById('borderEditor');
@@ -43,8 +41,6 @@ function init() {
     loadCustomization();
     setupColorButtons();
     setupLibrary();
-    setupLibraryToggle();
-    setupTabs();
     setupTextSticker();
     setupImageUpload();
     setupButtons();
@@ -89,41 +85,6 @@ function setupLibrary() {
             const x = 50 + (Math.random() - 0.5) * 40;
             const y = 50 + (Math.random() - 0.5) * 40;
             addSticker(emoji, x, y);
-        });
-    });
-}
-
-// Setup library toggle for mobile
-function setupLibraryToggle() {
-    if (libraryToggle && stickerLibrary) {
-        libraryToggle.addEventListener('click', () => {
-            stickerLibrary.classList.toggle('collapsed');
-            libraryToggle.classList.toggle('collapsed');
-            libraryToggle.classList.toggle('expanded');
-        });
-    }
-}
-
-// Setup tabs
-function setupTabs() {
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active class from all tabs and contents
-            tabBtns.forEach(b => b.classList.remove('active'));
-            tabContents.forEach(c => c.classList.remove('active'));
-            
-            // Add active class to clicked tab
-            btn.classList.add('active');
-            
-            // Show corresponding content
-            const tabId = btn.dataset.tab + 'Tab';
-            const targetContent = document.getElementById(tabId);
-            if (targetContent) {
-                targetContent.classList.add('active');
-            }
         });
     });
 }
@@ -292,19 +253,6 @@ function updateStickerBorder(sticker) {
 
 // Setup buttons
 function setupButtons() {
-    spinBtn.addEventListener('click', () => {
-        vinylPreview.classList.toggle('spinning');
-        spinBtn.textContent = vinylPreview.classList.contains('spinning') ? '⏸ Stop' : '🔄 Test Spin';
-    });
-    
-    addStickerBtn.addEventListener('click', () => {
-        const emojis = ['🎵', '⭐', '❤️', '🔥', '✨', '💎', '🌙'];
-        const emoji = emojis[Math.floor(Math.random() * emojis.length)];
-        const x = 50 + (Math.random() - 0.5) * 40;
-        const y = 50 + (Math.random() - 0.5) * 40;
-        addSticker(emoji, x, y);
-    });
-    
     saveBtn.addEventListener('click', saveCustomization);
 }
 

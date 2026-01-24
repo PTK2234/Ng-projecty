@@ -13,179 +13,121 @@
             <h1 class="title">🎨 Create Your Custom Vinyl</h1>
         </div>
         
-        <div class="custom-wrapper">
-            <!-- Preview Section -->
-            <div class="preview-section">
-                <h2>Preview</h2>
-                <p class="drag-hint">👆 Tap sticker to edit • Drag to move • Pinch to resize</p>
-                <div class="vinyl-preview" id="vinylPreview">
-                    <div class="vinyl-center-preview" id="centerPreview">
-                        <div class="center-color" id="centerColor"></div>
-                    </div>
-                    <div class="grooves"></div>
-                    
-                    <!-- Stickers will be added dynamically -->
-                    <div id="stickersContainer"></div>
+        <!-- Full Width Preview -->
+        <div class="preview-section">
+            <p class="drag-hint">👆 Tap sticker to edit • Drag to move • Pinch to resize</p>
+            <div class="vinyl-preview" id="vinylPreview">
+                <div class="vinyl-center-preview" id="centerPreview">
+                    <div class="center-color" id="centerColor"></div>
                 </div>
-                
-                <div class="preview-controls">
-                    <button class="btn btn-spin" id="spinBtn">🔄 Test Spin</button>
-                    <button class="btn btn-add-sticker" id="addStickerBtn">➕ Add Sticker</button>
+                <div class="grooves"></div>
+                <div id="stickersContainer"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Floating Bottom Toolbar -->
+    <div class="bottom-toolbar">
+        <!-- Colors Button -->
+        <div class="toolbar-item">
+            <button class="toolbar-btn">
+                <span>🎨</span>
+                <small>Colors</small>
+            </button>
+            <div class="toolbar-panel">
+                <label>Vinyl</label>
+                <div class="color-options">
+                    <button class="color-btn active" data-color="black" style="background: #000;"></button>
+                    <button class="color-btn" data-color="blue" style="background: #1e3a8a;"></button>
+                    <button class="color-btn" data-color="red" style="background: #7f1d1d;"></button>
+                    <button class="color-btn" data-color="purple" style="background: #581c87;"></button>
+                    <button class="color-btn" data-color="green" style="background: #14532d;"></button>
+                    <button class="color-btn" data-color="gold" style="background: linear-gradient(135deg, #fbbf24, #f59e0b);"></button>
+                </div>
+                <label>Center</label>
+                <div class="color-options">
+                    <button class="center-color-btn active" data-center="red" style="background: linear-gradient(135deg, #ff6b6b, #ee5a6f);"></button>
+                    <button class="center-color-btn" data-center="blue" style="background: linear-gradient(135deg, #667eea, #764ba2);"></button>
+                    <button class="center-color-btn" data-center="pink" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></button>
+                    <button class="center-color-btn" data-center="green" style="background: linear-gradient(135deg, #13f287, #0dcb7d);"></button>
+                    <button class="center-color-btn" data-center="orange" style="background: linear-gradient(135deg, #ff9a56, #ff6a00);"></button>
                 </div>
             </div>
-            
-            <!-- Customization Form -->
-            <div class="form-section">
-                <h2>Customize</h2>
-                
-                <!-- Tabs -->
-                <div class="tabs">
-                    <button class="tab-btn active" data-tab="colors">🎨 Colors</button>
-                    <button class="tab-btn" data-tab="stickers">😊 Stickers</button>
-                    <button class="tab-btn" data-tab="text">✍️ Text</button>
-                    <button class="tab-btn" data-tab="image">🖼️ Image</button>
-                </div>
-                
-                <!-- Tab Content -->
-                <div class="tab-content active" id="colorsTab">
-                <div class="form-group">
-                    <label>Vinyl Color</label>
-                    <div class="color-options">
-                        <button class="color-btn active" data-color="black" style="background: #000;"></button>
-                        <button class="color-btn" data-color="blue" style="background: #1e3a8a;"></button>
-                        <button class="color-btn" data-color="red" style="background: #7f1d1d;"></button>
-                        <button class="color-btn" data-color="purple" style="background: #581c87;"></button>
-                        <button class="color-btn" data-color="green" style="background: #14532d;"></button>
-                        <button class="color-btn" data-color="gold" style="background: linear-gradient(135deg, #fbbf24, #f59e0b);"></button>
+        </div>
+        
+        <!-- Stickers Button -->
+        <div class="toolbar-item">
+            <button class="toolbar-btn">
+                <span>😊</span>
+                <small>Stickers</small>
+            </button>
+            <div class="toolbar-panel stickers-panel">
+                <div class="sticker-library-mini">
+                    <div class="sticker-category-mini">
+                        <span class="library-item" data-emoji="🎵">🎵</span>
+                        <span class="library-item" data-emoji="🎸">🎸</span>
+                        <span class="library-item" data-emoji="⭐">⭐</span>
+                        <span class="library-item" data-emoji="✨">✨</span>
+                        <span class="library-item" data-emoji="💖">💖</span>
+                        <span class="library-item" data-emoji="❤️">❤️</span>
+                        <span class="library-item" data-emoji="🔥">🔥</span>
+                        <span class="library-item" data-emoji="💫">💫</span>
+                        <span class="library-item" data-emoji="🌙">🌙</span>
+                        <span class="library-item" data-emoji="☀️">☀️</span>
+                        <span class="library-item" data-emoji="🌈">🌈</span>
+                        <span class="library-item" data-emoji="🌸">🌸</span>
+                        <span class="library-item" data-emoji="🌹">🌹</span>
+                        <span class="library-item" data-emoji="🎉">🎉</span>
+                        <span class="library-item" data-emoji="🎊">🎊</span>
                     </div>
                 </div>
-                
-                <div class="form-group">
-                    <label>Center Label Color</label>
-                    <div class="color-options">
-                        <button class="center-color-btn active" data-center="red" style="background: linear-gradient(135deg, #ff6b6b, #ee5a6f);"></button>
-                        <button class="center-color-btn" data-center="blue" style="background: linear-gradient(135deg, #667eea, #764ba2);"></button>
-                        <button class="center-color-btn" data-center="pink" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></button>
-                        <button class="center-color-btn" data-center="green" style="background: linear-gradient(135deg, #13f287, #0dcb7d);"></button>
-                        <button class="center-color-btn" data-center="orange" style="background: linear-gradient(135deg, #ff9a56, #ff6a00);"></button>
-                    </div>
-                </div>
-                </div>
-                
-                <!-- Stickers Tab -->
-                <div class="tab-content" id="stickersTab">
-                <div class="form-group">
-                    <label>Sticker Library</label>
-                    <p class="form-hint">Tap any sticker to add it to your vinyl</p>
-                    <div class="sticker-library-wrapper">
-                        <button class="library-toggle expanded" id="libraryToggle">Sticker Library</button>
-                        <div class="sticker-library" id="stickerLibrary">
-                        <!-- Music & Audio -->
-                        <div class="sticker-category">
-                            <span class="category-title">Music</span>
-                            <div class="library-stickers">
-                                <span class="library-item" data-emoji="🎵">🎵</span>
-                                <span class="library-item" data-emoji="🎸">🎸</span>
-                                <span class="library-item" data-emoji="🎹">🎹</span>
-                                <span class="library-item" data-emoji="🎺">🎺</span>
-                                <span class="library-item" data-emoji="🎻">🎻</span>
-                                <span class="library-item" data-emoji="🎼">🎼</span>
-                                <span class="library-item" data-emoji="🎶">🎶</span>
-                                <span class="library-item" data-emoji="🎷">🎷</span>
-                                <span class="library-item" data-emoji="🪘">🪘</span>
-                                <span class="library-item" data-emoji="🎹">🎹</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Symbols -->
-                        <div class="sticker-category">
-                            <span class="category-title">Symbols</span>
-                            <div class="library-stickers">
-                                <span class="library-item" data-emoji="⭐">⭐</span>
-                                <span class="library-item" data-emoji="✨">✨</span>
-                                <span class="library-item" data-emoji="💖">💖</span>
-                                <span class="library-item" data-emoji="❤️">❤️</span>
-                                <span class="library-item" data-emoji="🔥">🔥</span>
-                                <span class="library-item" data-emoji="💥">💥</span>
-                                <span class="library-item" data-emoji="⚡">⚡</span>
-                                <span class="library-item" data-emoji="💫">💫</span>
-                                <span class="library-item" data-emoji="💎">💎</span>
-                                <span class="library-item" data-emoji="🌟">🌟</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Nature -->
-                        <div class="sticker-category">
-                            <span class="category-title">Nature</span>
-                            <div class="library-stickers">
-                                <span class="library-item" data-emoji="🌙">🌙</span>
-                                <span class="library-item" data-emoji="☀️">☀️</span>
-                                <span class="library-item" data-emoji="🌈">🌈</span>
-                                <span class="library-item" data-emoji="🌊">🌊</span>
-                                <span class="library-item" data-emoji="🌸">🌸</span>
-                                <span class="library-item" data-emoji="🌹">🌹</span>
-                                <span class="library-item" data-emoji="🌺">🌺</span>
-                                <span class="library-item" data-emoji="🌻">🌻</span>
-                                <span class="library-item" data-emoji="🌼">🌼</span>
-                                <span class="library-item" data-emoji="🍀">🍀</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Fun -->
-                        <div class="sticker-category">
-                            <span class="category-title">Fun</span>
-                            <div class="library-stickers">
-                                <span class="library-item" data-emoji="🎉">🎉</span>
-                                <span class="library-item" data-emoji="🎊">🎊</span>
-                                <span class="library-item" data-emoji="🎈">🎈</span>
-                                <span class="library-item" data-emoji="🎆">🎆</span>
-                                <span class="library-item" data-emoji="🎇">🎇</span>
-                                <span class="library-item" data-emoji="🎁">🎁</span>
-                                <span class="library-item" data-emoji="🎭">🎭</span>
-                                <span class="library-item" data-emoji="🎨">🎨</span>
-                                <span class="library-item" data-emoji="🎪">🎪</span>
-                                <span class="library-item" data-emoji="🎬">🎬</span>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-                
-                <!-- Text Tab -->
-                <div class="tab-content" id="textTab">
-                <div class="form-group">
-                    <label>Add Text Sticker</label>
-                    <div class="text-sticker-input">
-                        <input type="text" id="textInput" placeholder="Type your text..." maxlength="20">
-                        <button class="btn-text-add" id="addTextBtn">➕ Add</button>
-                    </div>
-                </div>
-                </div>
-                
-                <!-- Image Tab -->
-                <div class="tab-content" id="imageTab">
-                <div class="form-group">
-                    <label>Upload Image Sticker</label>
-                    <p class="form-hint">Upload your own image to use as a sticker (PNG, JPG, GIF)</p>
-                    <div class="image-upload-wrapper">
-                        <input type="file" id="imageInput" accept="image/*" hidden>
-                        <button class="btn-image-upload" id="uploadImageBtn">🖼️ Upload Image</button>
-                        <span class="upload-filename" id="uploadFilename"></span>
-                    </div>
-                </div>
-                </div>
-                
-                <button class="btn btn-save" id="saveBtn">💾 Save & Play</button>
-                <p class="save-note">Your custom vinyl will be saved!</p>
             </div>
+        </div>
+        
+        <!-- Text Button -->
+        <div class="toolbar-item">
+            <button class="toolbar-btn">
+                <span>✍️</span>
+                <small>Text</small>
+            </button>
+            <div class="toolbar-panel">
+                <input type="text" id="textInput" placeholder="Type text..." maxlength="20">
+                <div class="color-options" style="margin: 10px 0;">
+                    <button class="text-color-btn active" data-textcolor="black" style="background: #000;"></button>
+                    <button class="text-color-btn" data-textcolor="red" style="background: #ff6b6b;"></button>
+                    <button class="text-color-btn" data-textcolor="blue" style="background: #667eea;"></button>
+                    <button class="text-color-btn" data-textcolor="green" style="background: #13f287;"></button>
+                    <button class="text-color-btn" data-textcolor="purple" style="background: #764ba2;"></button>
+                </div>
+                <button class="btn-text-add" id="addTextBtn">Add Text</button>
+            </div>
+        </div>
+        
+        <!-- Image Button -->
+        <div class="toolbar-item">
+            <button class="toolbar-btn">
+                <span>🖼️</span>
+                <small>Image</small>
+            </button>
+            <div class="toolbar-panel">
+                <input type="file" id="imageInput" accept="image/*" hidden>
+                <button class="btn-image-upload" id="uploadImageBtn">Upload Image</button>
+                <span class="upload-filename" id="uploadFilename"></span>
+            </div>
+        </div>
+        
+        <!-- Save Button -->
+        <div class="toolbar-item">
+            <button class="toolbar-btn" id="saveBtn">
+                <span>💾</span>
+                <small>Save</small>
+            </button>
         </div>
     </div>
     
     <!-- Border Editor Panel -->
     <div class="border-editor" id="borderEditor">
         <div class="border-editor-title">Edit Sticker</div>
-        
         <div class="form-group">
             <label>Size</label>
             <input type="range" class="border-width-slider" id="stickerSizeSlider" min="40" max="150" value="60">
@@ -193,7 +135,6 @@
                 <span class="border-width-value" id="stickerSizeValue">60px</span>
             </div>
         </div>
-        
         <div class="border-option">
             <label>Border Color</label>
             <div class="border-color-picker">
@@ -206,13 +147,11 @@
                 <div class="border-color-option" data-color="#13f287" style="background: #13f287;"></div>
             </div>
         </div>
-        
-        <div class="border-option" id="borderWidthOption">
+        <div class="border-option">
             <label>Border Width: <span class="border-width-value" id="borderWidthValue">3px</span></label>
             <input type="range" class="border-width-slider" id="borderWidthSlider" min="1" max="10" value="3">
         </div>
-        
-        <div class="border-option" id="borderStyleOption">
+        <div class="border-option">
             <label>Border Style</label>
             <div class="border-style-options">
                 <button class="border-style-btn active" data-style="solid">Solid</button>
@@ -220,7 +159,6 @@
                 <button class="border-style-btn" data-style="dotted">Dotted</button>
             </div>
         </div>
-        
         <button class="border-editor-close" id="closeBorderEditor">Done</button>
     </div>
     
