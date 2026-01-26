@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Custom Vinyl - Create Your Own</title>
+    <link rel="stylesheet" href="vinyl-assets.css">
     <link rel="stylesheet" href="custom-styles.css">
 </head>
 <body>
@@ -17,12 +18,17 @@
         <!-- Full Width Preview -->
         <div class="preview-section">
             <p class="drag-hint">👆 Tap sticker to edit • Drag to move • Pinch to resize</p>
-            <div class="vinyl-preview" id="vinylPreview">
-                <div class="vinyl-center-preview" id="centerPreview">
-                    <div class="center-color" id="centerColor"></div>
+            <div class="player-wrapper">
+                <div class="vinyl-preview" id="vinylPreview">
+                    <div class="vinyl-center-preview" id="centerPreview">
+                        <div class="center-color" id="centerColor"></div>
+                    </div>
+                    <div class="grooves"></div>
+                    <div id="stickersContainer"></div>
                 </div>
-                <div class="grooves"></div>
-                <div id="stickersContainer"></div>
+                <div class="stylus-arm">
+                    <div class="stylus-tip"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -174,7 +180,6 @@
                 <button class="border-style-btn" data-style="dotted">Dotted</button>
             </div>
         </div>
-        <button class="border-editor-close" id="closeBorderEditor">Done</button>
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>

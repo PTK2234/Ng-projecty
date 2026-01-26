@@ -1,6 +1,5 @@
 // Get DOM elements
 const vinyl = document.getElementById('vinyl');
-const toneArm = document.getElementById('toneArm');
 const stickers = document.querySelectorAll('.sticker');
 const stopBtn = document.getElementById('stopBtn');
 const nowPlaying = document.getElementById('nowPlaying');
@@ -9,6 +8,7 @@ const progressFill = document.getElementById('progressFill');
 const currentTimeEl = document.getElementById('currentTime');
 const durationEl = document.getElementById('duration');
 const lyricsDisplay = document.getElementById('lyricsDisplay');
+const toneArm = document.getElementById('toneArm');
 
 // State
 let currentAudio = null;
@@ -122,7 +122,12 @@ function playMusic(songId, stickerEl) {
 
     // Update UI
     vinyl.classList.add('spinning');
-    toneArm.classList.add('playing');
+    if (toneArm) {
+        console.log('Adding playing class to toneArm');
+        toneArm.classList.add('playing');
+    } else {
+        console.log('toneArm element not found');
+    }
     trackInfo.textContent = `Now Playing: ${trackNames[songId]}`;
     durationEl.textContent = '0:30';
     
@@ -161,7 +166,8 @@ function stopMusic() {
     }
 
     vinyl.classList.remove('spinning');
-    toneArm.classList.remove('playing');
+    if (toneArm) toneArm.classList.remove('playing');
+    
     trackInfo.textContent = 'Click a sticker to play music';
     progressFill.style.width = '0%';
     currentTimeEl.textContent = '0:00';

@@ -1,3 +1,8 @@
+/* ================================
+   RESULT PAGE STYLES
+   Optimized for all devices
+   ================================ */
+
 * {
     margin: 0;
     padding: 0;
@@ -12,8 +17,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    -webkit-tap-highlight-color: transparent;
 }
 
+/* ========== LAYOUT ========== */
 .container {
     max-width: 800px;
     width: 100%;
@@ -26,6 +33,15 @@ body {
     position: relative;
 }
 
+.title {
+    color: white;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-top: 80px;
+    margin-bottom: 10px;
+}
+
+/* ========== NAVIGATION ========== */
 .back-btn {
     position: fixed;
     top: 20px;
@@ -41,6 +57,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     z-index: 200;
+    touch-action: manipulation;
 }
 
 .back-btn:hover {
@@ -49,42 +66,56 @@ body {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-.title {
-    color: white;
-    font-size: 2.5rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    margin-top: 80px;
-    margin-bottom: 10px;
-}
-
+/* ========== RESULT SECTION ========== */
 .result-section {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(15px);
     padding: 40px;
     border-radius: 20px;
     text-align: center;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* ========== VINYL DISPLAY ========== */
+.vinyl-container {
+    position: relative;
+    display: inline-block;
+    margin: 30px auto;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
+    border-radius: 50%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 .vinyl-display {
-    margin: 30px auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.vinyl-display img {
-    max-width: 100%;
-    height: auto;
     border-radius: 50%;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    pointer-events: none;
+    z-index: 2;
 }
 
+.vinyl-display p {
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+    padding: 20px;
+}
+
+/* ========== ACTION BUTTONS ========== */
 .actions {
     margin-top: 40px;
 }
 
-.btn-download, .btn-new {
+.btn-download,
+.btn-new {
     width: 100%;
     padding: 15px 30px;
     font-size: 1.1rem;
@@ -98,6 +129,7 @@ body {
     justify-content: center;
     gap: 10px;
     margin-bottom: 15px;
+    touch-action: manipulation;
 }
 
 .btn-download {
@@ -122,6 +154,7 @@ body {
     box-shadow: 0 6px 20px rgba(19, 242, 135, 0.6);
 }
 
+/* ========== SHARE SECTION ========== */
 .share-section {
     margin: 30px 0;
     padding: 20px;
@@ -153,6 +186,7 @@ body {
     justify-content: center;
     gap: 8px;
     color: white;
+    touch-action: manipulation;
 }
 
 .share-btn.facebook {
@@ -176,7 +210,9 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Mobile responsive */
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablet Devices */
 @media (max-width: 768px) {
     .title {
         font-size: 1.8rem;
@@ -184,29 +220,105 @@ body {
     }
     
     .result-section {
-        padding: 25px;
+        padding: 25px 15px;
+    }
+    
+    .vinyl-container {
+        width: 350px;
+        height: 350px;
+        margin: 20px auto;
     }
     
     .share-buttons {
         grid-template-columns: 1fr 1fr;
     }
+    
+    .share-section {
+        padding: 15px;
+    }
+    
+    .btn-download,
+    .btn-new {
+        padding: 14px 24px;
+        font-size: 1rem;
+    }
 }
 
+/* Mobile Devices */
 @media (max-width: 480px) {
     body {
         padding: 10px;
     }
     
+    .back-btn {
+        top: 10px;
+        left: 10px;
+        padding: 10px 18px;
+        font-size: 0.9rem;
+    }
+    
     .title {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        margin-top: 50px;
     }
     
     .result-section {
-        padding: 20px;
+        padding: 20px 12px;
     }
     
-    .btn-download, .btn-new {
+    .vinyl-container {
+        width: 280px;
+        height: 280px;
+        margin: 15px auto;
+    }
+    
+    .btn-download,
+    .btn-new {
         padding: 12px 20px;
-        font-size: 1rem;
+        font-size: 0.95rem;
+    }
+    
+    .share-section {
+        padding: 12px;
+        margin: 20px 0;
+    }
+    
+    .share-section h3 {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+    }
+    
+    .share-buttons {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .share-btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .actions {
+        margin-top: 25px;
+    }
+}
+
+/* Very Small Screens */
+@media (max-width: 360px) {
+    .title {
+        font-size: 1.2rem;
+    }
+    
+    .vinyl-container {
+        width: 240px;
+        height: 240px;
+    }
+    
+    .result-section {
+        padding: 15px 8px;
+    }
+    
+    .share-section {
+        padding: 10px;
     }
 }

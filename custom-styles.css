@@ -111,6 +111,7 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
     background: transparent;
     padding: 10px 30px 30px;
     text-align: center;
+    position: relative;
 }
 
 /* Bottom Toolbar */
@@ -1074,22 +1075,29 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
     }
     
     .preview-section {
-        padding: 20px;
+        padding: 15px;
     }
     
     .vinyl-preview {
-        width: 350px;
-        height: 350px;
+        width: 340px;
+        height: 340px;
     }
     
     .vinyl-center-preview {
-        width: 110px;
-        height: 110px;
+        width: 105px;
+        height: 105px;
+    }
+    
+    .drag-hint {
+        font-size: 0.85rem;
+        padding: 8px 15px;
+        margin-bottom: 15px;
     }
     
     .bottom-toolbar {
         bottom: 15px;
         gap: 8px;
+        padding: 0 10px;
     }
     
     .toolbar-btn {
@@ -1102,126 +1110,13 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
     }
     
     .toolbar-panel {
-        min-width: 240px;
+        min-width: 260px;
         max-width: 90vw;
+        padding: 18px;
     }
 }
 
 @media (max-width: 480px) {
-    body {
-        padding: 5px 5px 120px 5px;
-    }
-    
-    .custom-wrapper {
-        padding-bottom: 130px;
-    }
-    
-    .back-btn,
-    .save-btn {
-        padding: 8px 16px;
-        font-size: 0.85rem;
-        top: 10px;
-    }
-    
-    .back-btn {
-        left: 10px;
-    }
-    
-    .save-btn {
-        right: 10px;
-    }
-    
-    .title {
-        font-size: 1.3rem;
-    }
-    
-    .vinyl-preview {
-        width: 280px;
-        height: 280px;
-    }
-    
-    .vinyl-center-preview {
-        width: 85px;
-        height: 85px;
-    }
-    
-    .preview-section {
-        padding: 15px 10px;
-    }
-    
-    .bottom-toolbar {
-        bottom: 10px;
-        gap: 8px;
-        padding: 0 10px;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scroll-behavior: smooth;
-        justify-content: flex-start;
-    }
-    
-    .bottom-toolbar::before,
-    .bottom-toolbar::after {
-        width: 20px;
-    }
-    
-    .toolbar-btn span {
-        font-size: 1.4rem;
-    }
-    
-    .toolbar-btn small {
-        font-size: 0.65rem;
-    }
-    
-    .toolbar-panel {
-        min-width: 280px;
-        max-width: 90vw;
-        padding: 15px;
-        bottom: 90px;
-    }
-    
-    .stickers-panel {
-        min-width: 300px;
-    }
-    
-    .sticker-library-mini {
-        grid-template-columns: repeat(5, 1fr);
-        gap: 8px;
-    }
-    
-    .library-item {
-        font-size: 1.5rem;
-        padding: 8px;
-    }
-    
-    .color-btn, .center-color-btn, .text-color-btn {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .pen-color-btn {
-        width: 38px;
-        height: 38px;
-    }
-    
-    input[type="range"] {
-        height: 35px;
-    }
-    
-    .border-editor {
-        bottom: 90px;
-        max-width: 85vw;
-        max-height: 250px;
-    }
-    
-    .btn-text-add, .btn-image-upload, .btn-clear-draw, .btn-eraser {
-        padding: 12px;
-        font-size: 0.9rem;
-        touch-action: manipulation;
-    }
-}
-
-/* Media query for very small screens */
-@media (max-width: 360px) {
     body {
         padding: 5px 5px 110px 5px;
     }
@@ -1230,25 +1125,64 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
         padding-bottom: 120px;
     }
     
+    .back-btn,
+    .save-btn {
+        padding: 8px 14px;
+        font-size: 0.8rem;
+        top: 8px;
+    }
+    
+    .back-btn {
+        left: 8px;
+    }
+    
+    .save-btn {
+        right: 8px;
+    }
+    
+    .title {
+        font-size: 1.2rem;
+        margin-top: 50px;
+    }
+    
     .vinyl-preview {
-        width: 240px;
-        height: 240px;
+        width: 260px;
+        height: 260px;
     }
     
     .vinyl-center-preview {
-        width: 70px;
-        height: 70px;
+        width: 80px;
+        height: 80px;
+    }
+    
+    .preview-section {
+        padding: 12px 8px;
+    }
+    
+    .drag-hint {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+        margin-bottom: 12px;
     }
     
     .bottom-toolbar {
         bottom: 8px;
         gap: 6px;
         padding: 0 8px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        justify-content: flex-start;
+    }
+    
+    .bottom-toolbar::before,
+    .bottom-toolbar::after {
+        width: 15px;
     }
     
     .toolbar-btn {
-        min-width: 60px;
-        padding: 8px 10px;
+        min-width: 62px;
+        padding: 9px 12px;
     }
     
     .toolbar-btn span {
@@ -1256,13 +1190,14 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
     }
     
     .toolbar-btn small {
-        font-size: 0.6rem;
+        font-size: 0.65rem;
     }
     
     .toolbar-panel {
-        min-width: 260px;
-        max-width: 92vw;
-        padding: 12px;
+        min-width: 270px;
+        max-width: 90vw;
+        padding: 15px;
+        bottom: 80px;
     }
     
     .stickers-panel {
@@ -1270,11 +1205,135 @@ button, .sticker, .library-item, .color-btn, .center-color-btn, .border-color-op
     }
     
     .sticker-library-mini {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+    }
+    
+    .library-item {
+        font-size: 1.4rem;
+        padding: 8px;
+    }
+    
+    .color-btn, .center-color-btn, .text-color-btn {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .pen-color-btn {
+        width: 36px;
+        height: 36px;
+    }
+    
+    input[type="range"] {
+        height: 32px;
+    }
+    
+    .border-editor {
+        bottom: 80px;
+        max-width: 88vw;
+        max-height: 240px;
+        padding: 15px;
+    }
+    
+    .btn-text-add, .btn-image-upload, .btn-clear-draw, .btn-eraser {
+        padding: 10px;
+        font-size: 0.85rem;
+        touch-action: manipulation;
+    }
+}
+
+/* Media query for very small screens */
+@media (max-width: 360px) {
+    body {
+        padding: 5px 5px 100px 5px;
+    }
+    
+    .custom-wrapper {
+        padding-bottom: 110px;
+    }
+    
+    .title {
+        font-size: 1.1rem;
+        margin-top: 45px;
+    }
+    
+    .vinyl-preview {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .vinyl-center-preview {
+        width: 65px;
+        height: 65px;
+    }
+    
+    .preview-section {
+        padding: 10px 5px;
+    }
+    
+    .drag-hint {
+        font-size: 0.7rem;
+        padding: 5px 10px;
+        margin-bottom: 10px;
+    }
+    
+    .bottom-toolbar {
+        bottom: 6px;
+        gap: 5px;
+        padding: 0 6px;
+    }
+    
+    .toolbar-btn {
+        min-width: 58px;
+        padding: 8px 10px;
+    }
+    
+    .toolbar-btn span {
+        font-size: 1.2rem;
+    }
+    
+    .toolbar-btn small {
+        font-size: 0.6rem;
+    }
+    
+    .toolbar-panel {
+        min-width: 250px;
+        max-width: 92vw;
+        padding: 12px;
+        bottom: 70px;
+    }
+    
+    .stickers-panel {
+        min-width: 260px;
+    }
+    
+    .sticker-library-mini {
         grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+    }
+    
+    .library-item {
+        font-size: 1.3rem;
+        padding: 6px;
     }
     
     .color-btn, .center-color-btn {
-        width: 36px;
-        height: 36px;
+        width: 34px;
+        height: 34px;
+    }
+    
+    .pen-color-btn {
+        width: 32px;
+        height: 32px;
+    }
+    
+    input[type="range"] {
+        height: 30px;
+    }
+    
+    .border-editor {
+        bottom: 70px;
+        max-width: 90vw;
+        padding: 12px;
     }
 }

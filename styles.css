@@ -196,49 +196,6 @@ button, .sticker, .btn {
 .sticker-4 { background: linear-gradient(135deg, #FFA8A8 0%, #FCFF00 100%); }
 .sticker-5 { background: linear-gradient(135deg, #C471F5 0%, #FA71CD 100%); }
 
-/* Tone Arm */
-.tone-arm {
-    position: absolute;
-    width: 8px;
-    height: 180px;
-    background: linear-gradient(to bottom, #333 0%, #666 100%);
-    border-radius: 4px;
-    top: 10%;
-    right: -20px;
-    transform-origin: top center;
-    transition: transform 0.5s ease;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
-}
-
-.tone-arm::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 20px;
-    background: #888;
-    border-radius: 50%;
-}
-
-.tone-arm::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 12px solid #999;
-}
-
-.tone-arm.playing {
-    transform: rotate(-25deg);
-}
-
 /* Now Playing Section */
 .now-playing {
     background: rgba(255,255,255,0.95);
@@ -332,6 +289,9 @@ button, .sticker, .btn {
 }
 
 /* Responsive Design */
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablet Devices */
 @media (max-width: 768px) {
     body {
         padding: 15px 10px;
@@ -343,17 +303,17 @@ button, .sticker, .btn {
     }
     
     .vinyl-container {
-        width: 300px;
-        height: 300px;
+        width: 340px;
+        height: 340px;
     }
     
     .vinyl-center {
-        width: 95px;
-        height: 95px;
+        width: 105px;
+        height: 105px;
     }
     
     .lyrics-display {
-        font-size: 0.6rem;
+        font-size: 0.65rem;
         padding: 12px;
     }
     
@@ -362,21 +322,16 @@ button, .sticker, .btn {
     }
     
     .sticker {
-        width: 55px;
-        height: 55px;
+        width: 58px;
+        height: 58px;
     }
     
     .sticker-emoji {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
     
     .sticker-label {
-        font-size: 0.55rem;
-    }
-    
-    .tone-arm {
-        height: 140px;
-        right: -15px;
+        font-size: 0.6rem;
     }
     
     .now-playing {
@@ -399,29 +354,30 @@ button, .sticker, .btn {
     }
 }
 
+/* Mobile Devices */
 @media (max-width: 480px) {
     body {
         padding: 10px 5px;
     }
     
     .title {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         margin-bottom: 15px;
     }
     
     .vinyl-container {
-        width: 260px;
-        height: 260px;
+        width: 280px;
+        height: 280px;
     }
     
     .vinyl-center {
-        width: 75px;
-        height: 75px;
+        width: 85px;
+        height: 85px;
     }
     
     .lyrics-display {
-        font-size: 0.5rem;
-        padding: 8px;
+        font-size: 0.55rem;
+        padding: 10px;
         line-height: 1.4;
     }
     
@@ -430,22 +386,17 @@ button, .sticker, .btn {
     }
     
     .sticker {
-        width: 48px;
-        height: 48px;
+        width: 50px;
+        height: 50px;
         border-width: 2px;
     }
     
     .sticker-emoji {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
     
     .sticker-label {
-        font-size: 0.5rem;
-    }
-    
-    .tone-arm {
-        height: 110px;
-        width: 6px;
+        font-size: 0.55rem;
     }
     
     .now-playing {
@@ -460,12 +411,26 @@ button, .sticker, .btn {
         padding: 12px 16px;
         font-size: 0.95rem;
     }
+    
+    .progress-bar {
+        height: 6px;
+    }
 }
 
+/* Very Small Screens */
 @media (max-width: 360px) {
+    .title {
+        font-size: 1.2rem;
+    }
+    
     .vinyl-container {
         width: 240px;
         height: 240px;
+    }
+    
+    .vinyl-center {
+        width: 70px;
+        height: 70px;
     }
     
     .sticker {
@@ -474,6 +439,15 @@ button, .sticker, .btn {
     }
     
     .sticker-emoji {
-        font-size: 1rem;
+        font-size: 1.1rem;
+    }
+    
+    .sticker-label {
+        font-size: 0.5rem;
+    }
+    
+    .lyrics-display {
+        font-size: 0.5rem;
+        padding: 8px;
     }
 }

@@ -4,10 +4,9 @@ function loadVinylImage() {
     const vinylDisplay = document.getElementById('vinylDisplay');
     
     if (vinylImage) {
-        const img = document.createElement('img');
-        img.src = vinylImage;
-        img.alt = 'Your Custom Vinyl';
-        vinylDisplay.appendChild(img);
+        vinylDisplay.style.backgroundImage = `url(${vinylImage})`;
+        vinylDisplay.style.backgroundSize = 'cover';
+        vinylDisplay.style.backgroundPosition = 'center';
     } else {
         vinylDisplay.innerHTML = '<p style="color: #666;">No vinyl image found. Please create one first!</p>';
     }

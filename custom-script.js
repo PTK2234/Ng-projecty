@@ -27,7 +27,6 @@ const borderColorOptions = document.querySelectorAll('.border-color-option');
 const borderWidthSlider = document.getElementById('borderWidthSlider');
 const borderWidthValue = document.getElementById('borderWidthValue');
 const borderStyleBtns = document.querySelectorAll('.border-style-btn');
-const closeBorderEditor = document.getElementById('closeBorderEditor');
 
 // Color buttons
 const colorButtons = document.querySelectorAll('.color-btn');
@@ -279,14 +278,19 @@ function setupBorderEditor() {
         });
     });
     
-    // Close editor
-    closeBorderEditor.addEventListener('click', () => {
-        borderEditor.classList.remove('active');
-        // Deselect sticker when closing
-        document.querySelectorAll('.sticker-preview').forEach(el => {
-            el.classList.remove('selected');
-        });
-        selectedSticker = null;
+    // Close editor when clicking outside
+    document.addEventListener('click', (e) => {
+        // Check if click is outside border editor and not on a sticker
+        if (borderEditor.classList.contains('active') && 
+            !borderEditor.contains(e.target) && 
+            !e.target.closest('.sticker-preview')) {
+            borderEditor.classList.remove('active');
+            // Deselect sticker when closing
+            document.querySelectorAll('.sticker-preview').forEach(el => {
+                el.classList.remove('selected');
+            });
+            selectedSticker = null;
+        }
     });
 }
 

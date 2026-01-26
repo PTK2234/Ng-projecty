@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Your Custom Vinyl</title>
+    <link rel="stylesheet" href="vinyl-assets.css">
     <link rel="stylesheet" href="result-styles.css">
 </head>
 <body>
@@ -14,7 +15,15 @@
         </div>
         
         <div class="result-section">
-            <div class="vinyl-display" id="vinylDisplay"></div>
+            <div class="player-wrapper">
+                <div class="vinyl-container">
+                    <div class="grooves"></div>
+                    <div class="vinyl-display" id="vinylDisplay"></div>
+                </div>
+                <div class="stylus-arm">
+                    <div class="stylus-tip"></div>
+                </div>
+            </div>
             
             <div class="actions">
                 <button class="btn-download" id="downloadBtn">

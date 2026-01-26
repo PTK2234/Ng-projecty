@@ -1,0 +1,215 @@
+/* ================================
+   GLOBAL VINYL & STYLUS ASSETS
+   Centralized styling for all pages
+   ================================ */
+
+/* ========== PLAYER WRAPPER ========== */
+.player-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 40px 60px;
+    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+    border-radius: 20px;
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    overflow: visible;
+}
+
+/* ========== VINYL RECORD ========== */
+.vinyl-preview,
+.vinyl-container {
+    position: relative;
+}
+
+/* Vinyl Grooves Effect */
+.grooves {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    background: repeating-radial-gradient(
+        circle at center,
+        transparent 0px,
+        transparent 3px,
+        rgba(255, 255, 255, 0.03) 3px,
+        rgba(255, 255, 255, 0.03) 4px
+    );
+    pointer-events: none;
+}
+
+/* Vinyl Center Label */
+.vinyl-center,
+.vinyl-center-preview {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ========== STYLUS/TONEARM ========== */
+.stylus-arm,
+.tone-arm {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    width: 120px;
+    height: 320px;
+    transform-origin: 60px 12px;
+    z-index: 10;
+    pointer-events: none;
+    transition: all 0.8s ease-in-out;
+    transform: rotate(0deg);
+    overflow: visible;
+}
+
+/* Stylus Arm Body */
+.stylus-arm::before,
+.tone-arm::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    width: 14px;
+    height: 280px;
+    background: rgba(100, 100, 100, 0.6);
+    border-radius: 25px 25px 7px 7px;
+    transform: translateX(-50%);
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Stylus Tip */
+.stylus-arm .stylus-tip,
+.tone-arm .stylus-tip {
+    position: absolute;
+    top: 295px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 12px;
+    background: rgba(80, 80, 80, 0.7);
+    border-radius: 2px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Stylus Base/Pivot Point */
+.stylus-arm::after,
+.tone-arm::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 24px;
+    background: rgba(100, 100, 100, 0.6);
+    border-radius: 50%;
+    border: 4px solid rgba(80, 80, 80, 0.6);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Playing State - Stylus on Vinyl */
+.stylus-arm.playing,
+.tone-arm.playing {
+    transform: rotate(20deg) !important;
+}
+
+/* Legacy Stylus Elements (Hidden) */
+.stylus-base,
+.stylus-arm-body,
+.stylus-head {
+    display: none;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes counterSpin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+.vinyl-preview.spinning,
+.vinyl-container.spinning {
+    animation: spin 3s linear infinite;
+}
+
+.vinyl-preview.spinning .vinyl-center-preview,
+.vinyl-container.spinning .vinyl-center {
+    animation: counterSpin 3s linear infinite;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablet Devices */
+@media (max-width: 768px) {
+    .player-wrapper {
+        padding: 30px 40px;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 480px) {
+    .player-wrapper {
+        padding: 20px 30px;
+    }
+    
+    .stylus-arm,
+    .tone-arm {
+        top: 10px;
+        width: 80px;
+        height: 240px;
+    }
+    
+    .stylus-arm::before,
+    .tone-arm::before {
+        height: 200px;
+        width: 12px;
+    }
+    
+    .stylus-arm .stylus-tip,
+    .tone-arm .stylus-tip {
+        top: 215px;
+        width: 6px;
+        height: 10px;
+    }
+    
+    .stylus-arm::after,
+    .tone-arm::after {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Medium Mobile Devices */
+@media (max-width: 968px) and (min-width: 481px) {
+    .stylus-arm,
+    .tone-arm {
+        top: 15px;
+        width: 100px;
+        height: 280px;
+    }
+    
+    .stylus-arm::before,
+    .tone-arm::before {
+        height: 240px;
+    }
+    
+    .stylus-arm .stylus-tip,
+    .tone-arm .stylus-tip {
+        top: 255px;
+    }
+}
