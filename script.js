@@ -65,24 +65,24 @@ const lyrics = {
 
 // Initialize
 function init() {
-    // Add click listeners to stickers
+    // Add click listeners to stickers with passive event listeners for better scroll performance
     stickers.forEach(sticker => {
         sticker.addEventListener('click', (e) => {
             e.stopPropagation();
             const songId = sticker.dataset.song;
             playMusic(songId, sticker);
-        });
+        }, { passive: true });
     });
 
     // Stop button
     stopBtn.addEventListener('click', stopMusic);
 
-    // Vinyl click to stop
+    // Vinyl click to stop with passive listener
     vinyl.addEventListener('click', (e) => {
         if (e.target === vinyl || e.target.classList.contains('grooves')) {
             stopMusic();
         }
-    });
+    }, { passive: true });
 }
 
 // Play music
@@ -222,9 +222,19 @@ function formatTime(seconds) {
 }
 
 // Initialize on load
-document.addEventListener('DOMContentLoaded', init);
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
 
 // Cleanup on page unload
 window.addEventListener('beforeunload', () => {
-    stopMusic();
-});
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.src = '';
+    }
+    if (progressInterval) {
+        clearInterval(progressInterval);
+    }
+}, { passive: true });

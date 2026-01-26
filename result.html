@@ -3,18 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Your Custom Vinyl</title>
+    <meta name="description" content="View, download and share your custom vinyl record design. Create unique vinyl records with personalized stickers and colors.">
+    <meta name="keywords" content="custom vinyl, vinyl download, share vinyl, personalized record">
+    <meta name="theme-color" content="#1a1a1a">
+    <title>Your Custom Vinyl - Download & Share</title>
+    
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="vinyl-assets.css" as="style">
+    <link rel="preload" href="result-styles.css" as="style">
     <link rel="stylesheet" href="vinyl-assets.css">
     <link rel="stylesheet" href="result-styles.css">
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <a href="custom.html" class="back-btn">← Edit Again</a>
+        <div class="header" role="banner">
+            <a href="custom.html" class="back-btn" aria-label="Edit vinyl again">← Edit Again</a>
             <h1 class="title">🎉 Your Custom Vinyl!</h1>
         </div>
         
-        <div class="result-section">
+        <div class="result-section" role="main" aria-label="Vinyl result">
             <div class="player-wrapper">
                 <div class="vinyl-container">
                     <div class="grooves"></div>
@@ -25,35 +32,35 @@
                 </div>
             </div>
             
-            <div class="actions">
-                <button class="btn-download" id="downloadBtn">
+            <div class="actions" role="toolbar" aria-label="Vinyl actions">
+                <button class="btn-download" id="downloadBtn" aria-label="Download vinyl image">
                     <span>💾</span>
                     Download Image
                 </button>
                 
                 <div class="share-section">
                     <h3>Share Your Creation</h3>
-                    <div class="share-buttons">
-                        <button class="share-btn facebook" id="shareFacebook">
+                    <div class="share-buttons" role="group" aria-label="Share options">
+                        <button class="share-btn facebook" id="shareFacebook" aria-label="Share on Facebook">
                             <span>📘</span>
                             Facebook
                         </button>
-                        <button class="share-btn twitter" id="shareTwitter">
+                        <button class="share-btn twitter" id="shareTwitter" aria-label="Share on Twitter">
                             <span>🐦</span>
                             Twitter
                         </button>
-                        <button class="share-btn pinterest" id="sharePinterest">
+                        <button class="share-btn pinterest" id="sharePinterest" aria-label="Share on Pinterest">
                             <span>📌</span>
                             Pinterest
                         </button>
-                        <button class="share-btn copy" id="copyLink">
+                        <button class="share-btn copy" id="copyLink" aria-label="Copy link to clipboard">
                             <span>🔗</span>
                             Copy Link
                         </button>
                     </div>
                 </div>
                 
-                <button class="btn-new" id="newVinylBtn">
+                <button class="btn-new" id="newVinylBtn" aria-label="Create new vinyl">
                     <span>🎨</span>
                     Create New Vinyl
                 </button>
@@ -61,6 +68,6 @@
         </div>
     </div>
     
-    <script src="result-script.js"></script>
+    <script src="result-script.js" defer></script>
 </body>
 </html>

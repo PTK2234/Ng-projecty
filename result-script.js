@@ -74,4 +74,9 @@ document.getElementById('newVinylBtn').addEventListener('click', () => {
 });
 
 // Initialize
-document.addEventListener('DOMContentLoaded', loadVinylImage);
+// Initialize on load
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadVinylImage);
+} else {
+    loadVinylImage();
+}

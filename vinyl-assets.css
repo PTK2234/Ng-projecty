@@ -15,12 +15,16 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.1);
     overflow: visible;
+    will-change: transform;
 }
 
 /* ========== VINYL RECORD ========== */
 .vinyl-preview,
 .vinyl-container {
     position: relative;
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
 /* Vinyl Grooves Effect */
@@ -40,6 +44,7 @@
         rgba(255, 255, 255, 0.03) 4px
     );
     pointer-events: none;
+    will-change: auto;
 }
 
 /* Vinyl Center Label */
@@ -68,9 +73,10 @@
     transform-origin: 60px 12px;
     z-index: 10;
     pointer-events: none;
-    transition: all 0.8s ease-in-out;
+    transition: transform 0.8s ease-in-out;
     transform: rotate(0deg);
     overflow: visible;
+    will-change: transform;
 }
 
 /* Stylus Arm Body */
@@ -133,23 +139,25 @@
 
 /* ========== ANIMATIONS ========== */
 @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 @keyframes counterSpin {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(-360deg); }
 }
 
 .vinyl-preview.spinning,
 .vinyl-container.spinning {
     animation: spin 3s linear infinite;
+    animation-fill-mode: forwards;
 }
 
 .vinyl-preview.spinning .vinyl-center-preview,
 .vinyl-container.spinning .vinyl-center {
     animation: counterSpin 3s linear infinite;
+    animation-fill-mode: forwards;
 }
 
 /* ========== RESPONSIVE DESIGN ========== */

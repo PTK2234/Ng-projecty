@@ -3,20 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Custom Vinyl - Create Your Own</title>
+    <meta name="description" content="Create your own custom vinyl record with stickers, colors, text, images, and drawings. Save and share your unique design.">
+    <meta name="keywords" content="custom vinyl, vinyl creator, sticker editor, personalized music, vinyl design">
+    <meta name="theme-color" content="#1a1a1a">
+    <title>Custom Vinyl Creator - Design Your Own Record</title>
+    
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="vinyl-assets.css" as="style">
+    <link rel="preload" href="custom-styles.css" as="style">
     <link rel="stylesheet" href="vinyl-assets.css">
     <link rel="stylesheet" href="custom-styles.css">
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <a href="index.html" class="back-btn">← Back to Player</a>
-            <button class="save-btn" id="saveBtn">💾 Save</button>
+        <div class="header" role="banner">
+            <a href="index.html" class="back-btn" aria-label="Back to player">← Back to Player</a>
+            <button class="save-btn" id="saveBtn" aria-label="Save vinyl design">💾 Save</button>
             <h1 class="title">🎨 Create Your Custom Vinyl</h1>
         </div>
         
         <!-- Full Width Preview -->
-        <div class="preview-section">
+        <div class="preview-section" role="region" aria-label="Vinyl preview">
             <p class="drag-hint">👆 Tap sticker to edit • Drag to move • Pinch to resize</p>
             <div class="player-wrapper">
                 <div class="vinyl-preview" id="vinylPreview">
@@ -182,7 +189,7 @@
         </div>
     </div>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="custom-script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+    <script src="custom-script.js" defer></script>
 </body>
 </html>
