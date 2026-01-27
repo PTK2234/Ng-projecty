@@ -61,20 +61,29 @@ The website is fully optimized for mobile devices with:
    - **Emoji Stickers**: Browse categories and click to add
    - **Text Stickers**: Type text, choose color, and click "Add Text"
    - **Image Stickers**: Click "Upload Image" and select a file
+   - **Drawing**: Enable draw mode and freehand draw on the vinyl
 4. Customize stickers:
    - **Move**: Drag stickers to reposition (tap and drag on mobile)
    - **Resize**: Use the size slider in the editor (or pinch on mobile)
-   - **Edit Border**: Click a sticker to open the editor
+   - **Edit Border**: Tap a sticker to open the editor
+   - **Close Editor**: Tap outside the editor to close
    - **Delete**: Click the 🗑️ button when a sticker is selected
-5. Test the spin with the "🔄 Test Spin" button
-6. Click "💾 Save Custom Vinyl" to persist your design
+5. Drawing tools:
+   - **Enable Draw**: Click the ✏️ Draw button to activate
+   - **Pen Color**: Choose from 5 colors
+   - **Pen Size**: Adjust size from 1-10px
+   - **Eraser**: Switch to eraser mode
+   - **Clear**: Remove all drawings
+6. Click "💾 Save" to persist your design
+7. View your design on the Result page
 
 ### Touch Gestures (Mobile)
 
 - **Single tap**: Select sticker and open editor
+- **Tap outside**: Close editor panel
 - **Drag**: Move sticker around the vinyl
 - **Pinch**: Resize and rotate sticker
-- **Double tap vinyl**: Deselect current sticker
+- **Draw mode**: Tap button to toggle, stays active until you tap again
 
 ## Customization
 
@@ -124,13 +133,15 @@ Modify the gradient colors in `styles.css` for different sticker styles:
 
 ## Technologies Used
 
-- **HTML5** - Semantic markup and audio elements
+- **HTML5** - Semantic markup, audio elements, and accessibility features
 - **CSS3** - Animations, transitions, Flexbox, Grid, media queries
 - **JavaScript (ES6+)** - Modern syntax with modules pattern
 - **Web Audio API** - Audio playback control
 - **FileReader API** - Image upload functionality
 - **LocalStorage API** - Persistent data storage
 - **Touch Events API** - Mobile gesture support
+- **Canvas API** - Freehand drawing functionality
+- **html2canvas** - Export vinyl designs as images
 
 ## File Structure
 
@@ -142,8 +153,39 @@ project/
 ├── custom.html         # Customization page
 ├── custom-styles.css   # Customization page styles (mobile-optimized)
 ├── custom-script.js    # Sticker editor and drag-drop functionality
+├── result.html         # Result/share page
+├── result-styles.css   # Result page styles
+├── result-script.js    # Result page functionality
+├── vinyl-assets.css    # Global vinyl and stylus styles
 └── README.md           # Documentation
 ```
+
+## Performance Optimizations
+
+### HTML
+- **Preloaded CSS** - Critical stylesheets loaded with priority
+- **Deferred JavaScript** - Non-blocking script execution
+- **Lazy Audio Loading** - Audio files loaded on demand (preload="none")
+- **ARIA Attributes** - Comprehensive accessibility labels
+
+### CSS
+- **Hardware Acceleration** - `will-change`, `backface-visibility`, `transform: translateZ(0)`
+- **Optimized Transitions** - Specific properties instead of `transition: all`
+- **Animation Fill Modes** - Prevents layout thrashing
+- **GPU Compositing** - Layer-based rendering for smooth animations
+
+### JavaScript
+- **Passive Event Listeners** - Better scroll and touch performance
+- **Smart Initialization** - Checks `document.readyState` for faster execution
+- **Proper Cleanup** - Memory leak prevention on page unload
+- **Debounced Events** - Optimized resize and input handlers
+
+### SEO & Accessibility
+- **Meta Descriptions** - Clear page descriptions for search engines
+- **Semantic HTML** - Proper heading structure and landmarks
+- **Keyboard Navigation** - Full keyboard support for all interactions
+- **Screen Reader Support** - ARIA labels and roles throughout
+- **Theme Colors** - Consistent branding across platforms
 
 ## Performance Notes
 
@@ -152,6 +194,7 @@ project/
 - LocalStorage ensures instant load of saved designs
 - Images are converted to base64 for easy storage
 - Minimal dependencies for fast loading
+- Optimized for Core Web Vitals (LCP, FID, CLS)
 
 ## Future Enhancements
 

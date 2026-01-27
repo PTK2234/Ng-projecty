@@ -53,10 +53,21 @@ Click the **"🎨 Customize"** button to design your own vinyl with stickers.
 
 ### Editing Stickers
 
-1. **Click a sticker** → Editor panel opens automatically
+1. **Tap a sticker** → Editor panel opens automatically
 2. **Adjust size** → Use the slider (40-150px)
 3. **Change border** → Pick color, width, and style
-4. **Delete sticker** → Click the 🗑️ trash icon
+4. **Close editor** → Tap anywhere outside the editor panel
+5. **Delete sticker** → Click the 🗑️ trash icon
+
+### Drawing on Vinyl
+
+1. Click the **✏️ Draw** button in the toolbar
+2. Choose your **pen color** (black, red, blue, green, white)
+3. Adjust **pen size** (1-10px slider)
+4. Draw directly on the vinyl
+5. Use **🧹 Eraser** button to switch to eraser mode
+6. **Clear All** removes all drawings
+7. Click **Draw** button again to exit drawing mode
 
 ### Moving & Resizing
 

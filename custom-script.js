@@ -122,32 +122,25 @@ function setupToolbarButtons() {
                 e.stopPropagation();
                 e.preventDefault();
                 
+                // Special handling for draw button - don't close panel when in drawing mode
+                if (btn.id === 'drawBtn' && drawingMode && item.classList.contains('active')) {
+                    return; // Keep panel open when drawing is active
+                }
+                
                 const wasActive = item.classList.contains('active');
                 
-                // Close all other panels and reset their button colors
+                // Close all other panels
                 toolbarItems.forEach(otherItem => {
                     if (otherItem !== item) {
                         otherItem.classList.remove('active');
-                        const otherBtn = otherItem.querySelector('.toolbar-btn');
-                        if (otherBtn && otherBtn.id !== 'saveBtn') {
-                            otherBtn.style.background = '';
-                        }
                     }
                 });
                 
                 // Toggle current panel
                 if (wasActive) {
-                    // Close if already open
                     item.classList.remove('active');
-                    if (btn.id !== 'saveBtn') {
-                        btn.style.background = '';
-                    }
                 } else {
-                    // Open panel
                     item.classList.add('active');
-                    if (btn.id !== 'saveBtn') {
-                        btn.style.background = 'rgba(255, 107, 107, 0.5)';
-                    }
                     
                     // Scroll button into view on mobile
                     if (window.innerWidth <= 768) {
@@ -167,15 +160,16 @@ function setupToolbarButtons() {
         }
     });
     
-    // Close panels when clicking outside
+    // Close panels when clicking outside (except when drawing is active)
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.toolbar-item') && !e.target.closest('#drawingCanvas') && !e.target.closest('.vinyl-preview')) {
             toolbarItems.forEach(item => {
-                item.classList.remove('active');
                 const btn = item.querySelector('.toolbar-btn');
-                if (btn && btn.id !== 'saveBtn') {
-                    btn.style.background = '';
+                // Don't close draw panel if drawing mode is active
+                if (btn && btn.id === 'drawBtn' && drawingMode) {
+                    return;
                 }
+                item.classList.remove('active');
             });
         }
     });
@@ -732,9 +726,14 @@ function setupDrawing() {
     drawBtn.addEventListener('click', () => {
         drawingMode = !drawingMode;
         const cursorCircle = document.getElementById('eraserCursor');
+        const drawToolbarItem = drawBtn.closest('.toolbar-item');
+        
         if (drawingMode) {
             drawBtn.style.background = 'rgba(255, 107, 107, 0.5)';
+            drawBtn.style.color = 'white';
             drawingCanvas.style.pointerEvents = 'auto';
+            if (drawToolbarItem) drawToolbarItem.classList.add('active');
+            
             if (eraserMode) {
                 vinylPreview.style.cursor = 'none';
                 if (cursorCircle) cursorCircle.style.display = 'block';
@@ -743,8 +742,10 @@ function setupDrawing() {
             }
         } else {
             drawBtn.style.background = '';
+            drawBtn.style.color = '';
             drawingCanvas.style.pointerEvents = 'none';
             vinylPreview.style.cursor = 'move';
+            if (drawToolbarItem) drawToolbarItem.classList.remove('active');
             if (cursorCircle) cursorCircle.style.display = 'none';
         }
     });
