@@ -13,7 +13,8 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
-    padding: 20px;
+    min-height: 100dvh;
+    padding: clamp(10px, 3vw, 20px);
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -29,35 +30,39 @@ body {
 
 .header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: clamp(20px, 5vw, 40px);
     position: relative;
 }
 
 .title {
     color: white;
-    font-size: 2.5rem;
+    font-size: clamp(1.4rem, 5vw, 2.5rem);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    margin-top: 80px;
+    margin-top: clamp(50px, 10vw, 80px);
     margin-bottom: 10px;
 }
 
 /* ========== NAVIGATION ========== */
 .back-btn {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: clamp(10px, 2vw, 20px);
+    left: clamp(10px, 2vw, 20px);
     background: rgba(102, 126, 234, 0.3);
     backdrop-filter: blur(15px);
     color: white;
     text-decoration: none;
-    padding: 12px 24px;
+    padding: clamp(10px, 2vw, 12px) clamp(16px, 3vw, 24px);
     border-radius: 25px;
     font-weight: bold;
+    font-size: clamp(0.8rem, 2vw, 1rem);
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     z-index: 200;
     touch-action: manipulation;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
 }
 
 .back-btn:hover {
@@ -70,7 +75,7 @@ body {
 .result-section {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(15px);
-    padding: 40px;
+    padding: clamp(20px, 5vw, 40px);
     border-radius: 20px;
     text-align: center;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
@@ -78,11 +83,12 @@ body {
 
 /* ========== VINYL DISPLAY ========== */
 .vinyl-container {
+    --vinyl-size: clamp(220px, 45vw, 400px);
     position: relative;
     display: inline-block;
-    margin: 30px auto;
-    width: 400px;
-    height: 400px;
+    margin: clamp(15px, 4vw, 30px) auto;
+    width: var(--vinyl-size);
+    height: var(--vinyl-size);
     background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
     border-radius: 50%;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -104,21 +110,21 @@ body {
 
 .vinyl-display p {
     color: #fff;
-    font-size: 1rem;
+    font-size: clamp(0.85rem, 2vw, 1rem);
     text-align: center;
-    padding: 20px;
+    padding: clamp(15px, 3vw, 20px);
 }
 
 /* ========== ACTION BUTTONS ========== */
 .actions {
-    margin-top: 40px;
+    margin-top: clamp(25px, 5vw, 40px);
 }
 
 .btn-download,
 .btn-new {
     width: 100%;
-    padding: 15px 30px;
-    font-size: 1.1rem;
+    padding: clamp(12px, 2.5vw, 15px) clamp(20px, 4vw, 30px);
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
     font-weight: bold;
     border: none;
     border-radius: 12px;
@@ -130,6 +136,7 @@ body {
     gap: 10px;
     margin-bottom: 15px;
     touch-action: manipulation;
+    min-height: 48px;
 }
 
 .btn-download {
@@ -156,29 +163,30 @@ body {
 
 /* ========== SHARE SECTION ========== */
 .share-section {
-    margin: 30px 0;
-    padding: 20px;
+    margin: clamp(20px, 4vw, 30px) 0;
+    padding: clamp(12px, 3vw, 20px);
     background: rgba(102, 126, 234, 0.1);
     border-radius: 12px;
 }
 
 .share-section h3 {
     color: #667eea;
-    margin-bottom: 15px;
-    font-size: 1.3rem;
+    margin-bottom: clamp(10px, 2vw, 15px);
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
 }
 
 .share-buttons {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(min(130px, 100%), 1fr));
+    gap: clamp(8px, 1.5vw, 10px);
 }
 
 .share-btn {
-    padding: 12px 20px;
+    padding: clamp(10px, 2vw, 12px) clamp(14px, 3vw, 20px);
     border: none;
     border-radius: 10px;
     font-weight: bold;
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
@@ -187,6 +195,7 @@ body {
     gap: 8px;
     color: white;
     touch-action: manipulation;
+    min-height: 44px;
 }
 
 .share-btn.facebook {
@@ -212,35 +221,35 @@ body {
 
 /* ========== RESPONSIVE DESIGN ========== */
 
-/* Tablet Devices */
-@media (max-width: 768px) {
-    .title {
-        font-size: 1.8rem;
-        margin-top: 60px;
-    }
-    
-    .result-section {
-        padding: 25px 15px;
-    }
-    
+/* Large Desktop */
+@media (min-width: 1200px) {
     .vinyl-container {
-        width: 350px;
-        height: 350px;
-        margin: 20px auto;
+        --vinyl-size: 420px;
+    }
+}
+
+/* Tablet Landscape */
+@media (max-width: 1024px) {
+    .vinyl-container {
+        --vinyl-size: 380px;
+    }
+}
+
+/* Tablet Portrait */
+@media (max-width: 768px) {
+    .vinyl-container {
+        --vinyl-size: 340px;
     }
     
     .share-buttons {
         grid-template-columns: 1fr 1fr;
     }
-    
-    .share-section {
-        padding: 15px;
-    }
-    
-    .btn-download,
-    .btn-new {
-        padding: 14px 24px;
-        font-size: 1rem;
+}
+
+/* Large Mobile */
+@media (max-width: 600px) {
+    .vinyl-container {
+        --vinyl-size: 300px;
     }
 }
 
@@ -250,75 +259,74 @@ body {
         padding: 10px;
     }
     
-    .back-btn {
-        top: 10px;
-        left: 10px;
-        padding: 10px 18px;
-        font-size: 0.9rem;
-    }
-    
-    .title {
-        font-size: 1.4rem;
-        margin-top: 50px;
-    }
-    
-    .result-section {
-        padding: 20px 12px;
-    }
-    
     .vinyl-container {
-        width: 280px;
-        height: 280px;
-        margin: 15px auto;
-    }
-    
-    .btn-download,
-    .btn-new {
-        padding: 12px 20px;
-        font-size: 0.95rem;
-    }
-    
-    .share-section {
-        padding: 12px;
-        margin: 20px 0;
-    }
-    
-    .share-section h3 {
-        font-size: 1.1rem;
-        margin-bottom: 12px;
+        --vinyl-size: 270px;
     }
     
     .share-buttons {
         grid-template-columns: 1fr;
-        gap: 8px;
     }
-    
-    .share-btn {
-        padding: 10px 16px;
-        font-size: 0.9rem;
-    }
-    
-    .actions {
-        margin-top: 25px;
+}
+
+/* Small Mobile */
+@media (max-width: 400px) {
+    .vinyl-container {
+        --vinyl-size: 240px;
     }
 }
 
 /* Very Small Screens */
 @media (max-width: 360px) {
-    .title {
-        font-size: 1.2rem;
-    }
-    
     .vinyl-container {
-        width: 240px;
-        height: 240px;
+        --vinyl-size: 220px;
     }
     
     .result-section {
-        padding: 15px 8px;
+        padding: 15px 10px;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    body {
+        align-items: flex-start;
+        padding: 10px 15px;
+    }
+    
+    .header {
+        margin-bottom: 15px;
+    }
+    
+    .title {
+        margin-top: 40px;
+        font-size: 1.3rem;
+    }
+    
+    .result-section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 15px;
+    }
+    
+    .vinyl-container {
+        --vinyl-size: min(200px, 35vh);
+        margin: 10px;
+    }
+    
+    .actions {
+        flex: 1;
+        min-width: 250px;
+        margin-top: 0;
     }
     
     .share-section {
-        padding: 10px;
+        margin: 15px 0;
+    }
+    
+    .share-buttons {
+        grid-template-columns: repeat(2, 1fr);
     }
 }

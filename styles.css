@@ -8,10 +8,11 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: clamp(10px, 3vw, 20px);
     overflow-x: hidden;
     -webkit-tap-highlight-color: transparent;
     overscroll-behavior: none;
@@ -37,8 +38,8 @@ button, .sticker, .btn {
 
 .title {
     color: white;
-    font-size: 2.5rem;
-    margin-bottom: 30px;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    margin-bottom: clamp(15px, 4vw, 30px);
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     animation: fadeIn 1s ease-in;
 }
@@ -46,13 +47,14 @@ button, .sticker, .btn {
 .player-wrapper {
     position: relative;
     display: inline-block;
-    margin-bottom: 30px;
+    margin-bottom: clamp(15px, 4vw, 30px);
 }
 
 /* Vinyl Record Styles */
 .vinyl-container {
-    width: 400px;
-    height: 400px;
+    --vinyl-size: clamp(220px, 50vw, 400px);
+    width: var(--vinyl-size);
+    height: var(--vinyl-size);
     background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
     border-radius: 50%;
     position: relative;
@@ -90,12 +92,13 @@ button, .sticker, .btn {
 
 /* Center Label */
 .vinyl-center {
+    --center-size: clamp(60px, 15vw, 120px);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 120px;
-    height: 120px;
+    width: var(--center-size);
+    height: var(--center-size);
     background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
     border-radius: 50%;
     display: flex;
@@ -120,11 +123,11 @@ button, .sticker, .btn {
     width: 100%;
     height: 100%;
     color: white;
-    font-size: 0.7rem;
+    font-size: clamp(0.45rem, 1.5vw, 0.7rem);
     line-height: 1.5;
     overflow: hidden;
     text-align: center;
-    padding: 15px;
+    padding: clamp(8px, 2vw, 15px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -133,7 +136,7 @@ button, .sticker, .btn {
 }
 
 .lyrics-display p {
-    margin: 3px 0;
+    margin: clamp(1px, 0.5vw, 3px) 0;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
     animation: fadeInLyric 0.5s ease-in;
 }
@@ -145,9 +148,10 @@ button, .sticker, .btn {
 
 /* Stickers */
 .sticker {
+    --sticker-size: clamp(40px, 10vw, 70px);
     position: absolute;
-    width: 70px;
-    height: 70px;
+    width: var(--sticker-size);
+    height: var(--sticker-size);
     background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     border-radius: 50%;
     display: flex;
@@ -159,7 +163,7 @@ button, .sticker, .btn {
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     z-index: 2;
     transform: translate(-50%, -50%);
-    border: 3px solid white;
+    border: clamp(2px, 0.5vw, 3px) solid white;
 }
 
 /* Counter-rotate stickers to keep them upright when vinyl spins */
@@ -178,12 +182,12 @@ button, .sticker, .btn {
 }
 
 .sticker-emoji {
-    font-size: 1.8rem;
+    font-size: clamp(1rem, 3vw, 1.8rem);
     margin-bottom: 2px;
 }
 
 .sticker-label {
-    font-size: 0.65rem;
+    font-size: clamp(0.45rem, 1.2vw, 0.65rem);
     font-weight: bold;
     color: white;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
@@ -199,26 +203,26 @@ button, .sticker, .btn {
 /* Now Playing Section */
 .now-playing {
     background: rgba(255,255,255,0.95);
-    padding: 20px;
+    padding: clamp(12px, 3vw, 20px);
     border-radius: 15px;
-    margin-bottom: 20px;
+    margin-bottom: clamp(12px, 3vw, 20px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 .track-info {
-    font-size: 1.2rem;
+    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
     font-weight: bold;
     color: #667eea;
-    margin-bottom: 15px;
+    margin-bottom: clamp(10px, 2vw, 15px);
 }
 
 .progress-bar {
     width: 100%;
-    height: 8px;
+    height: clamp(5px, 1vw, 8px);
     background: #e0e0e0;
     border-radius: 4px;
     overflow: hidden;
-    margin-bottom: 10px;
+    margin-bottom: clamp(6px, 1.5vw, 10px);
 }
 
 .progress-fill {
@@ -230,25 +234,27 @@ button, .sticker, .btn {
 
 .time-info {
     color: #666;
-    font-size: 0.9rem;
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
 }
 
 /* Controls */
 .controls {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: clamp(10px, 2vw, 15px);
+    flex-wrap: wrap;
 }
 
 .btn {
-    padding: 12px 30px;
-    font-size: 1rem;
+    padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 30px);
+    font-size: clamp(0.85rem, 2vw, 1rem);
     border: none;
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: bold;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    min-height: 44px;
 }
 
 .btn-stop {
@@ -260,7 +266,9 @@ button, .sticker, .btn {
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     text-decoration: none;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn:hover {
@@ -288,59 +296,54 @@ button, .sticker, .btn {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive Design */
 /* ========== RESPONSIVE DESIGN ========== */
 
-/* Tablet Devices */
+/* Large Desktop */
+@media (min-width: 1200px) {
+    .vinyl-container {
+        --vinyl-size: 420px;
+    }
+    
+    .vinyl-center {
+        --center-size: 130px;
+    }
+    
+    .sticker {
+        --sticker-size: 75px;
+    }
+}
+
+/* Tablet Landscape */
+@media (max-width: 1024px) {
+    .vinyl-container {
+        --vinyl-size: 380px;
+    }
+    
+    .vinyl-center {
+        --center-size: 115px;
+    }
+    
+    .sticker {
+        --sticker-size: 65px;
+    }
+}
+
+/* Tablet Portrait */
 @media (max-width: 768px) {
     body {
         padding: 15px 10px;
     }
     
-    .title {
-        font-size: 1.8rem;
-        margin-bottom: 20px;
-    }
-    
     .vinyl-container {
-        width: 340px;
-        height: 340px;
+        --vinyl-size: 340px;
     }
     
     .vinyl-center {
-        width: 105px;
-        height: 105px;
-    }
-    
-    .lyrics-display {
-        font-size: 0.65rem;
-        padding: 12px;
-    }
-    
-    .lyrics-display p {
-        margin: 2px 0;
+        --center-size: 105px;
     }
     
     .sticker {
-        width: 58px;
-        height: 58px;
-    }
-    
-    .sticker-emoji {
-        font-size: 1.5rem;
-    }
-    
-    .sticker-label {
-        font-size: 0.6rem;
-    }
-    
-    .now-playing {
-        padding: 15px;
-        margin-bottom: 15px;
-    }
-    
-    .track-info {
-        font-size: 1rem;
+        --sticker-size: 58px;
     }
     
     .controls {
@@ -354,100 +357,122 @@ button, .sticker, .btn {
     }
 }
 
+/* Large Mobile */
+@media (max-width: 600px) {
+    .vinyl-container {
+        --vinyl-size: 300px;
+    }
+    
+    .vinyl-center {
+        --center-size: 92px;
+    }
+    
+    .sticker {
+        --sticker-size: 52px;
+    }
+}
+
 /* Mobile Devices */
 @media (max-width: 480px) {
     body {
         padding: 10px 5px;
     }
     
-    .title {
-        font-size: 1.4rem;
-        margin-bottom: 15px;
-    }
-    
     .vinyl-container {
-        width: 280px;
-        height: 280px;
+        --vinyl-size: 280px;
     }
     
     .vinyl-center {
-        width: 85px;
-        height: 85px;
-    }
-    
-    .lyrics-display {
-        font-size: 0.55rem;
-        padding: 10px;
-        line-height: 1.4;
-    }
-    
-    .lyrics-display p {
-        margin: 2px 0;
+        --center-size: 85px;
     }
     
     .sticker {
-        width: 50px;
-        height: 50px;
-        border-width: 2px;
+        --sticker-size: 48px;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 400px) {
+    .vinyl-container {
+        --vinyl-size: 250px;
     }
     
-    .sticker-emoji {
-        font-size: 1.3rem;
+    .vinyl-center {
+        --center-size: 75px;
     }
     
-    .sticker-label {
-        font-size: 0.55rem;
-    }
-    
-    .now-playing {
-        padding: 12px;
-    }
-    
-    .track-info {
-        font-size: 0.95rem;
-    }
-    
-    .btn {
-        padding: 12px 16px;
-        font-size: 0.95rem;
-    }
-    
-    .progress-bar {
-        height: 6px;
+    .sticker {
+        --sticker-size: 44px;
     }
 }
 
 /* Very Small Screens */
 @media (max-width: 360px) {
-    .title {
-        font-size: 1.2rem;
-    }
-    
     .vinyl-container {
-        width: 240px;
-        height: 240px;
+        --vinyl-size: 230px;
     }
     
     .vinyl-center {
-        width: 70px;
-        height: 70px;
+        --center-size: 68px;
     }
     
     .sticker {
-        width: 45px;
-        height: 45px;
+        --sticker-size: 40px;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    body {
+        padding: 10px;
+        align-items: flex-start;
     }
     
-    .sticker-emoji {
-        font-size: 1.1rem;
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
     }
     
-    .sticker-label {
-        font-size: 0.5rem;
+    .title {
+        width: 100%;
+        margin-bottom: 10px;
+        font-size: 1.3rem;
     }
     
-    .lyrics-display {
-        font-size: 0.5rem;
-        padding: 8px;
+    .player-wrapper {
+        margin-bottom: 0;
+    }
+    
+    .vinyl-container {
+        --vinyl-size: min(220px, 40vh);
+    }
+    
+    .vinyl-center {
+        --center-size: min(65px, 12vh);
+    }
+    
+    .sticker {
+        --sticker-size: min(40px, 8vh);
+    }
+    
+    .now-playing {
+        flex: 1;
+        min-width: 200px;
+        margin-bottom: 0;
+    }
+    
+    .controls {
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .btn {
+        width: auto;
+        flex: 1;
+        max-width: 180px;
     }
 }
