@@ -5,6 +5,7 @@ const stopBtn = document.getElementById('stopBtn');
 const player = document.getElementById('player');
 // trackInfo removed (player no longer contains .track-info)
 const progressFill = document.getElementById('progressFill');
+const muteBtn = document.getElementById('muteBtn');
 const currentTimeEl = document.getElementById('currentTime');
 const durationEl = document.getElementById('duration');
 const lyricsDisplay = document.getElementById('lyricsDisplay');
@@ -15,6 +16,7 @@ let currentAudio = null;
 let currentSticker = null;
 let progressInterval = null;
 let currentEmbed = null;
+let isMuted = false;
 // YouTube API state
 window.ytPlayer = null;
 window.ytApiLoaded = false;
@@ -98,6 +100,15 @@ function init() {
     // Stop button
     if (stopBtn) stopBtn.addEventListener('click', stopMusic);
 
+    // Mute button
+    if (muteBtn) {
+        muteBtn.addEventListener('click', () => {
+            toggleMute();
+        });
+        // reflect initial state
+        muteBtn.textContent = isMuted ? '🔇' : '🔈';
+    }
+
     // Vinyl click to stop
     if (vinyl) {
         vinyl.addEventListener('click', (e) => {
@@ -105,6 +116,44 @@ function init() {
                 stopMusic();
             }
         }, { passive: true });
+    }
+}
+
+function toggleMute() {
+    isMuted = !isMuted;
+    if (muteBtn) muteBtn.textContent = isMuted ? '🔇' : '🔈';
+    // Apply to YT player if present
+    try {
+        if (window.ytPlayer && typeof window.ytPlayer.isMuted === 'function') {
+            if (isMuted) window.ytPlayer.mute(); else window.ytPlayer.unMute();
+        }
+    } catch (e) {}
+    // Apply to any <audio> elements as fallback
+    document.querySelectorAll('audio').forEach(a => { try { a.muted = isMuted; } catch (e) {} });
+}
+
+function startYtProgressTracking() {
+    if (progressInterval) clearInterval(progressInterval);
+    progressInterval = setInterval(() => {
+        if (window.ytPlayer && typeof window.ytPlayer.getCurrentTime === 'function' && typeof window.ytPlayer.getDuration === 'function') {
+            try {
+                const cur = window.ytPlayer.getCurrentTime();
+                const dur = window.ytPlayer.getDuration() || 0;
+                if (progressFill) {
+                    const pct = dur > 0 ? Math.min(100, (cur / dur) * 100) : 0;
+                    progressFill.style.width = `${pct}%`;
+                }
+            } catch (e) {
+                // ignore
+            }
+        }
+    }, 250);
+}
+
+function stopYtProgressTracking() {
+    if (progressInterval) {
+        clearInterval(progressInterval);
+        progressInterval = null;
     }
 }
 
@@ -168,9 +217,22 @@ function createOrLoadYouTube(videoId, start = 0, end = 0) {
                 rel: 0
             },
             events: {
-                onReady: (e) => { try { e.target.playVideo(); } catch (e) {} },
+                onReady: (e) => {
+                    try {
+                        // apply mute state
+                        if (isMuted && typeof e.target.mute === 'function') e.target.mute();
+                        if (!isMuted && typeof e.target.unMute === 'function') e.target.unMute();
+                        e.target.playVideo();
+                    } catch (err) {}
+                    // start progress tracking
+                    startYtProgressTracking();
+                },
                 onStateChange: (e) => {
-                    // handle end or other states if needed
+                    // stop tracking when video ends or is paused
+                    const YT = window.YT || {};
+                    if (e.data === (YT && YT.PlayerState && YT.PlayerState.ENDED)) {
+                        stopYtProgressTracking();
+                    }
                 }
             }
         });
