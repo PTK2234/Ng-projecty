@@ -200,42 +200,7 @@ button, .sticker, .btn {
 .sticker-4 { background: linear-gradient(135deg, #FFA8A8 0%, #FCFF00 100%); }
 .sticker-5 { background: linear-gradient(135deg, #C471F5 0%, #FA71CD 100%); }
 
-/* Now Playing Section */
-.now-playing {
-    background: rgba(255,255,255,0.95);
-    padding: clamp(12px, 3vw, 20px);
-    border-radius: 15px;
-    margin-bottom: clamp(12px, 3vw, 20px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-
-.track-info {
-    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
-    font-weight: bold;
-    color: #667eea;
-    margin-bottom: clamp(10px, 2vw, 15px);
-}
-
-.progress-bar {
-    width: 100%;
-    height: clamp(5px, 1vw, 8px);
-    background: #e0e0e0;
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: clamp(6px, 1.5vw, 10px);
-}
-
-.progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-    width: 0%;
-    transition: width 0.1s linear;
-}
-
-.time-info {
-    color: #666;
-    font-size: clamp(0.75rem, 2vw, 0.9rem);
-}
+/* Player styling removed per request */
 
 /* Controls */
 .controls {
@@ -421,6 +386,69 @@ button, .sticker, .btn {
     }
 }
 
+/* Mobile & Multi-screen improvements */
+/* Respect safe-area insets on mobile (iOS) */
+body {
+    padding-top: calc(env(safe-area-inset-top, 0px) + 10px);
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 10px);
+}
+
+/* Make stickers easier to tap: enforce a 48px minimum touch target */
+.sticker {
+    width: max(var(--sticker-size), 48px);
+    height: max(var(--sticker-size), 48px);
+}
+
+/* Expand interactive area slightly without changing visual size */
+.sticker::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Responsive YouTube/player iframe handling */
+#yt-player, .player iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    height: auto;
+    border: 0;
+}
+
+/* Reduce heavy shadows and animations on small screens */
+@media (max-width: 768px) {
+    .container { padding: 8px; }
+    .vinyl-container { box-shadow: none; }
+    .player { box-shadow: none; padding: 8px; }
+    .title { font-size: clamp(1.25rem, 6vw, 1.8rem); }
+}
+
+/* Make controls sticky on small devices for easier access */
+@media (max-width: 600px) {
+    .controls {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 12px;
+        width: calc(100% - 24px);
+        z-index: 60;
+        background: rgba(255,255,255,0.02);
+        padding: 6px;
+        border-radius: 12px;
+        justify-content: space-around;
+    }
+    .btn { min-width: 44%; }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .vinyl-container.spinning, .vinyl-container.spinning .vinyl-center, .vinyl-container.spinning .sticker {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
 /* Landscape Mobile */
 @media (max-height: 500px) and (orientation: landscape) {
     body {
@@ -458,11 +486,7 @@ button, .sticker, .btn {
         --sticker-size: min(40px, 8vh);
     }
     
-    .now-playing {
-        flex: 1;
-        min-width: 200px;
-        margin-bottom: 0;
-    }
+    /* player styles removed */
     
     .controls {
         flex-direction: row;

@@ -30,12 +30,9 @@
                 <div class="grooves"></div>
                 
                 <!-- Stickers on the vinyl -->
-                <div class="sticker sticker-1" data-song="1" style="top: 15%; left: 50%;">
+                <div class="sticker sticker-1" data-song="1" data-embed="https://www.youtube.com/embed/82s8PRgYSRU?si=kgDrx7d0NlMw2pwU" data-start="10" data-end="40" style="top: 15%; left: 50%;">
                     <span class="sticker-emoji">🎸</span>
                     <span class="sticker-label">Rock</span>
-                    <div class="sticker-iframe" style="margin-top:8px; width: 200px; height: 113px;">
-                        <iframe width="200" height="113" src="https://www.youtube.com/embed/82s8PRgYSRU?si=kgDrx7d0NlMw2pwU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
                 </div>
                 
                 <div class="sticker sticker-2" data-song="2" style="top: 35%; left: 85%;">
@@ -65,13 +62,12 @@
             </div>
         </div>
         
-        <!-- Now Playing Info -->
-        <div class="now-playing" id="nowPlaying">
-            <p class="track-info">Click a sticker to play music</p>
+        <!-- Player -->
+        <div class="player" id="player">
+            <div id="yt-player" style="width:100%;height:160px;"></div>
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
-            <p class="time-info"><span id="currentTime">0:00</span> / <span id="duration">0:30</span></p>
         </div>
         
         <!-- Control Buttons -->
@@ -98,6 +94,7 @@
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" type="audio/mpeg">
     </audio>
     
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="script.js" defer></script>
 </body>
 </html>
