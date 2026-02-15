@@ -121,6 +121,7 @@ function setupToolbarButtons() {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 e.preventDefault();
+                // normal behavior: open panel for this toolbar item
                 
                 // Special handling for draw button - don't close panel when in drawing mode
                 if (btn.id === 'drawBtn' && drawingMode && item.classList.contains('active')) {
@@ -159,6 +160,7 @@ function setupToolbarButtons() {
             });
         }
     });
+
     
     // Close panels when clicking outside (except when drawing is active)
     document.addEventListener('click', (e) => {

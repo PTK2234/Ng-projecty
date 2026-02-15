@@ -38,8 +38,44 @@
                 </div>
             </div>
         </div>
+
+        <!-- Border Editor Panel -->
+        <div class="border-editor" id="borderEditor">
+            <div class="border-editor-title">Edit Sticker</div>
+            <div class="form-group">
+                <label>Size</label>
+                <input type="range" class="border-width-slider" id="stickerSizeSlider" min="40" max="150" value="60">
+                <div style="text-align: center; margin-top: 5px;">
+                    <span class="border-width-value" id="stickerSizeValue">60px</span>
+                </div>
+            </div>
+            <div class="border-option">
+                <label>Border Color</label>
+                <div class="border-color-picker">
+                    <div class="border-color-option active" data-color="#ffffff" style="background: #ffffff; border: 1px solid #ddd;"></div>
+                    <div class="border-color-option" data-color="#000000" style="background: #000000;"></div>
+                    <div class="border-color-option" data-color="#667eea" style="background: #667eea;"></div>
+                    <div class="border-color-option" data-color="#ff6b6b" style="background: #ff6b6b;"></div>
+                    <div class="border-color-option" data-color="#f093fb" style="background: #f093fb;"></div>
+                    <div class="border-color-option" data-color="#fbbf24" style="background: #fbbf24;"></div>
+                    <div class="border-color-option" data-color="#13f287" style="background: #13f287;"></div>
+                </div>
+            </div>
+            <div class="border-option">
+                <label>Border Width: <span class="border-width-value" id="borderWidthValue">3px</span></label>
+                <input type="range" class="border-width-slider" id="borderWidthSlider" min="1" max="10" value="3">
+            </div>
+            <div class="border-option">
+                <label>Border Style</label>
+                <div class="border-style-options">
+                    <button class="border-style-btn active" data-style="solid">Solid</button>
+                    <button class="border-style-btn" data-style="dashed">Dashed</button>
+                    <button class="border-style-btn" data-style="dotted">Dotted</button>
+                </div>
+            </div>
+        </div>
     </div>
-    
+
     <!-- Floating Bottom Toolbar -->
     <div class="bottom-toolbar">
         <!-- Colors Button -->
@@ -153,41 +189,7 @@
         </div>
     </div>
     
-    <!-- Border Editor Panel -->
-    <div class="border-editor" id="borderEditor">
-        <div class="border-editor-title">Edit Sticker</div>
-        <div class="form-group">
-            <label>Size</label>
-            <input type="range" class="border-width-slider" id="stickerSizeSlider" min="40" max="150" value="60">
-            <div style="text-align: center; margin-top: 5px;">
-                <span class="border-width-value" id="stickerSizeValue">60px</span>
-            </div>
-        </div>
-        <div class="border-option">
-            <label>Border Color</label>
-            <div class="border-color-picker">
-                <div class="border-color-option active" data-color="#ffffff" style="background: #ffffff; border: 1px solid #ddd;"></div>
-                <div class="border-color-option" data-color="#000000" style="background: #000000;"></div>
-                <div class="border-color-option" data-color="#667eea" style="background: #667eea;"></div>
-                <div class="border-color-option" data-color="#ff6b6b" style="background: #ff6b6b;"></div>
-                <div class="border-color-option" data-color="#f093fb" style="background: #f093fb;"></div>
-                <div class="border-color-option" data-color="#fbbf24" style="background: #fbbf24;"></div>
-                <div class="border-color-option" data-color="#13f287" style="background: #13f287;"></div>
-            </div>
-        </div>
-        <div class="border-option">
-            <label>Border Width: <span class="border-width-value" id="borderWidthValue">3px</span></label>
-            <input type="range" class="border-width-slider" id="borderWidthSlider" min="1" max="10" value="3">
-        </div>
-        <div class="border-option">
-            <label>Border Style</label>
-            <div class="border-style-options">
-                <button class="border-style-btn active" data-style="solid">Solid</button>
-                <button class="border-style-btn" data-style="dashed">Dashed</button>
-                <button class="border-style-btn" data-style="dotted">Dotted</button>
-            </div>
-        </div>
-    </div>
+    
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
     <script src="custom-script.js" defer></script>
