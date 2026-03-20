@@ -5,6 +5,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Landing Page</title>
 	   <link rel="stylesheet" href="style.css">
+	<style>
+	  /* Page transition: fade in on load, fade out on navigate */
+	  body.page-enter { opacity: 0; }
+	  body.page-enter.loaded { opacity: 1; transition: opacity 600ms ease; }
+	  body.page-exit { opacity: 0; transition: opacity 600ms ease; }
+	</style>
 </head>
 <body>
 	<div class="container">
@@ -30,6 +36,9 @@
 		</div>
 		<script>
 		document.addEventListener('DOMContentLoaded', function() {
+			// trigger page enter animation
+			document.body.classList.add('page-enter');
+			setTimeout(function(){ document.body.classList.add('loaded'); document.body.classList.remove('page-exit'); }, 20);
 			var videoWrapper = document.querySelector('.video-wrapper');
 			var q1 = document.getElementById('quote1');
 			var q2 = document.getElementById('quote2');
@@ -78,14 +87,49 @@
 						// show wrapper2 then its quote
 						wrapper2.style.opacity = 1;
 						wrapper2.style.pointerEvents = 'auto';
-						setTimeout(function() { if (q2) q2.style.opacity = 1; }, fadeOverlap);
+						setTimeout(function() {
+							if (q2) q2.style.opacity = 1;
+							// start 5s wait then enable global click navigation
+							startClickAfterDelay(5000);
+						}, fadeOverlap);
 					} else {
-						if (q2) q2.style.opacity = 1;
+						if (q2) {
+							q2.style.opacity = 1;
+							startClickAfterDelay(5000);
+						}
 					}
 				}, quoteDisplay + fadeOverlap);
 
 			}, videoDelay);
 		});
+
+		// helper to enable global click navigation after a delay
+		function startClickAfterDelay(delayMs) {
+			var allowClick = false;
+			// prevent accidental early navigation
+			setTimeout(function() {
+				allowClick = true;
+				// change cursor to indicate clickable area
+				document.body.style.cursor = 'pointer';
+			}, delayMs);
+
+			function onDocClick(e) {
+				if (!allowClick) return;
+				// remove listener to avoid double navigation
+				document.removeEventListener('click', onDocClick, true);
+				navigateWithTransition('collection_page.html');
+			}
+
+			function navigateWithTransition(url) {
+				// start exit animation then navigate
+				document.body.classList.remove('loaded');
+				document.body.classList.add('page-exit');
+				setTimeout(function(){ window.location.href = url; }, 620);
+			}
+
+			// use capture to catch clicks anywhere
+			document.addEventListener('click', onDocClick, true);
+		}
 		</script>
 		</div>
 		</body>

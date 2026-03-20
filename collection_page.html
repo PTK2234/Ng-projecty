@@ -5,8 +5,19 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Collection - Mùa Xuân</title>
   <link rel="stylesheet" href="collection.css">
+  <style>
+    body.page-enter { opacity: 0; }
+    body.page-enter.loaded { opacity: 1; transition: opacity 600ms ease; }
+  </style>
 </head>
 <body>
+<script>
+  // trigger page enter fade on load
+  document.addEventListener('DOMContentLoaded', function(){
+    document.body.classList.add('page-enter');
+    setTimeout(function(){ document.body.classList.add('loaded'); }, 20);
+  });
+</script>
   <div class="page">
     <header class="topbar">
       <div class="logo"><img src="Assest/logo.png" alt="mâmlody logo" class="site-logo"></div>
