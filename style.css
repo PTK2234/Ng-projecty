@@ -1,3 +1,17 @@
+.quote {
+	display: block;
+	opacity: 0;
+	transition: opacity 1s;
+	margin-bottom: 2vh;
+}
+.quote-wrapper {
+	display: none;
+	text-align: center;
+	color: #c00;
+	font-size: 1.2em;
+	margin-top: 2vh;
+	padding: 0 2vw;
+}
 html, body {
 	height: 100%;
 	margin: 0;
@@ -31,12 +45,66 @@ body {
 	position: relative;
 	border-radius: 2vw;
 }
-.video-wrapper {
+
+/* media area holds the video and quotes and keeps them centered */
+.media-area {
+	width: 100%;
+	min-height: 50vh;
+	max-height: 70vh;
+	height: 60vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	flex: 1;
-	width: 100%;
+	position: relative;
+}
+
+/* stack video and quotes on top of each other */
+.video-wrapper,
+.quote-wrapper {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: opacity 1s ease;
+}
+
+.video-wrapper { opacity: 1; }
+.quote-wrapper { opacity: 0; pointer-events: none; }
+.quote-wrapper.visible { opacity: 1; pointer-events: auto; }
+
+/* Ensure video and quotes occupy the same central area */
+
+.quote {
+	text-align: center;
+	max-width: 900px;
+	padding: 0 2vw;
+}
+
+/* Keep quote text width equal to the video so both align exactly */
+.quote-inner {
+	width: 60vw;
+	max-width: 600px;
+	min-width: 180px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Keep the dots fixed at the bottom of the container so media stays centered */
+.dots {
+	position: absolute;
+	bottom: 4vh;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	gap: 6vw;
+}
+
+.dot {
+	margin: 0 0.5vw;
 }
 video {
 	width: 60vw;
@@ -51,23 +119,17 @@ video {
 	object-fit: contain;
 	display: block;
 }
-.dots {
-	display: flex;
-	justify-content: center;
-	margin-top: 4vh;
-	gap: 6vw;
-}
 .dot {
-	width: 5vw;
-	max-width: 32px;
-	min-width: 16px;
-	height: 5vw;
-	max-height: 32px;
-	min-height: 16px;
-	background: #c00;
-	border-radius: 50%;
-	display: inline-block;
-	margin: 0 0.5vw;
+  width: 5vw;
+  max-width: 32px;
+  min-width: 16px;
+  height: 5vw;
+  max-height: 32px;
+  min-height: 16px;
+  background: #c00;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 0.5vw;
 }
 @media (max-width: 900px) {
 	.container {

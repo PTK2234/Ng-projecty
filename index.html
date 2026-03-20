@@ -8,14 +8,85 @@
 </head>
 <body>
 	<div class="container">
-		<div class="video-wrapper">
-			<video src="Assest/Animation Prototype (1).mp4" autoplay loop muted playsinline></video>
+		<div class="media-area">
+			<div class="video-wrapper">
+				<video src="Assest/Animation Prototype (1).mp4" autoplay loop muted playsinline></video>
+			</div>
+			<div class="quote-wrapper">
+				<div class="quote-inner">
+					<span id="quote1" class="quote">Như tiếng hí vang của chú ngựa chuẩn bị phi nước đại, những giai điệu sắc màu sẽ là bước khởi động hoàn hảo cho một năm đầy nhiệt huyết.</span>
+				</div>
+			</div>
+			<div class="quote-wrapper">
+				<div class="quote-inner">
+					<span id="quote2" class="quote">Series Bốn mùa Việt Nam được ra đời (bởi ba người bạn tuổi Ngọ) để đem tới một trải nghiệm Mùa Xuân Việt Nam, là khởi đầu của hành trình bước vào một năm mới.</span>
+				</div>
+			</div>
 		</div>
 		<div class="dots">
 			<span class="dot"></span>
 			<span class="dot"></span>
 			<span class="dot"></span>
 		</div>
-	</div>
-</body>
-</html>
+		<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var videoWrapper = document.querySelector('.video-wrapper');
+			var q1 = document.getElementById('quote1');
+			var q2 = document.getElementById('quote2');
+
+			// helper to find the wrapper that holds a quote
+			function findQuoteWrapper(el) {
+				if (!el) return null;
+				return el.closest('.quote-wrapper') || el.parentElement || null;
+			}
+
+			var wrapper1 = findQuoteWrapper(q1);
+			var wrapper2 = findQuoteWrapper(q2);
+
+			// Ensure initial safe states
+			if (q1) q1.style.opacity = 0;
+			if (q2) q2.style.opacity = 0;
+			if (wrapper1) { wrapper1.style.opacity = 0; wrapper1.style.pointerEvents = 'none'; wrapper1.style.zIndex = 2; }
+			if (wrapper2) { wrapper2.style.opacity = 0; wrapper2.style.pointerEvents = 'none'; wrapper2.style.zIndex = 2; }
+			if (videoWrapper) { videoWrapper.style.opacity = 1; videoWrapper.style.zIndex = 1; }
+
+			// timings (ms)
+			var videoDelay = 3000; // when to switch from video to quotes
+			var quoteDisplay = 3000; // how long quote1 stays visible before replacing
+			var fadeOverlap = 200;
+
+			setTimeout(function() {
+				// fade out video
+				if (videoWrapper) videoWrapper.style.opacity = 0;
+
+				// ensure wrappers exist and are stacked above video
+				if (wrapper1) { wrapper1.style.zIndex = 3; }
+				if (wrapper2) { wrapper2.style.zIndex = 3; }
+
+				// Fade in wrapper holding quote1 (if separate wrappers exist, keep them positioned)
+				if (wrapper1) { wrapper1.style.opacity = 1; wrapper1.style.pointerEvents = 'auto'; }
+				if (q1) {
+					// small delay so wrapper opacity transition starts first
+					setTimeout(function() { q1.style.opacity = 1; }, fadeOverlap);
+				}
+
+				// After quoteDisplay: swap to quote2
+				setTimeout(function() {
+					if (q1) q1.style.opacity = 0;
+					// if quote2 in same wrapper, just fade it in; if in another wrapper, bring that wrapper up
+					if (wrapper2 && wrapper2 !== wrapper1) {
+						// show wrapper2 then its quote
+						wrapper2.style.opacity = 1;
+						wrapper2.style.pointerEvents = 'auto';
+						setTimeout(function() { if (q2) q2.style.opacity = 1; }, fadeOverlap);
+					} else {
+						if (q2) q2.style.opacity = 1;
+					}
+				}, quoteDisplay + fadeOverlap);
+
+			}, videoDelay);
+		});
+		</script>
+		</div>
+		</body>
+		</html>
