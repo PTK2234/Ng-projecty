@@ -55,7 +55,7 @@
 .s-ng-t-c-b-i-nh-c-s-ph-m-nh-ch-ng-d-c-bi-u-di-n-l-n-u-b-i-n-danh-ca-th-i-thanh-nh-ng-ph-i-nghe-b-n-thu-c-a-nh-qu-nh-th-ta-m-i-c-m-th-y-linh-h-n-c-a-b-i-h-t-tung-bay-m-t-ca-kh-c-tr-n-nh-a-s-ng-ng-i-ca-m-a-xu-n-c-ng-t-nh-y-u-ng-t-ng-o-m-ch-i {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Regular", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 32px;
   font-weight: 400;
   position: absolute;
@@ -174,7 +174,7 @@
 .n-xu-n {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Medium", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 500;
@@ -190,7 +190,7 @@
 .nh-qu-nh {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Light", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 300;
@@ -210,7 +210,7 @@
 .xu-n-v-tu-i-tr {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Medium", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 500;
@@ -226,7 +226,7 @@
 .th-i-thanh {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Light", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 300;
@@ -246,7 +246,7 @@
 .xu-n-v {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Medium", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 500;
@@ -262,7 +262,7 @@
 .thanh-lan {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Light", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 300;
@@ -282,7 +282,7 @@
 .m-a-xu-n-u-ti-n {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Medium", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 500;
@@ -298,7 +298,7 @@
 .thanh-th-y {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Light", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 300;
@@ -318,7 +318,7 @@
 .th-th-m-m-a-xu-n {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Medium", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 500;
@@ -334,7 +334,7 @@
 .m-linh {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Light", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 300;
@@ -370,7 +370,7 @@
 .vie {
   color: #3b0000;
   text-align: left;
-  font-family: "OverpassMono-Light", sans-serif;
+  font-family: 'Overpass Mono', monospace;
   font-size: 24px;
   font-weight: 300;
   position: absolute;
@@ -436,7 +436,7 @@
 .l-ng-nghe-m-a-xu-n-v {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Medium", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 30px;
   font-weight: 500;
@@ -452,7 +452,7 @@
 .ph-ng-ph-ng-th-o {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Light", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 300;

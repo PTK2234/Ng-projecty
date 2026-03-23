@@ -128,7 +128,7 @@
 .n-xu-n {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Medium", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 500;
@@ -144,7 +144,7 @@
 .nh-qu-nh {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Light", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 300;
@@ -178,7 +178,7 @@
 .xu-n-v {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Medium", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 500;
@@ -194,7 +194,7 @@
 .thanh-lan {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Light", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 300;
@@ -228,7 +228,7 @@
 .xu-n-v-tu-i-tr {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Medium", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 500;
@@ -244,7 +244,7 @@
 .th-i-thanh {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Light", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 300;
@@ -278,7 +278,7 @@
 .m-a-xu-n-u-ti-n {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Medium", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 500;
@@ -294,7 +294,7 @@
 .thanh-th-y {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Light", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 300;
@@ -329,7 +329,7 @@
 .th-th-m-m-a-xu-n {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Medium", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 500;
@@ -345,7 +345,7 @@
 .m-linh {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Light", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 300;
@@ -453,7 +453,7 @@
 .l-ng-nghe-m-a-xu-n-v {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Medium", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 500;
@@ -469,7 +469,7 @@
 .ph-ng-ph-ng-th-o {
   color: #000000;
   text-align: left;
-  font-family: "MonaSans-Light", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   line-height: 0px;
   font-weight: 300;
@@ -505,7 +505,7 @@
 .vie {
   color: #3b0000;
   text-align: left;
-  font-family: "OverpassMono-Light", sans-serif;
+  font-family: 'Overpass Mono', monospace;
   font-size: 24px;
   font-weight: 300;
   position: absolute;

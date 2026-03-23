@@ -110,7 +110,7 @@
 .m-axu-n {
   color: #be1e2d;
   text-align: center;
-  font-family: "OverpassMono-Bold", sans-serif;
+  font-family: 'Overpass Mono', monospace;
   font-size: 40px;
   line-height: 200px;
   letter-spacing: 0;
@@ -134,7 +134,7 @@
 .m-a-xu-n-l-m-a-c-a-nh-ng-n-hoa-m-i-nh-c-ng-l-m-a-ta-chi-m-nghi-m-c-i-c-m-i-b-n-du-ngo-n-playlist-xu-n-h-nh-tr-nh-c-m-x-c-t-m-t-th-i-qua-t-i-nh-ng-giai-i-u-b-n-ph-i-hi-n-i-n-t-ng-th-gi-n-th-l-ng-v-c-ng-c-i-ng-a-xem-hoa-c-ng-ch-ng-m-nh-nh {
   color: #3b0000;
   text-align: center;
-  font-family: "MonaSans-Regular", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 18px;
   font-weight: 400;
   position: absolute;
@@ -145,7 +145,7 @@
 .v-album {
   color: #3b0000;
   text-align: right;
-  font-family: "MonaSans-Bold", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 18px;
   font-weight: 700;
   position: absolute;
@@ -158,7 +158,7 @@
 .t-nh-c-c-a-b-n {
   color: #3b0000;
   text-align: right;
-  font-family: "MonaSans-Bold", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 18px;
   font-weight: 700;
   position: absolute;
@@ -171,7 +171,7 @@
 .v-ch-ng-m-nh {
   color: #3b0000;
   text-align: right;
-  font-family: "MonaSans-Bold", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 18px;
   font-weight: 700;
   position: absolute;
@@ -209,7 +209,7 @@
 .vie {
   color: #3b0000;
   text-align: left;
-  font-family: "OverpassMono-Light", sans-serif;
+  font-family: 'Overpass Mono', monospace;
   font-size: 24px;
   font-weight: 300;
   position: absolute;
@@ -249,15 +249,16 @@
   transform-origin: 0 0;
   transform: rotate(22.778deg) scale(1, 1);
   z-index: 3;
+  box-shadow: inset 0 10px 20px rgba(0,0,0,0.15);
 }
 .sketch-1769442914819-1 {
   width: 522.86px;
   height: 438.44px;
   position: absolute;
-  left: 514.92px;
-  top: 443.47px;
+  left: 560.92px;
+  top: 400.47px;
   transform-origin: 0 0;
-  transform: rotate(0.209deg) scale(-1, 1);
+  transform: rotate(-20.209deg) scale(-1.2, 1.2);
   object-fit: cover;
   aspect-ratio: 522.86/438.44;
   z-index: 4;
