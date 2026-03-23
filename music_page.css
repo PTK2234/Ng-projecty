@@ -280,7 +280,7 @@
   text-align: left;
   font-family: 'Montserrat', sans-serif;
   font-size: 24px;
-  line-height: 0px;
+  line-height: 1.1;
   font-weight: 500;
   position: absolute;
   left: 1274px;
@@ -296,7 +296,7 @@
   text-align: left;
   font-family: 'Montserrat', sans-serif;
   font-size: 24px;
-  line-height: 0px;
+  line-height: 1.1;
   font-weight: 300;
   position: absolute;
   left: 1274px;
@@ -331,7 +331,7 @@
   text-align: left;
   font-family: 'Montserrat', sans-serif;
   font-size: 24px;
-  line-height: 0px;
+  line-height: 1.1;
   font-weight: 500;
   position: absolute;
   left: 1274px;
@@ -347,7 +347,7 @@
   text-align: left;
   font-family: 'Montserrat', sans-serif;
   font-size: 24px;
-  line-height: 0px;
+  line-height: 1.1;
   font-weight: 300;
   position: absolute;
   left: 1274px;
@@ -455,8 +455,8 @@
   text-align: left;
   font-family: 'Montserrat', sans-serif;
   font-size: 24px;
-  line-height: 0px;
-  font-weight: 500;
+  line-height: 1.1;
+  font-weight: 700;
   position: absolute;
   left: 1274px;
   top: 846px;
@@ -465,14 +465,15 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  
 }
 .ph-ng-ph-ng-th-o {
-  color: #000000;
+  color: #333333;
   text-align: left;
   font-family: 'Montserrat', sans-serif;
   font-size: 24px;
-  line-height: 0px;
-  font-weight: 300;
+  line-height: 1.1;
+  font-weight: 100;
   position: absolute;
   left: 1274px;
   top: 877px;
