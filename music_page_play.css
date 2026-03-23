@@ -105,8 +105,8 @@
 .icon-group img{ display: block; pointer-events: none }
 
 /* lyric display below embed */
-.lyric-display{position:absolute;left:28.23%;top:52%;width:43.49%;text-align:center;color:#be1e2d;font-size:20px;font-family:'Montserrat', sans-serif;padding:6px 12px}
-.lyric-display .sub{color:#000000;font-family:'Montserrat', sans-serif;font-size:16px;margin-top:6px}
+.lyric-display{position:absolute;left:28.23%;top:52%;width:43.49%;text-align:center;color:#be1e2d;font-size:20px;font-family:'MonaSans', sans-serif;padding:6px 12px}
+.lyric-display .sub{color:#000000;font-family:'MonaSans', sans-serif;font-size:16px;margin-top:6px}
 
 /* scrolling synchronized lyrics */
 .lyric-list{max-height:160px;overflow:auto;margin:0;padding:8px 12px;list-style:none}
@@ -208,9 +208,9 @@
 .n-xu-n {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 500;
   position: absolute;
   left: 124px;
@@ -224,9 +224,9 @@
 .nh-qu-nh {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 300;
   position: absolute;
   left: 124px;
@@ -244,9 +244,9 @@
 .xu-n-v-tu-i-tr {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 500;
   position: absolute;
   left: 689px;
@@ -260,9 +260,9 @@
 .th-i-thanh {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 300;
   position: absolute;
   left: 689px;
@@ -280,9 +280,9 @@
 .xu-n-v {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 500;
   position: absolute;
   left: 391px;
@@ -296,9 +296,9 @@
 .thanh-lan {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 300;
   position: absolute;
   left: 391px;
@@ -316,9 +316,9 @@
 .m-a-xu-n-u-ti-n {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 500;
   position: absolute;
   left: 956px;
@@ -332,9 +332,9 @@
 .thanh-th-y {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 300;
   position: absolute;
   left: 956px;
@@ -348,7 +348,7 @@
 .l-ng-nghe-m-a-xu-n-v {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
   line-height: 30px;
   font-weight: 500;
@@ -364,9 +364,9 @@
 .ph-ng-ph-ng-th-o {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 300;
   position: absolute;
   left: 1562px;
@@ -384,9 +384,9 @@
 .th-th-m-m-a-xu-n {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 500;
   position: absolute;
   left: 1244px;
@@ -400,9 +400,9 @@
 .m-linh {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 300;
   position: absolute;
   left: 1244px;
@@ -539,7 +539,7 @@
 }
 .xu-n-n-r-i-gieo-r-c-ng-n-h-n-hoa-xu-ng-i-vui-trong-b-nh-minh-mu-n-lo-i-chim-h-t-vang-m-i-n-i-p-trong-ti-ng-c-i-cho-ki-p-ng-i-t-nh-th-ng-m-u-i-kh-t-khao-xu-n-t-i-th-i-ho {
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 20px;
   line-height: 32px;
   font-weight: 500;

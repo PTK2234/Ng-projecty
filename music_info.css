@@ -55,7 +55,7 @@
 .s-ng-t-c-b-i-nh-c-s-ph-m-nh-ch-ng-d-c-bi-u-di-n-l-n-u-b-i-n-danh-ca-th-i-thanh-nh-ng-ph-i-nghe-b-n-thu-c-a-nh-qu-nh-th-ta-m-i-c-m-th-y-linh-h-n-c-a-b-i-h-t-tung-bay-m-t-ca-kh-c-tr-n-nh-a-s-ng-ng-i-ca-m-a-xu-n-c-ng-t-nh-y-u-ng-t-ng-o-m-ch-i {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 32px;
   font-weight: 400;
   position: absolute;
@@ -174,9 +174,9 @@
 .n-xu-n {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 500;
   position: absolute;
   left: 124px;
@@ -190,9 +190,9 @@
 .nh-qu-nh {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 300;
   position: absolute;
   left: 124px;
@@ -210,9 +210,9 @@
 .xu-n-v-tu-i-tr {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 500;
   position: absolute;
   left: 689px;
@@ -226,9 +226,9 @@
 .th-i-thanh {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 300;
   position: absolute;
   left: 689px;
@@ -246,9 +246,9 @@
 .xu-n-v {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 500;
   position: absolute;
   left: 391px;
@@ -262,9 +262,9 @@
 .thanh-lan {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 300;
   position: absolute;
   left: 391px;
@@ -282,9 +282,9 @@
 .m-a-xu-n-u-ti-n {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 500;
   position: absolute;
   left: 956px;
@@ -298,9 +298,9 @@
 .thanh-th-y {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 300;
   position: absolute;
   left: 956px;
@@ -318,9 +318,9 @@
 .th-th-m-m-a-xu-n {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 500;
   position: absolute;
   left: 1244px;
@@ -334,9 +334,9 @@
 .m-linh {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 300;
   position: absolute;
   left: 1244px;
@@ -436,7 +436,7 @@
 .l-ng-nghe-m-a-xu-n-v {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
   line-height: 30px;
   font-weight: 500;
@@ -452,9 +452,9 @@
 .ph-ng-ph-ng-th-o {
   color: #000000;
   text-align: left;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 0px;
   font-weight: 300;
   position: absolute;
   left: 1562px;
