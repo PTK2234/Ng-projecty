@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function(){
           const embed = btn.getAttribute('data-embed') || '';
           const isYouTube = /youtube\.com\/embed|youtu\.be/.test(embed);
           panel.setAttribute('aria-hidden', 'false');
-          if(!embed){ panel.textContent = 'No embed available for this track.'; return; }
+          if(!embed){ panel.textContent = (typeof I18N !== 'undefined' && I18N[currentLang] && I18N[currentLang].no_embed) ? I18N[currentLang].no_embed : 'No embed available for this track.'; return; }
 
           if(placeholder) placeholder.style.display = 'none';
 
@@ -195,12 +195,21 @@ document.addEventListener('DOMContentLoaded', function(){
             lyricDisplay.innerHTML = '';
             let raw = '';
             const lrcPath = btn.getAttribute('data-lrc');
-            if(lrcPath){ try{ const resp = await fetch(lrcPath); if(resp.ok) raw = await resp.text(); }catch(e){} }
+            // try language-specific lyric file when available (e.g., song.en.lrc)
+            async function fetchLrcForPath(path){ try{ const r = await fetch(path); if(r.ok) return await r.text(); }catch(e){} return null; }
+            if(lrcPath){
+              if(currentLang === 'en'){
+                const alt = lrcPath.replace(/\.lrc$/i, '') + '.en.lrc';
+                raw = await fetchLrcForPath(alt) || await fetchLrcForPath(lrcPath) || '';
+              } else {
+                raw = await fetchLrcForPath(lrcPath) || '';
+              }
+            }
             if(!raw) raw = btn.getAttribute('data-lyrics') || btn.getAttribute('data-lyric') || '';
             if(raw){
               function parseLRC(text){ const lines = text.split(/\r?\n/).filter(Boolean); const out = []; const re = /\[(\d+):(\d+(?:\.\d+)?)\](.*)/; for(const l of lines){ const m = l.match(re); if(m){ const mm = parseInt(m[1],10)||0; const ss = parseFloat(m[2])||0; const t = mm*60 + ss; out.push({time:t,text:m[3].trim()}); } else if(l.trim()){ out.push({time:0,text:l.trim()}); } } out.sort((a,b)=>a.time-b.time); return out; }
               lyricLines = parseLRC(raw);
-              if(lyricLines.length>0){ const ul = document.createElement('ul'); ul.className='lyric-list'; ul.tabIndex = 0; lyricLines.forEach((ln)=>{ const li = document.createElement('li'); li.className='lyric-line'; li.setAttribute('data-time', String(ln.time)); const mm = String(Math.floor(ln.time/60)).padStart(2,'0'); const ss = String(Math.floor(ln.time%60)).padStart(2,'0'); li.innerHTML = `<span class="time">${mm}:${ss}</span><span class="text">${ln.text}</span>`; ul.appendChild(li); }); lyricDisplay.appendChild(ul); lyricDisplay.style.display='block'; } else { lyricDisplay.style.display='none'; }
+              if(lyricLines.length>0){ const ul = document.createElement('ul'); ul.className='lyric-list'; lyricLines.forEach((ln)=>{ const li = document.createElement('li'); li.className='lyric-line'; li.setAttribute('data-time', String(ln.time)); const mm = String(Math.floor(ln.time/60)).padStart(2,'0'); const ss = String(Math.floor(ln.time%60)).padStart(2,'0'); li.innerHTML = `<span class="time">${mm}:${ss}</span><span class="text">${ln.text}</span>`; ul.appendChild(li); }); lyricDisplay.appendChild(ul); lyricDisplay.style.display='block'; } else { lyricDisplay.style.display='none'; }
             } else { lyricDisplay.style.display='none'; }
           }
 
@@ -225,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
           // helper to change start
           function setStart(sec){ currentStart = Math.max(0, Math.floor(sec)); iframe.src = buildSrc(embed, currentStart); }
-          function promptForTime(){ const resp = window.prompt('Enter start time (mm:ss or seconds)', '00:00'); if(!resp) return; const parts = resp.split(':').map(s=>s.trim()); let sec = 0; if(parts.length===1) sec = parseInt(parts[0],10) || 0; else sec = (parseInt(parts[0],10)||0)*60 + (parseInt(parts[1],10)||0); setStart(sec); }
+          function promptForTime(){ const promptText = (typeof I18N !== 'undefined' && I18N[currentLang] && I18N[currentLang].enter_start_prompt) ? I18N[currentLang].enter_start_prompt : 'Enter start time (mm:ss or seconds)'; const resp = window.prompt(promptText, '00:00'); if(!resp) return; const parts = resp.split(':').map(s=>s.trim()); let sec = 0; if(parts.length===1) sec = parseInt(parts[0],10) || 0; else sec = (parseInt(parts[0],10)||0)*60 + (parseInt(parts[1],10)||0); setStart(sec); }
         }
 
         // attach listeners
@@ -255,6 +264,71 @@ document.addEventListener('DOMContentLoaded', function(){
           const brandBtn = document.querySelector('.layer-btn');
           if(brandBtn){ brandBtn.addEventListener('click', ()=> { window.location.href = 'collection_page.html'; }); }
         }catch(e){}
+
+        // --- Internationalization (EN/VI) switch ---
+        const I18N = {
+          en: {
+            title: 'Landing Page',
+            header_actions: 'Header actions',
+            brand: 'Brand',
+            prev_btn: 'Previous track',
+            next_btn: 'Next track',
+            no_embed: 'No embed available for this track.',
+            enter_start_prompt: 'Enter start time (mm:ss or seconds)'
+          },
+          vi: {
+            title: 'Trang chính',
+            header_actions: 'Hành động',
+            brand: 'Thương hiệu',
+            prev_btn: 'Bài trước',
+            next_btn: 'Bài tiếp theo',
+            no_embed: 'Không có nhúng cho bài hát này.',
+            enter_start_prompt: 'Nhập thời gian bắt đầu (mm:ss hoặc giây)'
+          }
+        };
+
+        // elements we will translate (do NOT include track elements)
+        const i18nTargets = [
+          {sel: '.header-action-btn', key: 'header_actions'},
+          {sel: '.layer-btn', key: 'brand'},
+          {sel: '.prev-btn', key: 'prev_btn'},
+          {sel: '.next-btn', key: 'next_btn'}
+        ];
+
+        let currentLang = localStorage.getItem('site_lang') || 'vi';
+        function applyLang(lang){
+          currentLang = (lang === 'en') ? 'en' : 'vi';
+          localStorage.setItem('site_lang', currentLang);
+          // document title
+          try{ document.title = I18N[currentLang].title || document.title; }catch(e){}
+          // attributes
+          i18nTargets.forEach(t => {
+            const el = document.querySelector(t.sel);
+            if(!el) return;
+            const txt = I18N[currentLang][t.key] || '';
+            if(el.hasAttribute('aria-label')) el.setAttribute('aria-label', txt);
+            if(el.hasAttribute('title')) el.title = txt;
+          });
+        }
+
+        // toggle handler bound to the small .vie image inside .header-action-btn
+        try{
+          const vieImg = document.querySelector('.header-action-btn .vie');
+          if(vieImg){ vieImg.style.cursor = 'pointer'; vieImg.addEventListener('click', function(e){ e.stopPropagation(); const next = (currentLang === 'en') ? 'vi' : 'en'; applyLang(next); }); }
+        }catch(e){}
+
+        // apply initial language
+        try{ applyLang(currentLang); }catch(e){}
+        
+        // When language changes, reload current track to pick up translated lyrics (if available)
+        // Note: this will recreate the iframe/player and restart playback.
+        const originalApplyLang = applyLang;
+        applyLang = function(lang){
+          originalApplyLang(lang);
+          try{ if(window._currentTrackBtn){ // re-load the same track so lyrics reflect selected language
+            setTimeout(()=>{ try{ loadTrack(window._currentTrackBtn); }catch(e){} }, 50);
+          } }catch(e){}
+        };
         });
       </script>
 <script>
