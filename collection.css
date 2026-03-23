@@ -224,9 +224,9 @@
   position: absolute;
   left: 114.2px;
   top: 111px;
-  /* restore original placement transform, keep spin animation */
-  transform-origin: 0 0;
-  transform: rotate(46.302deg) scale(1, 1);
+  /* spin the vinyl around its center */
+  transform-origin: 50% 50%;
+  /* base rotation baked into animation frames so spin layers add correctly */
   animation: vinyl-spin 6s linear infinite;
   object-fit: cover;
   aspect-ratio: 1;
@@ -328,6 +328,13 @@
 @keyframes vinyl-spin {
   from { transform: rotate(46.302deg) rotate(0deg) scale(1,1); }
   to   { transform: rotate(46.302deg) rotate(360deg) scale(1,1); }
+}
+
+/* ensure vinyl spins on the collection page (maintains absolute position) */
+.slide-16-9-collection-page .mockup-1-x-1 {
+  /* keep original positioning; add animation with page-level specificity */
+  animation: vinyl-spin 6s linear infinite;
+  transform-origin: 50% 50%;
 }
 
 /* respect user's reduced motion preference */
