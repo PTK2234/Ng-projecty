@@ -119,19 +119,25 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 });
 </script>
+<!-- I18N: EN/VI toggle -->
+<script>
+  (function(){
+    const I18N = { en:{ title:'Music - Spring' }, vi:{ title:'Âm nhạc - Mùa Xuân' } };
+    let currentLang = localStorage.getItem('site_lang') || 'vi';
+    function applyLang(lang){ currentLang = (lang==='en')?'en':'vi'; localStorage.setItem('site_lang', currentLang); try{ document.title = I18N[currentLang].title || document.title; }catch(e){} const brand = document.querySelector('.layer-btn'); if(brand && brand.hasAttribute('aria-label')) brand.setAttribute('aria-label', (currentLang==='en')?'Brand':'Thương hiệu'); }
+    try{ const vieImg = document.querySelector('.header-action-btn .vie'); if(vieImg){ vieImg.style.cursor='pointer'; vieImg.addEventListener('click', function(e){ e.stopPropagation(); const next = (currentLang==='en')?'vi':'en'; applyLang(next); }); } applyLang(currentLang); }catch(e){}
+  })();
+</script>
 <script>
 (function(){
   var BASE_W=1920, BASE_H=1080;
   function rescale(){
     var el=document.querySelector('.slide-16-9-music-page'); if(!el) return;
-    // scale to fit both width and height so the full 16:9 frame is visible
-    var s = Math.min(window.innerWidth/BASE_W, window.innerHeight/BASE_H);
-    if (s <= 0) s = 1;
-    el.style.transform = 'scale(' + s + ')';
-    el.style.width = BASE_W + 'px'; el.style.height = BASE_H + 'px';
-    // set the document size to the scaled frame so scrolling behaves predictably
-    document.body.style.width = Math.ceil(BASE_W * s) + 'px';
-    document.body.style.height = Math.ceil(BASE_H * s) + 'px';
+    var s=window.innerWidth/BASE_W;
+    el.style.transform='scale('+s+')';
+    el.style.width=BASE_W+'px'; el.style.height=BASE_H+'px';
+    document.body.style.width=Math.ceil(BASE_W*s)+'px';
+    document.body.style.height=Math.ceil(BASE_H*s)+'px';
   }
   window.addEventListener('resize', rescale);
   window.addEventListener('DOMContentLoaded', rescale);

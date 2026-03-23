@@ -53,5 +53,16 @@
   rescale();
 })();
 </script>
+<!-- I18N: EN/VI toggle (floating if no header) -->
+<script>
+  (function(){
+    const I18N = { en:{ title:'Music Info' }, vi:{ title:'Thông tin bài hát' } };
+    let currentLang = localStorage.getItem('site_lang') || 'vi';
+    function applyLang(lang){ currentLang = (lang==='en')?'en':'vi'; localStorage.setItem('site_lang', currentLang); try{ document.title = I18N[currentLang].title || document.title; }catch(e){} }
+    function ensureToggle(){ const vie = document.querySelector('.header-action-btn .vie'); if(vie) return vie; const btn = document.createElement('button'); btn.className='header-action-btn'; btn.style.position='fixed'; btn.style.top='12px'; btn.style.right='12px'; btn.style.zIndex='9999'; btn.style.border='none'; btn.style.background='transparent'; btn.style.padding='6px'; btn.setAttribute('aria-label','Header actions'); const img = document.createElement('img'); img.className='vie'; img.src='Assest/vie.svg'; img.alt='lang'; img.style.width='28px'; img.style.height='28px'; btn.appendChild(img); document.body.appendChild(btn); return img; }
+    const vieImg = ensureToggle(); vieImg.style.cursor='pointer'; vieImg.addEventListener('click', function(e){ e.stopPropagation(); const next = (currentLang==='en')?'vi':'en'; applyLang(next); });
+    try{ applyLang(currentLang); }catch(e){}
+  })();
+</script>
 </body>
 </html>

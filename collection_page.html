@@ -72,15 +72,12 @@
   </button>
 </div>
   <script>
-    // Navigate to the play page when the disk button is clicked — add brief spin feedback
+    // Navigate to the play page when the disk button is clicked
     (function(){
       var btn = document.querySelector('.disk-btn');
       if(!btn) return;
-      btn.addEventListener('click', function(e){
-        // add spinning class for visual feedback
-        btn.classList.add('spinning');
-        // short delay so the spin is visible before navigation
-        setTimeout(function(){ window.location.href = 'music_page.html'; }, 300);
+      btn.addEventListener('click', function(){
+        window.location.href = 'music_page.html';
       });
     })();
     
@@ -89,6 +86,16 @@
       var brand = document.querySelector('.layer-btn');
       if(!brand) return;
       brand.addEventListener('click', function(){ window.location.href = 'collection_page.html'; });
+    })();
+  </script>
+  <!-- I18N: EN/VI toggle -->
+  <script>
+    (function(){
+      const I18N = { en:{ title:'Collection - Spring' }, vi:{ title:'Collection - Mùa Xuân' } };
+      const i18nTargets = [ {sel:'.header-action-btn', key:'header_actions'}, {sel:'.layer-btn', key:'brand'} ];
+      let currentLang = localStorage.getItem('site_lang') || 'vi';
+      function applyLang(lang){ currentLang = (lang==='en')?'en':'vi'; localStorage.setItem('site_lang', currentLang); try{ document.title = I18N[currentLang].title || document.title; }catch(e){} const btn = document.querySelector('.header-action-btn'); if(btn && btn.hasAttribute('aria-label')) btn.setAttribute('aria-label', I18N[currentLang].header_actions || btn.getAttribute('aria-label')); const brand = document.querySelector('.layer-btn'); if(brand && brand.hasAttribute('aria-label')) brand.setAttribute('aria-label', I18N[currentLang].brand || brand.getAttribute('aria-label')); }
+      try{ const vieImg = document.querySelector('.header-action-btn .vie'); if(vieImg){ vieImg.style.cursor='pointer'; vieImg.addEventListener('click', function(e){ e.stopPropagation(); const next = (currentLang==='en')?'vi':'en'; applyLang(next); }); } applyLang(currentLang); }catch(e){}
     })();
   </script>
 <script>
