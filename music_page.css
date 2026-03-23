@@ -59,7 +59,8 @@
   position: absolute;
   left: 233.61px;
   top: 106px;
-  transform-origin: 0 0;
+  /* pivot around the image center so rotation looks natural */
+  transform-origin: 50% 50%;
   /* base rotation preserved; add continuous spin animation */
   transform: rotate(46.302deg) scale(1, 1);
   animation: vinyl-spin 6s linear infinite;
