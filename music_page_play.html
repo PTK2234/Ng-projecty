@@ -253,11 +253,16 @@ document.addEventListener('DOMContentLoaded', function(){
   var BASE_W=1920, BASE_H=1080;
   function rescale(){
     var el=document.querySelector('.slide-16-9-music-page'); if(!el) return;
-    var s=window.innerWidth/BASE_W;
-    el.style.transform='scale('+s+')';
-    el.style.width=BASE_W+'px'; el.style.height=BASE_H+'px';
-    document.body.style.width=Math.ceil(BASE_W*s)+'px';
-    document.body.style.height=Math.ceil(BASE_H*s)+'px';
+    // choose the smaller scale so the design fits both width and height
+    var s = Math.min(window.innerWidth / BASE_W, window.innerHeight / BASE_H);
+    el.style.transform = 'scale('+s+')';
+    el.style.transformOrigin = 'top left';
+    el.style.width = BASE_W + 'px'; el.style.height = BASE_H + 'px';
+    // allow vertical scrolling when needed and size the document to the scaled frame
+    document.documentElement.style.overflowY = 'auto';
+    document.body.style.overflowY = 'auto';
+    document.body.style.width = Math.ceil(BASE_W * s) + 'px';
+    document.body.style.height = Math.ceil(BASE_H * s) + 'px';
   }
   window.addEventListener('resize', rescale);
   window.addEventListener('DOMContentLoaded', rescale);
