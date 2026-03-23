@@ -276,21 +276,14 @@
   object-fit: cover;
   aspect-ratio: 1;
 }
-
 /* vinyl spin animation */
-.disk-cv-1{
+@keyframes vinyl-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.disk-cv-1 {
   transform-origin: 50% 50%;
-  animation: spin 6s linear infinite;
-  will-change: transform;
-}
-
-@keyframes spin{
-  to { transform: rotate(360deg); }
-}
-
-/* Respect user's reduced-motion preference */
-@media (prefers-reduced-motion: reduce){
-  .disk-cv-1{ animation: none !important; }
+  animation: vinyl-spin 4s linear infinite;
 }
 .ellipse-13 {
   background: #ffffff;
