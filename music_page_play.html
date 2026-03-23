@@ -253,20 +253,21 @@ document.addEventListener('DOMContentLoaded', function(){
   var BASE_W=1920, BASE_H=1080;
   function rescale(){
     var el=document.querySelector('.slide-16-9-music-page'); if(!el) return;
-    // choose the smaller scale so the design fits both width and height
-    var s = Math.min(window.innerWidth / BASE_W, window.innerHeight / BASE_H);
-    el.style.transform = 'scale('+s+')';
+    var s=window.innerWidth/BASE_W;
+    // ensure pivot is top-left and apply scale
     el.style.transformOrigin = 'top left';
-    el.style.width = BASE_W + 'px'; el.style.height = BASE_H + 'px';
-    // allow vertical scrolling when needed and size the document to the scaled frame
-    document.documentElement.style.overflowY = 'auto';
-    document.body.style.overflowY = 'auto';
-    document.body.style.width = Math.ceil(BASE_W * s) + 'px';
-    document.body.style.height = Math.ceil(BASE_H * s) + 'px';
+    el.style.transform='scale('+s+')';
+    el.style.width=BASE_W+'px'; el.style.height=BASE_H+'px';
+    document.body.style.width=Math.ceil(BASE_W*s)+'px';
+    document.body.style.height=Math.ceil(BASE_H*s)+'px';
+    // ensure the viewport is at the top after scaling
+    try{ window.scrollTo(0,0); document.documentElement.scrollTop = 0; }catch(e){}
   }
   window.addEventListener('resize', rescale);
   window.addEventListener('DOMContentLoaded', rescale);
   rescale();
+  // extra tick to make sure browser has applied transform before scrolling
+  setTimeout(function(){ try{ window.scrollTo(0,0); }catch(e){} }, 0);
 })();
 </script>
       </body>
