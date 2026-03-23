@@ -105,11 +105,11 @@
 .icon-group img{ display: block; pointer-events: none }
 
 /* lyric display below embed */
-.lyric-display{position:absolute;left:28.23%;top:52%;width:43.49%;text-align:center;color:#be1e2d;font-size:20px;font-family:'MonaSans', sans-serif;padding:6px 12px}
+.lyric-display{position:absolute;left:28.23%;top:52%;width:43.49%;text-align:center;color:#be1e2d;font-size:20px;font-family:'MonaSans', sans-serif;padding:6px 12px;z-index:20;pointer-events:auto}
 .lyric-display .sub{color:#000000;font-family:'MonaSans', sans-serif;font-size:16px;margin-top:6px}
 
 /* scrolling synchronized lyrics */
-.lyric-list{max-height:160px;overflow:auto;margin:0;padding:8px 12px;list-style:none}
+.lyric-list{max-height:160px;overflow:auto;margin:0;padding:8px 12px;list-style:none;-webkit-overflow-scrolling:touch}
 .lyric-line{padding:6px 0;color:#3b0000;font-size:18px;transition:color 160ms, transform 160ms}
 .lyric-list{
   /* hide native scrollbars but keep scrolling functional */
