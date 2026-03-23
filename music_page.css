@@ -377,18 +377,78 @@
 }
 /* track button styling: remove default button look but keep layout */
 .track-btn {
+  position: absolute;
   background: transparent;
   border: none;
   padding: 0;
   margin: 0;
   display: block;
-  width: 100%;
   text-align: left;
   cursor: pointer;
+  z-index: 10;
 }
+.track-btn[data-id="track-1"]{ left: 1159px; top: 195px; width: 420px; height: 120px; }
+.track-btn[data-id="track-2"]{ left: 1159px; top: 323px; width: 420px; height: 120px; }
+.track-btn[data-id="track-3"]{ left: 1159px; top: 451px; width: 420px; height: 120px; }
+.track-btn[data-id="track-4"]{ left: 1159px; top: 579px; width: 420px; height: 120px; }
+.track-btn[data-id="track-5"]{ left: 1159px; top: 707px; width: 420px; height: 120px; }
+.track-btn[data-id="track-6"]{ left: 1159px; top: 835px; width: 420px; height: 120px; }
 .track-btn img { display: block; }
 .track-btn:focus { outline: none; }
 .track-btn:focus-visible { outline: 3px solid rgba(184, 13, 13, 0.25); outline-offset: 4px; }
+.track-btn .rectangle-2,
+.track-btn .rectangle-3,
+.track-btn .rectangle-4,
+.track-btn .rectangle-6,
+.track-btn .rectangle-7,
+.track-btn .rectangle-8 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 89px;
+  height: 89px;
+}
+
+/* make the text group flow inside the button and vertically center it */
+.track-btn .group-14,
+.track-btn .group-13,
+.track-btn .group-12,
+.track-btn .group-11,
+.track-btn .group-10,
+.track-btn .group-9 {
+  position: absolute;
+  left: 115px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: calc(100% - 130px);
+}
+
+/* override the absolutely-positioned text rules when inside a track-btn */
+.track-btn .n-xu-n,
+.track-btn .xu-n-v,
+.track-btn .xu-n-v-tu-i-tr,
+.track-btn .m-a-xu-n-u-ti-n,
+.track-btn .th-th-m-m-a-xu-n,
+.track-btn .l-ng-nghe-m-a-xu-n-v {
+  position: static;
+  margin: 0;
+  display: block;
+}
+.track-btn .nh-qu-nh,
+.track-btn .thanh-lan,
+.track-btn .th-i-thanh,
+.track-btn .thanh-th-y,
+.track-btn .m-linh,
+.track-btn .ph-ng-ph-ng-th-o {
+  position: static;
+  margin: 0;
+  display: block;
+  font-weight: 300;
+}
 .l-ng-nghe-m-a-xu-n-v {
   color: #000000;
   text-align: left;
