@@ -60,7 +60,9 @@
     <img class="music" src="Assest/music0.svg" />
     <img class="vie" src="Assest/vie.svg" />
   </button>
+  
   <img class="mockup-1-x-1" src="Assest/mockup-1-x-10.png" />
+ 
   <div class="ellipse-7"></div>
   <img class="sketch-1769442914819-1" src="Assest/sketch-1769442914819-10.png" />
   <button class="disk-btn" aria-label="Play album">
@@ -70,12 +72,15 @@
   </button>
 </div>
   <script>
-    // Navigate to the play page when the disk button is clicked
+    // Navigate to the play page when the disk button is clicked — add brief spin feedback
     (function(){
       var btn = document.querySelector('.disk-btn');
       if(!btn) return;
-      btn.addEventListener('click', function(){
-        window.location.href = 'music_page.html';
+      btn.addEventListener('click', function(e){
+        // add spinning class for visual feedback
+        btn.classList.add('spinning');
+        // short delay so the spin is visible before navigation
+        setTimeout(function(){ window.location.href = 'music_page.html'; }, 300);
       });
     })();
     

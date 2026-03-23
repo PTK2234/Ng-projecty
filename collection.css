@@ -322,3 +322,13 @@
 .layer-btn img{display:block}
 .layer-btn:focus{outline:none}
 .layer-btn:focus-visible{outline:3px solid rgba(184,13,13,0.25);outline-offset:4px}
+
+/* vinyl spin animation */
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* spin on hover/focus for quick feedback */
+.disk-btn:hover .disk-cv-1,
+.disk-btn:focus .disk-cv-1 { transform-origin: 50% 50%; animation: spin 1.8s linear infinite; }
+
+/* when disk is explicitly spinning (class added by JS) */
+.disk-btn.spinning .disk-cv-1 { transform-origin: 50% 50%; animation: spin 1.8s linear infinite; }
