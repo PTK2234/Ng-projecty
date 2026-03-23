@@ -154,7 +154,16 @@ document.addEventListener('DOMContentLoaded', function(){
             if(i !== currentLyricIndex){
               const list = lyricDisplay.querySelectorAll('.lyric-line');
               if(list[currentLyricIndex]) list[currentLyricIndex].classList.remove('current');
-              if(list[i]){ list[i].classList.add('current'); list[i].scrollIntoView({behavior:'smooth',block:'center'}); }
+              if(list[i]){
+                list[i].classList.add('current');
+                // Scroll the lyric container only, avoid scrolling the whole page
+                const ul = lyricDisplay.querySelector('.lyric-list');
+                if(ul){
+                  const target = list[i];
+                  const offset = target.offsetTop - (ul.clientHeight / 2) + (target.clientHeight / 2);
+                  try{ ul.scrollTo({ top: offset, behavior: 'smooth' }); }catch(e){ ul.scrollTop = offset; }
+                }
+              }
               currentLyricIndex = i;
             }
           }
@@ -254,20 +263,14 @@ document.addEventListener('DOMContentLoaded', function(){
   function rescale(){
     var el=document.querySelector('.slide-16-9-music-page'); if(!el) return;
     var s=window.innerWidth/BASE_W;
-    // ensure pivot is top-left and apply scale
-    el.style.transformOrigin = 'top left';
     el.style.transform='scale('+s+')';
     el.style.width=BASE_W+'px'; el.style.height=BASE_H+'px';
     document.body.style.width=Math.ceil(BASE_W*s)+'px';
     document.body.style.height=Math.ceil(BASE_H*s)+'px';
-    // ensure the viewport is at the top after scaling
-    try{ window.scrollTo(0,0); document.documentElement.scrollTop = 0; }catch(e){}
   }
   window.addEventListener('resize', rescale);
   window.addEventListener('DOMContentLoaded', rescale);
   rescale();
-  // extra tick to make sure browser has applied transform before scrolling
-  setTimeout(function(){ try{ window.scrollTo(0,0); }catch(e){} }, 0);
 })();
 </script>
       </body>
