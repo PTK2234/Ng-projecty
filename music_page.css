@@ -43,7 +43,7 @@
   height: 16.99%;
   position: absolute;
   right: 9.72%;
-  left: 90.73%;
+  left: 86%;
   bottom: 60%;
   top: 17.50%;
   transform: translate(0px, -17px);
@@ -57,8 +57,8 @@
   width: 1153px;
   height: 1153px;
   position: absolute;
-  left: 233.61px;
-  top: 106px;
+  left: -350px;
+  top: 300px;
   /* pivot around the image center so rotation looks natural */
   transform-origin: 50% 50%;
   /* base rotation preserved; add continuous spin animation */
@@ -71,8 +71,8 @@
   width: 320px;
   height: 171px;
   position: absolute;
-  left: 72px;
-  top: 838px;
+  left: 80px;
+  top: 800px;
   overflow: visible;
 }
 .rectangle-13 {
