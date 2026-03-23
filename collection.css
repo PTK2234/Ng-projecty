@@ -224,10 +224,8 @@
   position: absolute;
   left: 114.2px;
   top: 111px;
-  /* spin the vinyl around its center */
-  transform-origin: 50% 50%;
-  /* base rotation baked into animation frames so spin layers add correctly */
-  animation: vinyl-spin 6s linear infinite;
+  transform-origin: 0 0;
+  transform: rotate(46.302deg) scale(1, 1);
   object-fit: cover;
   aspect-ratio: 1;
   z-index: 2;
@@ -324,13 +322,4 @@
 .layer-btn img{display:block}
 .layer-btn:focus{outline:none}
 .layer-btn:focus-visible{outline:3px solid rgba(184,13,13,0.25);outline-offset:4px}
-/* vinyl spin animation */
-@keyframes vinyl-spin {
-  from { transform: rotate(46.302deg) rotate(0deg) scale(1,1); }
-  to   { transform: rotate(46.302deg) rotate(360deg) scale(1,1); }
-}
-
-/* respect user's reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-  .mockup-1-x-1 { animation: none !important; }
-}
+/* (spin animation removed; restored original transform for layout) */
