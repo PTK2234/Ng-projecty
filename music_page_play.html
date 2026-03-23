@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Landing Page</title>
+	   <link rel="stylesheet" href="music_page_play.css">
+	<style>
+	  /* Page transition: fade in on load, fade out on navigate */
+	  body.page-enter { opacity: 0; }
+	  body.page-enter.loaded { opacity: 1; transition: opacity 600ms ease; }
+	  body.page-exit { opacity: 0; transition: opacity 600ms ease; }
+	</style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // trigger page enter animation
+            document.body.classList.add('page-enter');
+            setTimeout(function(){ document.body.classList.add('loaded'); document.body.classList.remove('page-exit'); }, 20);
+        });
+    </script>
+<div class="slide-16-9-music-page">
+  <div class="ellipse-12"></div>
+  <img class="layer-1" src="Assest/Group 48.svg" />
+  <div class="ellipse-11"></div>
+  <div class="rectangle-1"></div>
+  
+  <div id="embed-display" class="put-you-own-image" aria-live="polite">
+    <div class="embed-panel" aria-hidden="true"></div>
+  </div>
+  <div id="lyric-display" class="lyric-display" aria-live="polite"></div>
+  
+  <button class="track-btn" aria-label="Play Đón xuân" data-id="track-1" data-embed="https://www.youtube.com/embed/bmYoQ2e9Spc?si=BvKIi_H-ImhqCPaQ" data-lrc="lyrics/don_xuan.lrc">
+    <img class="rectangle-2" src="Assest/rectangle-20.png" />
+    <div class="group-14">
+      <div class="n-xu-n">Đón xuân</div>
+      <div class="nh-qu-nh">Như Quỳnh</div>
+    </div>
+  </button>
+
+  <button class="track-btn" aria-label="Play Xuân đã về" data-id="track-2" data-embed="https://www.youtube.com/embed/1yXVF41YlJM?si=jwu7N3ZfNqobbnUt" data-lrc="lyrics/xuan_da_ve.lrc">
+    <img class="rectangle-3" src="Assest/rectangle-30.png" />
+    <div class="group-13">
+      <div class="xu-n-v">Xuân đã về</div>
+      <div class="thanh-lan">Thanh Lan</div>
+    </div>
+  </button>
+
+  <button class="track-btn" aria-label="Play Xuân và tuổi trẻ" data-id="track-3" data-embed="https://www.youtube.com/embed/9CUhD11j7Y8?si=XvUPNwqUOiovedIZ" data-lrc="lyrics/xuan_va_tuoi_tre.lrc">
+    <img class="rectangle-4" src="Assest/rectangle-40.png" />
+    <div class="group-12">
+      <div class="xu-n-v-tu-i-tr">Xuân và tuổi trẻ</div>
+      <div class="th-i-thanh">Thái Thanh</div>
+    </div>
+  </button>
+
+  <button class="track-btn" aria-label="Play Mùa xuân đầu tiên" data-id="track-4" data-embed="https://www.youtube.com/embed/nwEv2dkIr_w?si=en_JuetR3H6xKuQs" data-lrc="lyrics/mua_xuan_dau_tien.lrc">
+    <img class="rectangle-6" src="Assest/rectangle-60.png" />
+    <div class="group-11">
+      <div class="m-a-xu-n-u-ti-n">Mùa xuân đầu tiên</div>
+      <div class="thanh-th-y">Thanh Thúy</div>
+    </div>
+  </button>
+  <button class="track-btn" aria-label="Play Thì thầm mùa xuân" data-id="track-5" data-embed="https://www.youtube.com/embed/v-DGqesuedU?si=u0xEEVA1uPr88VyS" data-lrc="lyrics/thi_tham_mua_xuan.lrc">
+    <img class="rectangle-7" src="Assest/rectangle-70.png" />
+    <div class="group-10">
+      <div class="th-th-m-m-a-xu-n">Thì thầm mùa xuân</div>
+      <div class="m-linh">Mỹ Linh</div>
+    </div>
+  </button>
+  <button class="track-btn" aria-label="Play Lắng nghe mùa xuân về" data-id="track-6" data-embed="https://www.youtube.com/embed/etODmtt7AV4?si=6Ytb6f2mP7cL8nz0" data-lrc="lyrics/lang_nghe_mua_xuan.lrc">
+    <img class="rectangle-8" src="Assest/rectangle-80.png" />
+    <div class="group-9">
+      <div class="l-ng-nghe-m-a-xu-n-v">Lắng nghe mùa xuân về</div>
+      <div class="ph-ng-ph-ng-th-o">Phương Phương Thảo</div>
+    </div>
+  </button>
+  <button class="layer-btn" aria-label="Brand">
+    <img class="layer-12" src="Assest/layer-11.svg" />
+  </button>
+  <button class="header-action-btn" aria-label="Header actions">
+    <img class="music2" src="Assest/music0.svg" />
+    <img class="vie" src="Assest/vie.svg" />
+  </button>
+
+  <div class="ellipse-8"></div>
+  <img class="music3" src="Assest/music2.svg" />
+  <div class="ellipse-9"></div>
+  <img class="music4" src="Assest/music3.svg" />
+  
+  <button class="nav-btn prev-btn" aria-label="Previous track" title="Previous track">
+    <img class="music5" src="Assest/music4.svg" />
+  </button>
+  <button class="nav-btn next-btn" aria-label="Next track" title="Next track">
+    <img class="music6" src="Assest/music5.svg" />
+  </button>
+
+
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const embedDisplay = document.getElementById('embed-display');
+  if(!embedDisplay) return;
+  const panel = embedDisplay.querySelector('.embed-panel');
+  const placeholder = embedDisplay.querySelector('.placeholder-img');
+
+    // cleanup function to clear previous player, intervals and handlers
+    function cleanupPrevious(){
+      try{ if(window._lyricInterval){ clearInterval(window._lyricInterval); window._lyricInterval = null; } }catch(e){}
+      try{ if(window._ytPlayer){ window._ytPlayer.destroy(); window._ytPlayer = null; } }catch(e){}
+      try{ if(window._trackKeyHandler){ document.removeEventListener('keydown', window._trackKeyHandler); window._trackKeyHandler = null; } }catch(e){}
+      try{ const ld = document.getElementById('lyric-display'); if(ld) ld.innerHTML = ''; }catch(e){}
+      // clear embed panel content
+      try{ panel.innerHTML = ''; }catch(e){}
+    }
+
+  
+        // central track loader to avoid duplicate handlers/conflicts
+        async function loadTrack(btn){
+          if(!btn) return;
+          // mark current track early
+          window._currentTrackBtn = btn;
+          // cleanup previous state
+          cleanupPrevious();
+
+          const embed = btn.getAttribute('data-embed') || '';
+          const isYouTube = /youtube\.com\/embed|youtu\.be/.test(embed);
+          panel.setAttribute('aria-hidden', 'false');
+          if(!embed){ panel.textContent = 'No embed available for this track.'; return; }
+
+          if(placeholder) placeholder.style.display = 'none';
+
+          const iframe = document.createElement('iframe');
+          iframe.className = 'embed-iframe';
+
+          // lyric synchronization helper
+          let currentLyricIndex = -1;
+          function updateLyricForTime(nowSec){
+            if(!lyricLines || lyricLines.length===0) return;
+            let i = lyricLines.length-1;
+            for(let j=0;j<lyricLines.length;j++){
+              if(nowSec < lyricLines[j].time){ i = Math.max(0,j-1); break; }
+              if(j===lyricLines.length-1) i = lyricLines.length-1;
+            }
+            if(i !== currentLyricIndex){
+              const list = lyricDisplay.querySelectorAll('.lyric-line');
+              if(list[currentLyricIndex]) list[currentLyricIndex].classList.remove('current');
+              if(list[i]){ list[i].classList.add('current'); list[i].scrollIntoView({behavior:'smooth',block:'center'}); }
+              currentLyricIndex = i;
+            }
+          }
+
+          // initialize start
+          let currentStart = 0;
+          const ds = btn.getAttribute('data-start');
+          if(ds){ const n = parseInt(ds,10); if(!isNaN(n) && n>0) currentStart = n; }
+
+          function buildSrc(baseEmbed, startSec){
+            const isYT = /youtube\.com\/embed|youtu\.be/.test(baseEmbed);
+            try{
+              const u = new URL(baseEmbed);
+              u.searchParams.set('autoplay','1'); if(isYT) u.searchParams.set('enablejsapi','1');
+              if(startSec && startSec>0) u.searchParams.set('start', String(Math.floor(startSec))); else u.searchParams.delete('start');
+              return u.toString();
+            }catch(e){ const parts = baseEmbed.split('?'); const base = parts[0]; const params = new URLSearchParams(parts[1]||''); params.set('autoplay','1'); if(isYT) params.set('enablejsapi','1'); if(startSec && startSec>0) params.set('start', String(Math.floor(startSec))); else params.delete('start'); return base + '?' + params.toString(); }
+          }
+
+          iframe.src = buildSrc(embed, currentStart);
+          iframe.setAttribute('frameborder','0'); iframe.setAttribute('allow','autoplay; encrypted-media'); iframe.setAttribute('allowfullscreen','');
+          panel.appendChild(iframe);
+
+          // render lyrics
+          const lyricDisplay = document.getElementById('lyric-display');
+          let lyricLines = [];
+          let lyricStartRef = Date.now();
+          if(lyricDisplay){
+            lyricDisplay.innerHTML = '';
+            let raw = '';
+            const lrcPath = btn.getAttribute('data-lrc');
+            if(lrcPath){ try{ const resp = await fetch(lrcPath); if(resp.ok) raw = await resp.text(); }catch(e){} }
+            if(!raw) raw = btn.getAttribute('data-lyrics') || btn.getAttribute('data-lyric') || '';
+            if(raw){
+              function parseLRC(text){ const lines = text.split(/\r?\n/).filter(Boolean); const out = []; const re = /\[(\d+):(\d+(?:\.\d+)?)\](.*)/; for(const l of lines){ const m = l.match(re); if(m){ const mm = parseInt(m[1],10)||0; const ss = parseFloat(m[2])||0; const t = mm*60 + ss; out.push({time:t,text:m[3].trim()}); } else if(l.trim()){ out.push({time:0,text:l.trim()}); } } out.sort((a,b)=>a.time-b.time); return out; }
+              lyricLines = parseLRC(raw);
+              if(lyricLines.length>0){ const ul = document.createElement('ul'); ul.className='lyric-list'; lyricLines.forEach((ln)=>{ const li = document.createElement('li'); li.className='lyric-line'; li.setAttribute('data-time', String(ln.time)); const mm = String(Math.floor(ln.time/60)).padStart(2,'0'); const ss = String(Math.floor(ln.time%60)).padStart(2,'0'); li.innerHTML = `<span class="time">${mm}:${ss}</span><span class="text">${ln.text}</span>`; ul.appendChild(li); }); lyricDisplay.appendChild(ul); lyricDisplay.style.display='block'; } else { lyricDisplay.style.display='none'; }
+            } else { lyricDisplay.style.display='none'; }
+          }
+
+          // start sync (YT or fallback)
+          if(window._lyricInterval) { clearInterval(window._lyricInterval); window._lyricInterval = null; }
+          lyricStartRef = Date.now();
+          if(isYouTube){
+            if(window._ytPlayer){ try{ window._ytPlayer.destroy(); }catch(e){} window._ytPlayer = null; }
+            iframe.id = 'ytplayer-' + Date.now();
+            function loadYouTubeAPI(){ return new Promise((resolve)=>{ if(window.YT && window.YT.Player){ resolve(window.YT); return; } const prev = window.onYouTubeIframeAPIReady; window.onYouTubeIframeAPIReady = function(){ if(prev) prev(); resolve(window.YT); }; const s = document.createElement('script'); s.src = 'https://www.youtube.com/iframe_api'; document.head.appendChild(s); }); }
+            try{
+              await loadYouTubeAPI();
+              window._ytPlayer = new YT.Player(iframe.id, { events: { onReady: function(e){ try{ if(currentStart) e.target.seekTo(Number(currentStart), true); }catch(_){} try{ e.target.playVideo(); }catch(_){} if(window._lyricInterval){ clearInterval(window._lyricInterval); window._lyricInterval = null; } if(lyricLines && lyricLines.length>0){ window._lyricInterval = setInterval(function(){ try{ const now = (window._ytPlayer && typeof window._ytPlayer.getCurrentTime==='function') ? window._ytPlayer.getCurrentTime() : ((Date.now() - lyricStartRef) / 1000) + (currentStart || 0); updateLyricForTime(now); }catch(e){} }, 250); } }, onStateChange: function(e){ try{ if(e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED){ const t = window._ytPlayer.getCurrentTime(); updateLyricForTime(t); } }catch(_){} } } });
+            }catch(e){ if(lyricLines && lyricLines.length>0){ window._lyricInterval = setInterval(function(){ const nowSec = ((Date.now() - lyricStartRef) / 1000) + (currentStart || 0); try{ updateLyricForTime(nowSec); }catch(e){} }, 250); } }
+          } else {
+            if(lyricLines && lyricLines.length>0){ window._lyricInterval = setInterval(function(){ const nowSec = ((Date.now() - lyricStartRef) / 1000) + (currentStart || 0); try{ updateLyricForTime(nowSec); }catch(e){} }, 250); }
+          }
+
+          // key handler
+          const keyHandler = function(e){ if(!panel.contains(iframe)) return; if(e.key === 'ArrowLeft'){ e.preventDefault(); setStart(Math.max(0, currentStart - 5)); } else if(e.key === 'ArrowRight'){ e.preventDefault(); setStart(currentStart + 5); } else if(e.key === 's' || e.key === 'S'){ e.preventDefault(); promptForTime(); } };
+          window._trackKeyHandler = keyHandler; document.addEventListener('keydown', window._trackKeyHandler);
+
+          // helper to change start
+          function setStart(sec){ currentStart = Math.max(0, Math.floor(sec)); iframe.src = buildSrc(embed, currentStart); }
+          function promptForTime(){ const resp = window.prompt('Enter start time (mm:ss or seconds)', '00:00'); if(!resp) return; const parts = resp.split(':').map(s=>s.trim()); let sec = 0; if(parts.length===1) sec = parseInt(parts[0],10) || 0; else sec = (parseInt(parts[0],10)||0)*60 + (parseInt(parts[1],10)||0); setStart(sec); }
+        }
+
+        // attach listeners
+        document.querySelectorAll('.track-btn').forEach(btn => btn.addEventListener('click', function(){ loadTrack(btn); }));
+
+        // prev / next navigation handlers (use loadTrack to avoid .click conflicts)
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        function getTrackButtons(){ return Array.from(document.querySelectorAll('.track-btn')); }
+        function goToTrack(offset){ const tracks = getTrackButtons(); if(tracks.length === 0) return; let current = window._currentTrackBtn || tracks[0]; let idx = tracks.indexOf(current); if(idx === -1) idx = 0; let nextIdx = (idx + offset + tracks.length) % tracks.length; const target = tracks[nextIdx]; if(target){ target.focus(); loadTrack(target); } }
+        if(prevBtn) prevBtn.addEventListener('click', ()=> goToTrack(-1));
+        if(nextBtn) nextBtn.addEventListener('click', ()=> goToTrack(1));
+  
+        // auto-load from URL `?track=...` if present
+        try{
+          const params = new URLSearchParams(window.location.search);
+          const t = params.get('track');
+          if(t){
+            const esc = (window.CSS && typeof CSS.escape === 'function') ? CSS.escape(t) : t;
+            const btn = document.querySelector('.track-btn[data-id="' + esc + '"]') || document.querySelector('.track-btn[data-id="' + t + '"]');
+            if(btn) setTimeout(()=> loadTrack(btn), 60);
+          }
+        }catch(e){}
+        
+        // Brand button: navigate back to the site index
+        try{
+          const brandBtn = document.querySelector('.layer-btn');
+          if(brandBtn){ brandBtn.addEventListener('click', ()=> { window.location.href = 'index.html'; }); }
+        }catch(e){}
+        });
+      </script>
+      </body>
+      </html>

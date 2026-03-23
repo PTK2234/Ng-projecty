@@ -18,45 +18,71 @@
     setTimeout(function(){ document.body.classList.add('loaded'); }, 20);
   });
 </script>
-  <div class="page">
-    <header class="topbar">
-      <div class="logo"><img src="Assest/logo.png" alt="mâmlody logo" class="site-logo"></div>
-      <div class="top-right">
-        <img src="Assest/logo-horse-small.png" alt="horse" class="top-horse">
-          <button class="vie-btn" aria-label="vie">
-            <img src="Assest/vie.png" alt="vie">
-          </button>
-      </div>
-    </header>
-
-    <main class="stage">
-      <div class="left-visual">
-        <img src="Assest/vinyl.png" alt="vinyl" class="vinyl">
-        <img src="Assest/horse.png" alt="horse" class="horse">
-      </div>
-
-      <div class="center-copy">
-        <h1 class="title">MÙA XUÂN</h1>
-        <div class="description">
-          <p>Mùa xuân là mùa của những nụ hoa mới nhú, cũng là mùa ta chiêm nghiệm cái cũ.</p>
-          <p>Mời bạn “du ngoạn” playlist "Xuân" - hành trình cảm xúc từ một thời đã qua, tới những giai điệu, bản phối hiện đại ấn tượng.</p>
-          <p>Thư giãn, thả lỏng, và cùng "Cưỡi ngựa xem hoa" cùng chúng mình nhé.</p>
-        </div>
-      </div>
-    </main>
-    <button class="play-btn" aria-label="play">
-      <img src="Assest/play-btn.png" alt="play">
-    </button>
-
-
-
-    <nav class="side-menu">
-      <ul>
-        <li>Về chúng mình <span class="dot"></span></li>
-        <li>Tủ Nhạc Của Bạn <span class="dot"></span></li>
-        <li>Về Album <span class="dot"></span></li>
-      </ul>
-    </nav>
+<div class="slide-16-9-collection-page">
+  <div class="ellipse-11"></div>
+  <div class="ellipse-12"></div>
+  <div class="ellipse-14"></div>
+  <div class="ellipse-4"></div>
+  <div class="ellipse-5"></div>
+  <div class="ellipse-6"></div>
+  <div class="ellipse-112"></div>
+  <div class="rectangle-13"></div>
+  <div class="m-axu-n">
+    <span>
+      <span class="m-axu-n-span">MÙ</span>
+      <span class="m-axu-n-span2">A</span>
+      <span class="m-axu-n-span">XUÂN</span>
+    </span>
   </div>
+  <div
+    class="m-a-xu-n-l-m-a-c-a-nh-ng-n-hoa-m-i-nh-c-ng-l-m-a-ta-chi-m-nghi-m-c-i-c-m-i-b-n-du-ngo-n-playlist-xu-n-h-nh-tr-nh-c-m-x-c-t-m-t-th-i-qua-t-i-nh-ng-giai-i-u-b-n-ph-i-hi-n-i-n-t-ng-th-gi-n-th-l-ng-v-c-ng-c-i-ng-a-xem-hoa-c-ng-ch-ng-m-nh-nh"
+  >
+    Mùa xuân là mùa của những nụ hoa mới nhú, cũng là mùa ta chiêm nghiệm cái
+    cũ.
+    <br />
+    Mời bạn &quot;du ngoạn&quot; playlist &quot;Xuân&quot; - hành trình cảm xúc
+    từ một thời đã qua, tới những giai điệu, bản phối hiện đại ấn tượng.
+    <br />
+    <br />
+    Thư giãn, thả lỏng, và cùng &quot;Cưỡi ngựa xem hoa&quot; cùng chúng mình
+    nhé.
+  </div>
+  <div class="v-album">Vẽ Album</div>
+  <div class="t-nh-c-c-a-b-n">Tủ Nhạc Của Bạn</div>
+  <div class="v-ch-ng-m-nh">Về chúng mình</div>
+  <button class="layer-btn" aria-label="Brand">
+    <img class="layer-1" src="Assest/layer-11.svg" />
+  </button>
+  <div class="rectangle-1"></div>
+  <button class="header-action-btn" aria-label="Header actions">
+    <img class="music" src="Assest/music0.svg" />
+    <img class="vie" src="Assest/vie.svg" />
+  </button>
+  <img class="mockup-1-x-1" src="Assest/mockup-1-x-10.png" />
+  <div class="ellipse-7"></div>
+  <img class="sketch-1769442914819-1" src="Assest/sketch-1769442914819-10.png" />
+  <button class="disk-btn" aria-label="Play album">
+    <img class="disk-cv-1" src="Assest/disk-cv-10.png" alt="disk">
+    <div class="ellipse-13" aria-hidden="true"></div>
+    <img class="music2" src="Assest/music1.svg" alt="play icon">
+  </button>
+</div>
+  <script>
+    // Navigate to the play page when the disk button is clicked
+    (function(){
+      var btn = document.querySelector('.disk-btn');
+      if(!btn) return;
+      btn.addEventListener('click', function(){
+        window.location.href = 'music_page.html';
+      });
+    })();
+    
+    // Brand button: navigate back to the site index
+    (function(){
+      var brand = document.querySelector('.layer-btn');
+      if(!brand) return;
+      brand.addEventListener('click', function(){ window.location.href = 'index.html'; });
+    })();
+  </script>
 </body>
 </html>

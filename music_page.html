@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Landing Page</title>
+	   <link rel="stylesheet" href="music_page.css">
+	<style>
+	  /* Page transition: fade in on load, fade out on navigate */
+	  body.page-enter { opacity: 0; }
+	  body.page-enter.loaded { opacity: 1; transition: opacity 600ms ease; }
+	  body.page-exit { opacity: 0; transition: opacity 600ms ease; }
+	</style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // trigger page enter animation
+            document.body.classList.add('page-enter');
+            setTimeout(function(){ document.body.classList.add('loaded'); document.body.classList.remove('page-exit'); }, 20);
+        });
+    </script>
+<div class="slide-16-9-music-page">
+  <div class="ellipse-10"></div>
+  <div class="rectangle-1"></div>
+  <img class="layer-1" src="Assest/layer-10.svg" />
+  <img class="music" src="Assest/music3.svg" />
+  <img class="mockup-1-x-1" src="Assest/mockup-1-x-10.png" />
+  <img class="x-32" src="Assest/x-320.svg" />
+  <div class="rectangle-13"></div>
+  <div class="rectangle-14"></div>
+  <div class="c-u-chuy-n-b-n-m-a-m-a-xu-n-vi-t-nam">
+    Câu Chuyện
+    <br />
+    Bốn mùa:
+    <br />
+    Mùa Xuân
+    <br />
+    Việt Nam
+  </div>
+  <button class="track-btn" aria-label="Play Đón xuân" data-id="track-1">
+    <img class="rectangle-2" src="Assest/rectangle-20.png" />
+    <div class="group-14">
+      <div class="n-xu-n">Đón xuân</div>
+      <div class="nh-qu-nh">Như Quỳnh</div>
+    </div>
+  </button>
+  <button class="track-btn" aria-label="Play Xuân đã về" data-id="track-2">
+    <img class="rectangle-3" src="Assest/rectangle-30.png" />
+    <div class="group-13">
+      <div class="xu-n-v">Xuân đã về</div>
+      <div class="thanh-lan">Thanh Lan</div>
+    </div>
+  </button>
+  <button class="track-btn" aria-label="Play Xuân và tuổi trẻ" data-id="track-3">
+    <img class="rectangle-4" src="Assest/rectangle-40.png" />
+    <div class="group-12">
+      <div class="xu-n-v-tu-i-tr">Xuân và tuổi trẻ</div>
+      <div class="th-i-thanh">Thái Thanh</div>
+    </div>
+  </button>
+  <button class="track-btn" aria-label="Play Mùa xuân đầu tiên" data-id="track-4">
+    <img class="rectangle-6" src="Assest/rectangle-60.png" />
+    <div class="group-11">
+      <div class="m-a-xu-n-u-ti-n">Mùa xuân đầu tiên</div>
+      <div class="thanh-th-y">Thanh Thúy</div>
+    </div>
+  </button>
+  <button class="track-btn" aria-label="Play Thì thầm mùa xuân" data-id="track-5">
+    <img class="rectangle-7" src="Assest/rectangle-70.png" />
+    <div class="group-10">
+      <div class="th-th-m-m-a-xu-n">Thì thầm mùa xuân</div>
+      <div class="m-linh">Mỹ Linh</div>
+    </div>
+  </button>
+  <button class="track-btn" aria-label="Play Lắng nghe mùa xuân về" data-id="track-6">
+    <img class="rectangle-8" src="Assest/rectangle-80.png" />
+    <div class="group-9">
+      <div class="l-ng-nghe-m-a-xu-n-v">Lắng nghe mùa xuân về</div>
+      <div class="ph-ng-ph-ng-th-o">Phương Phương Thảo</div>
+    </div>
+  </button>
+  <button class="layer-btn" aria-label="Brand">
+    <img class="layer-12" src="Assest/layer-11.svg" alt="brand">
+  </button>
+  <button class="header-action-btn" aria-label="Header actions">
+    <img class="music2" src="Assest/music0.svg" />
+    <img class="vie" src="Assest/vie.svg" />
+  </button>
+  <div class="ellipse-4"></div>
+  <div class="ellipse-5"></div>
+  <div class="ellipse-6"></div>
+</div>
+
+
+
+</body>
+</html>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('.track-btn').forEach(btn => {
+    btn.addEventListener('click', function(){
+      const id = btn.getAttribute('data-id') || '';
+      const href = 'music_page_play.html' + (id ? ('?track=' + encodeURIComponent(id)) : '');
+      window.location.href = href;
+    });
+  });
+
+  // Brand button: navigate back to the site index
+  const brandBtn = document.querySelector('.layer-btn');
+  if (brandBtn) {
+    brandBtn.addEventListener('click', function(){
+      window.location.href = 'index.html';
+    });
+  }
+});
+</script>
