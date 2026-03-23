@@ -32,11 +32,12 @@
   <div class="rectangle-13"></div>
   <div class="m-axu-n">
     <span>
-      <span class="m-axu-n-span">MÙA XUÂN</span>
+      <span class="m-axu-n-span" data-i18n="collection_title">MÙA XUÂN</span>
     </span>
   </div>
   <div
     class="m-a-xu-n-l-m-a-c-a-nh-ng-n-hoa-m-i-nh-c-ng-l-m-a-ta-chi-m-nghi-m-c-i-c-m-i-b-n-du-ngo-n-playlist-xu-n-h-nh-tr-nh-c-m-x-c-t-m-t-th-i-qua-t-i-nh-ng-giai-i-u-b-n-ph-i-hi-n-i-n-t-ng-th-gi-n-th-l-ng-v-c-ng-c-i-ng-a-xem-hoa-c-ng-ch-ng-m-nh-nh"
+    data-i18n="collection_intro"
   >
     Mùa xuân là mùa của những nụ hoa mới nhú, cũng là mùa ta chiêm nghiệm cái
     cũ.
@@ -91,10 +92,15 @@
   <!-- I18N: EN/VI toggle -->
   <script>
     (function(){
-      const I18N = { en:{ title:'Collection - Spring' }, vi:{ title:'Collection - Mùa Xuân' } };
-      const i18nTargets = [ {sel:'.header-action-btn', key:'header_actions'}, {sel:'.layer-btn', key:'brand'} ];
+      const I18N = {
+        en: { title:'Collection - Spring', collection_title: 'SPRING', collection_intro: 'Spring is the season of new buds, and a time to reflect on the past. Enjoy the "Spring" playlist — an emotional journey from past moments to contemporary, striking arrangements. Relax, unwind, and enjoy the ride.' },
+        vi: { title:'Collection - Mùa Xuân', collection_title: 'MÙA XUÂN', collection_intro: 'Mùa xuân là mùa của những nụ hoa mới nhú, cũng là mùa ta chiêm nghiệm cái cũ.\n\nMời bạn "du ngoạn" playlist "Xuân" - hành trình cảm xúc từ một thời đã qua, tới những giai điệu, bản phối hiện đại ấn tượng.\n\nThư giãn, thả lỏng, và cùng "Cưỡi ngựa xem hoa" cùng chúng mình nhé.' }
+      };
       let currentLang = localStorage.getItem('site_lang') || 'vi';
-      function applyLang(lang){ currentLang = (lang==='en')?'en':'vi'; localStorage.setItem('site_lang', currentLang); try{ document.title = I18N[currentLang].title || document.title; }catch(e){} const btn = document.querySelector('.header-action-btn'); if(btn && btn.hasAttribute('aria-label')) btn.setAttribute('aria-label', I18N[currentLang].header_actions || btn.getAttribute('aria-label')); const brand = document.querySelector('.layer-btn'); if(brand && brand.hasAttribute('aria-label')) brand.setAttribute('aria-label', I18N[currentLang].brand || brand.getAttribute('aria-label')); }
+      function applyLang(lang){ currentLang = (lang==='en')?'en':'vi'; localStorage.setItem('site_lang', currentLang); try{ document.title = I18N[currentLang].title || document.title; }catch(e){} document.querySelectorAll('[data-i18n]').forEach(el=>{ const key = el.getAttribute('data-i18n'); if(!key) return; const txt = (I18N[currentLang] && I18N[currentLang][key]) ? I18N[currentLang][key] : el.innerHTML; // preserve line breaks in intro
+          if(el.tagName.toLowerCase()==='div' && key==='collection_intro') el.innerHTML = (I18N[currentLang][key]||el.innerHTML).replace(/\n/g,'<br />'); else el.textContent = (I18N[currentLang][key]||el.textContent);
+      }); const btn = document.querySelector('.header-action-btn'); if(btn && btn.hasAttribute('aria-label')) btn.setAttribute('aria-label', I18N[currentLang].header_actions || btn.getAttribute('aria-label')); const brand = document.querySelector('.layer-btn'); if(brand && brand.hasAttribute('aria-label')) brand.setAttribute('aria-label', I18N[currentLang].brand || brand.getAttribute('aria-label'));
+      }
       try{ const vieImg = document.querySelector('.header-action-btn .vie'); if(vieImg){ vieImg.style.cursor='pointer'; vieImg.addEventListener('click', function(e){ e.stopPropagation(); const next = (currentLang==='en')?'vi':'en'; applyLang(next); }); } applyLang(currentLang); }catch(e){}
     })();
   </script>

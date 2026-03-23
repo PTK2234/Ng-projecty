@@ -21,12 +21,12 @@
 			</div>
 			<div class="quote-wrapper">
 				<div class="quote-inner">
-					<span id="quote1" class="quote">Như tiếng hí vang của chú ngựa chuẩn bị phi nước đại, những giai điệu sắc màu sẽ là bước khởi động hoàn hảo cho một năm đầy nhiệt huyết.</span>
+						<span id="quote1" class="quote" data-i18n="quote1">Như tiếng hí vang của chú ngựa chuẩn bị phi nước đại, những giai điệu sắc màu sẽ là bước khởi động hoàn hảo cho một năm đầy nhiệt huyết.</span>
 				</div>
 			</div>
 			<div class="quote-wrapper">
 				<div class="quote-inner">
-					<span id="quote2" class="quote">Series Bốn mùa Việt Nam được ra đời (bởi ba người bạn tuổi Ngọ) để đem tới một trải nghiệm Mùa Xuân Việt Nam, là khởi đầu của hành trình bước vào một năm mới.</span>
+						<span id="quote2" class="quote" data-i18n="quote2">Series Bốn mùa Việt Nam được ra đời (bởi ba người bạn tuổi Ngọ) để đem tới một trải nghiệm Mùa Xuân Việt Nam, là khởi đầu của hành trình bước vào một năm mới.</span>
 				</div>
 			</div>
 		</div>
@@ -135,14 +135,23 @@
 		</div>
 
 <!-- I18N: EN/VI toggle (adds floating toggle if page has no header) -->
-<script>
+	<script>
 	(function(){
-		const I18N = { en:{ title:'Landing Page' }, vi:{ title:'Trang chính' } };
-		const i18nTargets = [ {sel:'.layer-btn', key:'brand'}, {sel:'.header-action-btn', key:'header_actions'} ];
+		const I18N = {
+			en: { title: 'Landing Page', quote1: 'Like the neigh of a horse ready to gallop, colorful melodies are the perfect warm-up for a spirited year.', quote2: 'The Four Seasons of Vietnam series was created to bring a Spring Vietnam experience — the start of a new year journey.' },
+			vi: { title: 'Trang chính', quote1: 'Như tiếng hí vang của chú ngựa chuẩn bị phi nước đại, những giai điệu sắc màu sẽ là bước khởi động hoàn hảo cho một năm đầy nhiệt huyết.', quote2: 'Series Bốn mùa Việt Nam được ra đời (bởi ba người bạn tuổi Ngọ) để đem tới một trải nghiệm Mùa Xuân Việt Nam, là khởi đầu của hành trình bước vào một năm mới.' }
+		};
 		let currentLang = localStorage.getItem('site_lang') || 'vi';
-		function applyLang(lang){ currentLang = (lang==='en')?'en':'vi'; localStorage.setItem('site_lang', currentLang); try{ document.title = I18N[currentLang].title || document.title; }catch(e){} }
-		function ensureToggle(){ const vie = document.querySelector('.header-action-btn .vie'); if(vie) return vie; // already exists
-			const btn = document.createElement('button'); btn.className='header-action-btn'; btn.style.position='fixed'; btn.style.top='12px'; btn.style.right='12px'; btn.style.zIndex='9999'; btn.style.border='none'; btn.style.background='transparent'; btn.style.padding='6px'; btn.setAttribute('aria-label','Header actions'); const img = document.createElement('img'); img.className='vie'; img.src='Assest/vie.svg'; img.alt='lang'; img.style.width='28px'; img.style.height='28px'; btn.appendChild(img); document.body.appendChild(btn); return img; }
+		function applyLang(lang){ currentLang = (lang==='en') ? 'en' : 'vi'; localStorage.setItem('site_lang', currentLang); try{ document.title = I18N[currentLang].title || document.title; }catch(e){}
+			document.querySelectorAll('[data-i18n]').forEach(el => {
+				const key = el.getAttribute('data-i18n');
+				if(!key) return;
+				const txt = (I18N[currentLang] && I18N[currentLang][key]) ? I18N[currentLang][key] : el.textContent;
+				el.textContent = txt;
+			});
+		}
+
+		function ensureToggle(){ const vie = document.querySelector('.header-action-btn .vie'); if(vie) return vie; const btn = document.createElement('button'); btn.className='header-action-btn'; btn.style.position='fixed'; btn.style.top='12px'; btn.style.right='12px'; btn.style.zIndex='9999'; btn.style.border='none'; btn.style.background='transparent'; btn.style.padding='6px'; btn.setAttribute('aria-label','Header actions'); const img = document.createElement('img'); img.className='vie'; img.src='Assest/vie.svg'; img.alt='lang'; img.style.width='28px'; img.style.height='28px'; btn.appendChild(img); document.body.appendChild(btn); return img; }
 		const vieImg = ensureToggle(); vieImg.style.cursor='pointer'; vieImg.addEventListener('click', function(e){ e.stopPropagation(); const next = (currentLang==='en')?'vi':'en'; applyLang(next); });
 		try{ applyLang(currentLang); }catch(e){}
 	})();

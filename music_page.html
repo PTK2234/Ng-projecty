@@ -29,13 +29,13 @@
   <div class="rectangle-13"></div>
   <div class="rectangle-14"></div>
   <div class="c-u-chuy-n-b-n-m-a-m-a-xu-n-vi-t-nam">
-    Câu Chuyện
+    <span data-i18n="story_title">Câu Chuyện</span>
     <br  />
-    Bốn mùa:
+    <span data-i18n="story_label">Bốn mùa:</span>
     <br />
-    Mùa Xuân
+    <span data-i18n="story_season">Mùa Xuân</span>
     <br />
-    Việt Nam
+    <span data-i18n="story_country">Việt Nam</span>
   </div>
   
   <button class="track-btn" aria-label="Play Đón xuân" data-id="track-1">
@@ -122,9 +122,12 @@ document.addEventListener('DOMContentLoaded', function(){
 <!-- I18N: EN/VI toggle -->
 <script>
   (function(){
-    const I18N = { en:{ title:'Music - Spring' }, vi:{ title:'Âm nhạc - Mùa Xuân' } };
+    const I18N = {
+      en: { title:'Music - Spring', story_title:'Story', story_label:'Four seasons:', story_season:'Spring', story_country:'Vietnam' },
+      vi: { title:'Âm nhạc - Mùa Xuân', story_title:'Câu Chuyện', story_label:'Bốn mùa:', story_season:'Mùa Xuân', story_country:'Việt Nam' }
+    };
     let currentLang = localStorage.getItem('site_lang') || 'vi';
-    function applyLang(lang){ currentLang = (lang==='en')?'en':'vi'; localStorage.setItem('site_lang', currentLang); try{ document.title = I18N[currentLang].title || document.title; }catch(e){} const brand = document.querySelector('.layer-btn'); if(brand && brand.hasAttribute('aria-label')) brand.setAttribute('aria-label', (currentLang==='en')?'Brand':'Thương hiệu'); }
+    function applyLang(lang){ currentLang = (lang==='en')?'en':'vi'; localStorage.setItem('site_lang', currentLang); try{ document.title = I18N[currentLang].title || document.title; }catch(e){} document.querySelectorAll('[data-i18n]').forEach(el=>{ const key = el.getAttribute('data-i18n'); if(!key) return; el.textContent = (I18N[currentLang] && I18N[currentLang][key]) ? I18N[currentLang][key] : el.textContent; }); const brand = document.querySelector('.layer-btn'); if(brand && brand.hasAttribute('aria-label')) brand.setAttribute('aria-label', (currentLang==='en')?'Brand':'Thương hiệu'); }
     try{ const vieImg = document.querySelector('.header-action-btn .vie'); if(vieImg){ vieImg.style.cursor='pointer'; vieImg.addEventListener('click', function(e){ e.stopPropagation(); const next = (currentLang==='en')?'vi':'en'; applyLang(next); }); } applyLang(currentLang); }catch(e){}
   })();
 </script>

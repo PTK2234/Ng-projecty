@@ -28,6 +28,7 @@
   <div class="youtube-widget-by-feat-paper">
     <div
       class="s-ng-t-c-b-i-nh-c-s-ph-m-nh-ch-ng-d-c-bi-u-di-n-l-n-u-b-i-n-danh-ca-th-i-thanh-nh-ng-ph-i-nghe-b-n-thu-c-a-nh-qu-nh-th-ta-m-i-c-m-th-y-linh-h-n-c-a-b-i-h-t-tung-bay-m-t-ca-kh-c-tr-n-nh-a-s-ng-ng-i-ca-m-a-xu-n-c-ng-t-nh-y-u-ng-t-ng-o-m-ch-i"
+      data-i18n="music_info_paragraph"
     >
       Sáng tác bởi nhạc sĩ Phạm Đình Chương, dù được biểu diễn lần đầu bởi nữ
       danh ca Thái Thanh, nhưng phải nghe bản thu của Như Quỳnh thì ta mới cảm
@@ -52,6 +53,18 @@
   window.addEventListener('DOMContentLoaded', rescale);
   rescale();
 })();
+</script>
+<!-- I18N: content translations -->
+<script>
+  (function(){
+    const I18N = {
+      en: { title:'Music Info', music_info_paragraph: 'Composed by Pham Dinh Chuong and first performed by Thai Thanh, the recording by Nhu Quynh brings the song to life: a vibrant piece celebrating spring and tender love.' },
+      vi: { title:'Thông tin bài hát', music_info_paragraph: 'Sáng tác bởi nhạc sĩ Phạm Đình Chương, dù được biểu diễn lần đầu bởi nữ danh ca Thái Thanh, nhưng phải nghe bản thu của Như Quỳnh thì ta mới cảm thấy linh hồn của bài hát tung bay: một ca khúc tràn nhựa sống, ngợi ca mùa xuân cùng tình yêu ngọt ngào đâm chồi.' }
+    };
+    let currentLang = localStorage.getItem('site_lang') || 'vi';
+    function applyLang(lang){ currentLang = (lang==='en')?'en':'vi'; localStorage.setItem('site_lang', currentLang); try{ document.title = I18N[currentLang].title || document.title; }catch(e){} document.querySelectorAll('[data-i18n]').forEach(el=>{ const key = el.getAttribute('data-i18n'); if(!key) return; if(el.tagName.toLowerCase()==='div') el.innerHTML = (I18N[currentLang][key]||el.innerHTML).replace(/\n/g,'<br />'); else el.textContent = (I18N[currentLang][key]||el.textContent); }); }
+    try{ applyLang(currentLang); const vieImg = document.querySelector('.header-action-btn .vie'); if(vieImg){ vieImg.style.cursor='pointer'; vieImg.addEventListener('click', function(e){ e.stopPropagation(); const next = (currentLang==='en')?'vi':'en'; applyLang(next); }); } }catch(e){}
+  })();
 </script>
 <!-- I18N: EN/VI toggle (floating if no header) -->
 <script>
