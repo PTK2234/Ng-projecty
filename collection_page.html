@@ -8,6 +8,8 @@
   <style>
     body.page-enter { opacity: 0; }
     body.page-enter.loaded { opacity: 1; transition: opacity 600ms ease; }
+    html, body { margin: 0; padding: 0; background: #fff; overflow-x: hidden; }
+    .slide-16-9-collection-page { transform-origin: top left; }
   </style>
 </head>
 <body>
@@ -47,9 +49,10 @@
     Thư giãn, thả lỏng, và cùng &quot;Cưỡi ngựa xem hoa&quot; cùng chúng mình
     nhé.
   </div>
-  <div class="v-album">Vẽ Album</div>
-  <div class="t-nh-c-c-a-b-n">Tủ Nhạc Của Bạn</div>
-  <div class="v-ch-ng-m-nh">Về chúng mình</div>
+  <div class="v-album"></div>
+  <div class="t-nh-c-c-a-b-n"></div>
+  <div class="v-ch-ng-m-nh"></div>
+  
   <button class="layer-btn" aria-label="Brand">
     <img class="layer-1" src="Assest/layer-11.svg" />
   </button>
@@ -84,5 +87,21 @@
       brand.addEventListener('click', function(){ window.location.href = 'index.html'; });
     })();
   </script>
+<script>
+(function(){
+  var BASE_W=1920, BASE_H=1080;
+  function rescale(){
+    var el=document.querySelector('.slide-16-9-collection-page'); if(!el) return;
+    var s=window.innerWidth/BASE_W;
+    el.style.transform='scale('+s+')';
+    el.style.width=BASE_W+'px'; el.style.height=BASE_H+'px';
+    document.body.style.width=Math.ceil(BASE_W*s)+'px';
+    document.body.style.height=Math.ceil(BASE_H*s)+'px';
+  }
+  window.addEventListener('resize', rescale);
+  window.addEventListener('DOMContentLoaded', rescale);
+  rescale();
+})();
+</script>
 </body>
 </html>

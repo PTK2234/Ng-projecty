@@ -4,9 +4,11 @@
 }
 .slide-16-9-collection-page {
   background: #ffffff;
+  width: 1920px;
   height: 1080px;
   position: relative;
   overflow: hidden;
+  margin: 0 auto;
 }
 .ellipse-11 {
   background: radial-gradient(
@@ -103,6 +105,7 @@
   position: absolute;
   left: 674px;
   top: 359px;
+  z-index: 5;
 }
 .m-axu-n {
   color: #be1e2d;
@@ -110,7 +113,7 @@
   font-family: "OverpassMono-Bold", sans-serif;
   font-size: 40px;
   line-height: 200px;
-  letter-spacing: 0undefined;
+  letter-spacing: 0;
   font-weight: 700;
   position: absolute;
   left: 729px;
@@ -120,8 +123,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 6;
 }
 .m-axu-n-span {
+  letter-spacing: 0.26em;
 }
 .m-axu-n-span2 {
   letter-spacing: 0.26em;
@@ -146,7 +151,10 @@
   position: absolute;
   left: 1708px;
   top: 981px;
+  z-index: 6;
+  cursor: pointer;
 }
+.v-album:hover { color: #be1e2d; }
 .t-nh-c-c-a-b-n {
   color: #3b0000;
   text-align: right;
@@ -156,7 +164,10 @@
   position: absolute;
   left: 1640px;
   top: 924px;
+  z-index: 6;
+  cursor: pointer;
 }
+.t-nh-c-c-a-b-n:hover { color: #be1e2d; }
 .v-ch-ng-m-nh {
   color: #3b0000;
   text-align: right;
@@ -166,7 +177,10 @@
   position: absolute;
   left: 1662px;
   top: 867px;
+  z-index: 6;
+  cursor: pointer;
 }
+.v-ch-ng-m-nh:hover { color: #be1e2d; }
 .layer-1 {
   width: 138px;
   height: 33px;
@@ -182,6 +196,7 @@
   position: absolute;
   left: 0px;
   top: -3px;
+  z-index: 10;
 }
 .music {
   width: 108px;
@@ -213,6 +228,7 @@
   transform: rotate(46.302deg) scale(1, 1);
   object-fit: cover;
   aspect-ratio: 1;
+  z-index: 2;
 }
 .group-1 {
   position: absolute;
@@ -232,6 +248,7 @@
   top: 473.06px;
   transform-origin: 0 0;
   transform: rotate(22.778deg) scale(1, 1);
+  z-index: 3;
 }
 .sketch-1769442914819-1 {
   width: 522.86px;
@@ -243,6 +260,7 @@
   transform: rotate(0.209deg) scale(-1, 1);
   object-fit: cover;
   aspect-ratio: 522.86/438.44;
+  z-index: 4;
 }
 .group-17 {
   position: absolute;
@@ -287,6 +305,7 @@
   width:178px;
   height:178px;
   padding:0;border:none;background:transparent;cursor:pointer;
+  z-index: 8;
 }
 .disk-btn:focus{outline: none}
 .disk-btn:focus-visible{outline:3px solid rgba(184,13,13,0.25);outline-offset:4px}
@@ -294,11 +313,11 @@
 .disk-btn img{display:block}
 
 /* header action and brand button wrappers (keeps existing absolute children positions) */
-.header-action-btn{background:transparent;border:none;padding:0;margin:0;cursor:pointer}
+.header-action-btn{background:transparent;border:none;padding:0;margin:0;cursor:pointer;z-index:11}
 .header-action-btn:focus{outline:none}
 .header-action-btn:focus-visible{outline:3px solid rgba(184,13,13,0.25);outline-offset:4px}
 
-.layer-btn{background:transparent;border:none;padding:0;margin:0;cursor:pointer}
+.layer-btn{background:transparent;border:none;padding:0;margin:0;cursor:pointer;z-index:11}
 .layer-btn img{display:block}
 .layer-btn:focus{outline:none}
 .layer-btn:focus-visible{outline:3px solid rgba(184,13,13,0.25);outline-offset:4px}

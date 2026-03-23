@@ -5,6 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Landing Page</title>
 	   <link rel="stylesheet" href="music_page.css">
+	<style>
+	  html, body { margin: 0; padding: 0; background: #fff; overflow-x: hidden; }
+	  .slide-16-9-music-page { transform-origin: top left; }
+	</style>
 </head>
 <body>
     <script>
@@ -95,11 +99,6 @@
   <div class="ellipse-6"></div>
 </div>
 
-
-
-</body>
-</html>
-
 <script>
 document.addEventListener('DOMContentLoaded', function(){
   document.querySelectorAll('.track-btn').forEach(btn => {
@@ -119,3 +118,21 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 });
 </script>
+<script>
+(function(){
+  var BASE_W=1920, BASE_H=1080;
+  function rescale(){
+    var el=document.querySelector('.slide-16-9-music-page'); if(!el) return;
+    var s=window.innerWidth/BASE_W;
+    el.style.transform='scale('+s+')';
+    el.style.width=BASE_W+'px'; el.style.height=BASE_H+'px';
+    document.body.style.width=Math.ceil(BASE_W*s)+'px';
+    document.body.style.height=Math.ceil(BASE_H*s)+'px';
+  }
+  window.addEventListener('resize', rescale);
+  window.addEventListener('DOMContentLoaded', rescale);
+  rescale();
+})();
+</script>
+</body>
+</html>

@@ -8,6 +8,8 @@
   <style>
     body.page-enter { opacity: 0; }
     body.page-enter.loaded { opacity: 1; transition: opacity 600ms ease; }
+    html, body { margin: 0; padding: 0; background: #fff; overflow-x: hidden; }
+    .slide-16-9-music-selection { transform-origin: top left; }
   </style>
 </head>
 <body>
@@ -18,7 +20,7 @@
     setTimeout(function(){ document.body.classList.add('loaded'); }, 20);
   });
 </script>
-
+<div class="slide-16-9-music-selection">
   <img class="rectangle-9" src="rectangle-90.svg" />
   <div class="ellipse-12"></div>
   <div class="rectangle-15"></div>
@@ -33,7 +35,22 @@
     </div>
   </div>
   <img class="rectangle-16" src="rectangle-160.png" />
-
-
+</div>
+<script>
+(function(){
+  var BASE_W=1920, BASE_H=1080;
+  function rescale(){
+    var el=document.querySelector('.slide-16-9-music-selection'); if(!el) return;
+    var s=window.innerWidth/BASE_W;
+    el.style.transform='scale('+s+')';
+    el.style.width=BASE_W+'px'; el.style.height=BASE_H+'px';
+    document.body.style.width=Math.ceil(BASE_W*s)+'px';
+    document.body.style.height=Math.ceil(BASE_H*s)+'px';
+  }
+  window.addEventListener('resize', rescale);
+  window.addEventListener('DOMContentLoaded', rescale);
+  rescale();
+})();
+</script>
 </body>
 </html>
