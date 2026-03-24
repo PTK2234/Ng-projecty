@@ -57,9 +57,10 @@
     <img class="layer-1" src="Assest/layer-11.svg" />
   </button>
   <div class="rectangle-1"></div>
-  <button class="header-action-btn" aria-label="Header actions">
+  <button class="language-btn" aria-label="Toggle language" type="button">
     <img class="music" src="Assest/music0.svg" />
-    <img class="vie" src="Assest/vie.svg" />
+    <img class="eng" src="Assest/eng.svg" alt="English" />
+    <img class="vie" src="Assest/vie.svg" alt="Vietnamese" />
   </button>
   
   <img class="mockup-1-x-1" src="Assest/mockup-1-x-10.png" />
@@ -97,11 +98,23 @@
         vi: { title:'Collection - Mùa Xuân', collection_title: 'MÙA XUÂN', collection_intro: 'Mùa xuân là mùa của những nụ hoa mới nhú, cũng là mùa ta chiêm nghiệm cái cũ.\n\nMời bạn "du ngoạn" playlist "Xuân" - hành trình cảm xúc từ một thời đã qua, tới những giai điệu, bản phối hiện đại ấn tượng.\n\nThư giãn, thả lỏng, và cùng "Cưỡi ngựa xem hoa" cùng chúng mình nhé.' }
       };
       let currentLang = localStorage.getItem('site_lang') || 'vi';
-      function applyLang(lang){ currentLang = (lang==='en')?'en':'vi'; localStorage.setItem('site_lang', currentLang); try{ document.title = I18N[currentLang].title || document.title; }catch(e){} document.querySelectorAll('[data-i18n]').forEach(el=>{ const key = el.getAttribute('data-i18n'); if(!key) return; const txt = (I18N[currentLang] && I18N[currentLang][key]) ? I18N[currentLang][key] : el.innerHTML; // preserve line breaks in intro
-          if(el.tagName.toLowerCase()==='div' && key==='collection_intro') el.innerHTML = (I18N[currentLang][key]||el.innerHTML).replace(/\n/g,'<br />'); else el.textContent = (I18N[currentLang][key]||el.textContent);
-      }); const btn = document.querySelector('.header-action-btn'); if(btn && btn.hasAttribute('aria-label')) btn.setAttribute('aria-label', I18N[currentLang].header_actions || btn.getAttribute('aria-label')); const brand = document.querySelector('.layer-btn'); if(brand && brand.hasAttribute('aria-label')) brand.setAttribute('aria-label', I18N[currentLang].brand || brand.getAttribute('aria-label'));
+      function updateLangIcons(){
+        const btn = document.querySelector('.language-btn');
+        if(!btn) return;
+        const eng = btn.querySelector('.eng');
+        const vie = btn.querySelector('.vie');
+        if(eng) eng.style.display = (currentLang === 'en') ? 'inline' : 'none';
+        if(vie) vie.style.display = (currentLang === 'vi') ? 'inline' : 'none';
       }
-      try{ const vieImg = document.querySelector('.header-action-btn .vie'); if(vieImg){ vieImg.style.cursor='pointer'; vieImg.addEventListener('click', function(e){ e.stopPropagation(); const next = (currentLang==='en')?'vi':'en'; applyLang(next); }); } applyLang(currentLang); }catch(e){}
+      function applyLang(lang){
+        currentLang = (lang==='en')?'en':'vi';
+        localStorage.setItem('site_lang', currentLang);
+        try{ document.title = I18N[currentLang].title || document.title; }catch(e){}
+        document.querySelectorAll('[data-i18n]').forEach(el=>{ const key = el.getAttribute('data-i18n'); if(!key) return; const txt = (I18N[currentLang] && I18N[currentLang][key]) ? I18N[currentLang][key] : el.innerHTML; if(el.tagName.toLowerCase()==='div' && key==='collection_intro') el.innerHTML = (I18N[currentLang][key]||el.innerHTML).replace(/\n/g,'<br />'); else el.textContent = (I18N[currentLang][key]||el.textContent); });
+        const brand = document.querySelector('.layer-btn'); if(brand && brand.hasAttribute('aria-label')) brand.setAttribute('aria-label', I18N[currentLang].brand || brand.getAttribute('aria-label'));
+        updateLangIcons();
+      }
+      try{ const btn = document.querySelector('.language-btn'); if(btn){ btn.style.cursor='pointer'; btn.addEventListener('click', function(e){ e.stopPropagation(); const next = (currentLang==='en')?'vi':'en'; applyLang(next); }); } applyLang(currentLang); }catch(e){}
     })();
   </script>
 <script>

@@ -90,9 +90,10 @@
     <img class="layer-12" src="Assest/layer-11.svg" alt="brand">
   </button>
   
-  <button class="header-action-btn" aria-label="Header actions">
+  <button class="language-btn" aria-label="Toggle language" type="button">
     <img class="music2" src="Assest/music0.svg" />
-    <img class="vie" src="Assest/vie.svg" />
+    <img class="eng" src="Assest/eng.svg" alt="English" />
+    <img class="vie" src="Assest/vie.svg" alt="Vietnamese" />
   </button>
 
   <div class="ellipse-4"></div>
@@ -127,8 +128,34 @@ document.addEventListener('DOMContentLoaded', function(){
       vi: { title:'Âm nhạc - Mùa Xuân', story_title:'Câu Chuyện', story_label:'Bốn mùa:', story_season:'Mùa Xuân', story_country:'Việt Nam' }
     };
     let currentLang = localStorage.getItem('site_lang') || 'vi';
-    function applyLang(lang){ currentLang = (lang==='en')?'en':'vi'; localStorage.setItem('site_lang', currentLang); try{ document.title = I18N[currentLang].title || document.title; }catch(e){} document.querySelectorAll('[data-i18n]').forEach(el=>{ const key = el.getAttribute('data-i18n'); if(!key) return; el.textContent = (I18N[currentLang] && I18N[currentLang][key]) ? I18N[currentLang][key] : el.textContent; }); const brand = document.querySelector('.layer-btn'); if(brand && brand.hasAttribute('aria-label')) brand.setAttribute('aria-label', (currentLang==='en')?'Brand':'Thương hiệu'); }
-    try{ const vieImg = document.querySelector('.header-action-btn .vie'); if(vieImg){ vieImg.style.cursor='pointer'; vieImg.addEventListener('click', function(e){ e.stopPropagation(); const next = (currentLang==='en')?'vi':'en'; applyLang(next); }); } applyLang(currentLang); }catch(e){}
+    function updateLangIcons(){
+      const btn = document.querySelector('.language-btn');
+      if(!btn) return;
+      const eng = btn.querySelector('.eng');
+      const vie = btn.querySelector('.vie');
+      if(eng) eng.style.display = (currentLang === 'en') ? 'inline' : 'none';
+      if(vie) vie.style.display = (currentLang === 'vi') ? 'inline' : 'none';
+    }
+    function applyLang(lang){
+      currentLang = (lang==='en')?'en':'vi';
+      localStorage.setItem('site_lang', currentLang);
+      try{ document.title = I18N[currentLang].title || document.title; }catch(e){}
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const key = el.getAttribute('data-i18n'); if(!key) return;
+        el.textContent = (I18N[currentLang] && I18N[currentLang][key]) ? I18N[currentLang][key] : el.textContent;
+      });
+      const brand = document.querySelector('.layer-btn');
+      if(brand && brand.hasAttribute('aria-label')) brand.setAttribute('aria-label', (currentLang==='en')?'Brand':'Thương hiệu');
+      updateLangIcons();
+    }
+    try{
+      const btn = document.querySelector('.language-btn');
+      if(btn){
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e){ e.stopPropagation(); const next = (currentLang==='en') ? 'vi' : 'en'; applyLang(next); });
+      }
+      applyLang(currentLang);
+    }catch(e){}
   })();
 </script>
 <script>

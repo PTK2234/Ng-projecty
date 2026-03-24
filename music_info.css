@@ -379,6 +379,19 @@
   width: 27px;
   height: 90px;
 }
+
+.eng {
+  color: #3b0000;
+  text-align: left;
+  font-family: 'Overpass Mono', monospace;
+  font-size: 24px;
+  font-weight: 300;
+  position: absolute;
+  left: 1807px;
+  top: 28px;
+  width: 27px;
+  height: 90px;
+}
 .ellipse-8 {
   background: #c71818;
   border-radius: 50%;

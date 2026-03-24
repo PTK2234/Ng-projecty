@@ -82,9 +82,10 @@
   <button class="layer-btn" aria-label="Brand">
     <img class="layer-12" src="Assest/layer-11.svg" />
   </button>
-  <button class="header-action-btn" aria-label="Header actions">
+  <button class="language-btn" aria-label="Toggle language" type="button">
     <img class="music2" src="Assest/music0.svg" />
-    <img class="vie" src="Assest/vie.svg" />
+    <img class="eng" src="Assest/eng.svg" alt="English" />
+    <img class="vie" src="Assest/vie.svg" alt="Vietnamese" />
   </button>
 
   <button class="icon-group group-left">
@@ -289,13 +290,21 @@ document.addEventListener('DOMContentLoaded', function(){
 
         // elements we will translate (do NOT include track elements)
         const i18nTargets = [
-          {sel: '.header-action-btn', key: 'header_actions'},
+          {sel: '.language-btn', key: 'header_actions'},
           {sel: '.layer-btn', key: 'brand'},
           {sel: '.prev-btn', key: 'prev_btn'},
           {sel: '.next-btn', key: 'next_btn'}
         ];
 
         let currentLang = localStorage.getItem('site_lang') || 'vi';
+        function updateLangIcons(){
+          const btn = document.querySelector('.language-btn');
+          if(!btn) return;
+          const eng = btn.querySelector('.eng');
+          const vie = btn.querySelector('.vie');
+          if(eng) eng.style.display = (currentLang === 'en') ? 'inline' : 'none';
+          if(vie) vie.style.display = (currentLang === 'vi') ? 'inline' : 'none';
+        }
         function applyLang(lang){
           currentLang = (lang === 'en') ? 'en' : 'vi';
           localStorage.setItem('site_lang', currentLang);
@@ -309,12 +318,13 @@ document.addEventListener('DOMContentLoaded', function(){
             if(el.hasAttribute('aria-label')) el.setAttribute('aria-label', txt);
             if(el.hasAttribute('title')) el.title = txt;
           });
+          updateLangIcons();
         }
 
-        // toggle handler bound to the small .vie image inside .header-action-btn
+        // toggle handler bound to the .language-btn
         try{
-          const vieImg = document.querySelector('.header-action-btn .vie');
-          if(vieImg){ vieImg.style.cursor = 'pointer'; vieImg.addEventListener('click', function(e){ e.stopPropagation(); const next = (currentLang === 'en') ? 'vi' : 'en'; applyLang(next); }); }
+          const btn = document.querySelector('.language-btn');
+          if(btn){ btn.style.cursor = 'pointer'; btn.addEventListener('click', function(e){ e.stopPropagation(); const next = (currentLang === 'en') ? 'vi' : 'en'; applyLang(next); }); }
         }catch(e){}
 
         // apply initial language

@@ -518,10 +518,27 @@
   height: 90px;
 }
 
+.eng {
+  color: #3b0000;
+  text-align: left;
+  font-family: 'Overpass Mono', monospace;
+  font-size: 24px;
+  font-weight: 300;
+  position: absolute;
+  left: 1807px;
+  top: 28px;
+  width: 27px;
+  height: 90px;
+}
+
 /* header action button wrapper (keeps children absolute so positions stay the same) */
 .header-action-btn{background:transparent;border:none;padding:0;margin:0;cursor:pointer}
 .header-action-btn:focus{outline:none}
 .header-action-btn:focus-visible{outline:3px solid rgba(184,13,13,0.25);outline-offset:4px}
+
+.language-btn{background:transparent;border:none;padding:0;margin:0;cursor:pointer}
+.language-btn:focus{outline:none}
+.language-btn:focus-visible{outline:3px solid rgba(184,13,13,0.25);outline-offset:4px}
 
 /* small brand button wrapper for layer-12 (keeps child absolute positioning) */
 .layer-btn{background:transparent;border:none;padding:0;margin:0;cursor:pointer}
