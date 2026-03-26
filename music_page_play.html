@@ -6,14 +6,16 @@
 	<title>Landing Page</title>
 	   <link rel="stylesheet" href="music_page_play.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Overpass+Mono:wght@300;400;700&display=swap" rel="stylesheet">
-	<style>
-	  /* Page transition: fade in on load, fade out on navigate */
-	  body.page-enter { opacity: 0; }
-	  body.page-enter.loaded { opacity: 1; transition: opacity 600ms ease; }
-	  body.page-exit { opacity: 0; transition: opacity 600ms ease; }
-	  html, body { margin: 0; padding: 0; background: #fff; overflow-x: hidden; }
-	  .slide-16-9-music-page { transform-origin: top left; }
-	</style>
+  <style>
+  /* Page transition: fade in on load, fade out on navigate */
+  body.page-enter { opacity: 0; }
+  body.page-enter.loaded { opacity: 1; transition: opacity 600ms ease; }
+  body.page-exit { opacity: 0; transition: opacity 600ms ease; }
+  html, body { margin: 0; padding: 0; background: #fff; height: 100%; min-height: 100vh; overflow: auto; }
+  body { -webkit-font-smoothing:antialiased; -webkit-overflow-scrolling:touch; }
+  /* scale from top-left and allow scrolling to reach edges */
+  .slide-16-9-music-page { transform-origin: top left; position: absolute; left: 0; top: 0; }
+</style>
 </head>
 <body>
     <script>
@@ -34,7 +36,7 @@
   </div>
   <div id="lyric-display" class="lyric-display" aria-live="polite"></div>
   
-  <button class="track-btn" aria-label="Play Đón xuân" data-id="track-1" data-embed="https://www.youtube.com/embed/bmYoQ2e9Spc?si=BvKIi_H-ImhqCPaQ" data-lrc="lyrics/don_xuan.lrc">
+  <button class="track-btn" aria-label="Play Đón xuân" data-id="track-1" data-embed="https://www.youtube.com/embed/bmYoQ2e9Spc?si=BvKIi_H-ImhqCPaQ" data-lrc="lyrics/don_xuan.lrc" data-info="Sáng tác bởi nhạc sĩ Phạm Đình Chương, dù được biểu diễn lần đầu bởi nữ danh ca Thái Thanh, nhưng phải nghe bản thu của Như Quỳnh thì ta mới cảm thấy linh hồn của bài hát tung bay: một ca khúc tràn nhựa sống, ngợi ca mùa xuân cùng tình yêu ngọt ngào đâm chồi." data-info-img="Assest/rectangle-20.png">
     <img class="rectangle-2" src="Assest/rectangle-20.png" />
     <div class="group-14">
       <div class="n-xu-n">Đón xuân</div>
@@ -42,7 +44,8 @@
     </div>
   </button>
 
-  <button class="track-btn" aria-label="Play Xuân đã về" data-id="track-2" data-embed="https://www.youtube.com/embed/1yXVF41YlJM?si=jwu7N3ZfNqobbnUt" data-lrc="lyrics/xuan_da_ve.lrc">
+  <button class="track-btn" aria-label="Play Xuân đã về" data-id="track-2" data-embed="https://www.youtube.com/embed/1yXVF41YlJM?si=jwu7N3ZfNqobbnUt" data-lrc="lyrics/xuan_da_ve.lrc" 
+  data-info="Có lẽ, khoảnh khắc ta bất giác nhận ra 'À, sắp Tết rồi!' chính là khi không gian ngập tràn sắc xuân. Khó để thấy những hình ảnh trong lời ca 'Xuân đã về' trong đời sống hiện đại, song chỉ cần tản bộ quanh Hồ Gươm vào cuối tuần, ngắm nhìn những tà áo dài chụp ảnh đón Tết, lũ trẻ chạy quanh cùng gia đình... Ta mới biết xuân đã về thật." data-info-img="Assest/rectangle-30.png">
     <img class="rectangle-3" src="Assest/rectangle-30.png" />
     <div class="group-13">
       <div class="xu-n-v">Xuân đã về</div>
@@ -50,7 +53,8 @@
     </div>
   </button>
 
-  <button class="track-btn" aria-label="Play Xuân và tuổi trẻ" data-id="track-3" data-embed="https://www.youtube.com/embed/9CUhD11j7Y8?si=XvUPNwqUOiovedIZ" data-lrc="lyrics/xuan_va_tuoi_tre.lrc">
+  <button class="track-btn" aria-label="Play Xuân và tuổi trẻ" data-id="track-3" data-embed="https://www.youtube.com/embed/9CUhD11j7Y8?si=XvUPNwqUOiovedIZ" data-lrc="lyrics/xuan_va_tuoi_tre.lrc" 
+  data-info="Ca khúc có nguyên tác là một bản hòa tấu Pháp không lời, sau được thi sĩ người Hoa viết lời . Cuối cùng, vì quá xúc động trước những lời ca tuyệt đẹp này mà nhà thơ Thế Lữ đã đặt lời Việt và lấy tên ca khúc là 'Xuân và tuổi trẻ'. Được tác giả sáng tác trong bối cảnh ngột ngạt của chiến tranh, song bài hát vang rộn đón chào mùa xuân và tình yêu mãnh liệt tuổi trẻ đến lạ..." data-info-img="Assest/rectangle-40.png">
     <img class="rectangle-4" src="Assest/rectangle-40.png" />
     <div class="group-12">
       <div class="xu-n-v-tu-i-tr">Xuân và tuổi trẻ</div>
@@ -58,21 +62,25 @@
     </div>
   </button>
 
-  <button class="track-btn" aria-label="Play Mùa xuân đầu tiên" data-id="track-4" data-embed="https://www.youtube.com/embed/nwEv2dkIr_w?si=en_JuetR3H6xKuQs" data-lrc="lyrics/mua_xuan_dau_tien.lrc">
+  <button class="track-btn" aria-label="Play Mùa xuân đầu tiên" data-id="track-4" data-embed="https://www.youtube.com/embed/nwEv2dkIr_w?si=en_JuetR3H6xKuQs" data-lrc="lyrics/mua_xuan_dau_tien.lrc" 
+  data-info="'Mùa xuân đầu tiên' là một ca khúc đặc biệt. Được ví như ca khúc 'hồi sinh' tâm hồn âm nhạc của cố nghệ sĩ Văn Cao sau nhiều năm dài lặng lẽ mưu sinh, bài hát đánh dấu mùa xuân đầu tiên của dân tộc Việt Nam thoát khỏi gông cùm của chiến tranh. Thời khắc chuyển giao năm mới không cần phải đặc biệt, bởi sau bao máu và nước mắt để đổi lấy độc lập tự do, một 'mùa bình thường' cũng thật hoành tráng rồi." data-info-img="Assest/rectangle-60.png">
     <img class="rectangle-6" src="Assest/rectangle-60.png" />
     <div class="group-11">
       <div class="m-a-xu-n-u-ti-n">Mùa xuân đầu tiên</div>
       <div class="thanh-th-y">Thanh Thúy</div>
     </div>
   </button>
-  <button class="track-btn" aria-label="Play Thì thầm mùa xuân" data-id="track-5" data-embed="https://www.youtube.com/embed/v-DGqesuedU?si=u0xEEVA1uPr88VyS" data-lrc="lyrics/thi_tham_mua_xuan.lrc">
+  <button class="track-btn" aria-label="Play Thì thầm mùa xuân" data-id="track-5" data-embed="https://www.youtube.com/embed/v-DGqesuedU?si=u0xEEVA1uPr88VyS" data-lrc="lyrics/thi_tham_mua_xuan.lrc" 
+  data-info="Tháng Giêng, bất kể theo lịch dương hay âm, đều là khởi đầu cho một hành trình mới. Vẻ đẹp yên bình dường như là chất liệu hoàn hảo để bày tỏ những xúc cảm tình tứ thật 'mới', thật dễ thương, mà cũng đắm say, ngất ngây.
+Với Thì Thầm mùa xuân, không thể không nhắc tới giọng hát đã thổi hồn, làm mùa xuân đọng lại trong trái tim của hàng triệu khán giả là ca sĩ Mỹ Linh. " data-info-img="Assest/rectangle-70.png">
     <img class="rectangle-7" src="Assest/rectangle-70.png" />
     <div class="group-10">
       <div class="th-th-m-m-a-xu-n">Thì thầm mùa xuân</div>
       <div class="m-linh">Mỹ Linh</div>
     </div>
   </button>
-  <button class="track-btn" aria-label="Play Lắng nghe mùa xuân về" data-id="track-6" data-embed="https://www.youtube.com/embed/etODmtt7AV4?si=6Ytb6f2mP7cL8nz0" data-lrc="lyrics/lang_nghe_mua_xuan.lrc">
+  <button class="track-btn" aria-label="Play Lắng nghe mùa xuân về" data-id="track-6" data-embed="https://www.youtube.com/embed/etODmtt7AV4?si=6Ytb6f2mP7cL8nz0" data-lrc="lyrics/lang_nghe_mua_xuan.lrc" 
+  data-info="'... Chúng ta nên lắng nghe mùa xuân về chứ không nên lắng nghe những tai họa ập đến đời mình, bởi vì nó 'cứu' chúng ta để chúng ta tiếp tục sống' - trích lời nhạc sĩ Dương Thụ với Báo Bình Phước Online. Qua giọng ca cover của Phương Phương Thảo, ca khúc như được tiếp thêm nội lực, mà vẫn thật tình tứ. Bài hát đặt ở vị trí cuối cùng trong Mâmlody, với mong muốn chúng ta cùng kết lại những tiêu cực của một năm cũ, và đón chào một năm mới thật rực rỡ." data-info-img="Assest/rectangle-80.png">
     <img class="rectangle-8" src="Assest/rectangle-80.png" />
     <div class="group-9">
       <div class="l-ng-nghe-m-a-xu-n-v">Lắng nghe mùa xuân về</div>
@@ -88,7 +96,17 @@
     <img class="vie" src="Assest/vie.svg" alt="Vietnamese" />
   </button>
 
-  <button class="icon-group group-left">
+  <!-- Track info panel (toggled by group-left button) -->
+  <div class="group-49" id="track-info-panel" style="display:none;">
+    <div class="rectangle-15"></div>
+    <div class="youtube-widget-by-feat-paper">
+      <div class="s-ng-t-c-b-i-nh-c-s-ph-m-nh-ch-ng-d-c-bi-u-di-n-l-n-u-b-i-n-danh-ca-th-i-thanh-nh-ng-ph-i-nghe-b-n-thu-c-a-nh-qu-nh-th-ta-m-i-c-m-th-y-linh-h-n-c-a-b-i-h-t-tung-bay-m-t-ca-kh-c-tr-n-nh-a-s-ng-ng-i-ca-m-a-xu-n-c-ng-t-nh-y-u-ng-t-ng-o-m-ch-i" id="track-info-text"></div>
+    </div>
+    <img class="rectangle-16" id="track-info-img" src="" alt="Track artwork" />
+    <div class="group-43"></div>
+  </div>
+
+  <button class="icon-group group-left" aria-label="Toggle track info">
     <div class="ellipse-8"></div>
     <img class="music3" src="Assest/music2.svg" />
   </button>
@@ -132,6 +150,17 @@ document.addEventListener('DOMContentLoaded', function(){
           window._currentTrackBtn = btn;
           // cleanup previous state
           cleanupPrevious();
+
+          // populate track info panel
+          const infoPanel = document.getElementById('track-info-panel');
+          const infoText = document.getElementById('track-info-text');
+          const infoImg = document.getElementById('track-info-img');
+          if(infoPanel){
+            const info = btn.getAttribute('data-info') || '';
+            const img = btn.getAttribute('data-info-img') || '';
+            if(infoText) infoText.textContent = info;
+            if(infoImg){ infoImg.src = img; infoImg.alt = btn.getAttribute('aria-label') || 'Track artwork'; }
+          }
 
           const embed = btn.getAttribute('data-embed') || '';
           const isYouTube = /youtube\.com\/embed|youtu\.be/.test(embed);
@@ -248,6 +277,16 @@ document.addEventListener('DOMContentLoaded', function(){
         function goToTrack(offset){ const tracks = getTrackButtons(); if(tracks.length === 0) return; let current = window._currentTrackBtn || tracks[0]; let idx = tracks.indexOf(current); if(idx === -1) idx = 0; let nextIdx = (idx + offset + tracks.length) % tracks.length; const target = tracks[nextIdx]; if(target){ target.focus(); loadTrack(target); } }
         if(prevBtn) prevBtn.addEventListener('click', ()=> goToTrack(-1));
         if(nextBtn) nextBtn.addEventListener('click', ()=> goToTrack(1));
+
+        // Toggle track info panel with group-left button
+        const groupLeftBtn = document.querySelector('.group-left');
+        const trackInfoPanel = document.getElementById('track-info-panel');
+        if(groupLeftBtn && trackInfoPanel){
+          groupLeftBtn.addEventListener('click', function(){
+            if(!window._currentTrackBtn){ return; }
+            trackInfoPanel.style.display = (trackInfoPanel.style.display === 'none') ? 'block' : 'none';
+          });
+        }
   
         // auto-load from URL `?track=...` if present
         try{
@@ -346,11 +385,17 @@ document.addEventListener('DOMContentLoaded', function(){
   var BASE_W=1920, BASE_H=1080;
   function rescale(){
     var el=document.querySelector('.slide-16-9-music-page'); if(!el) return;
-    var s=window.innerWidth/BASE_W;
-    el.style.transform='scale('+s+')';
-    el.style.width=BASE_W+'px'; el.style.height=BASE_H+'px';
-    document.body.style.width=Math.ceil(BASE_W*s)+'px';
-    document.body.style.height=Math.ceil(BASE_H*s)+'px';
+    // preserve aspect ratio and COVER the viewport so both dimensions are filled
+    var s = Math.max(window.innerWidth/BASE_W, window.innerHeight/BASE_H);
+    el.style.transform = 'scale(' + s + ')';
+    el.style.left = '0px'; el.style.top = '0px';
+    el.style.width = BASE_W + 'px'; el.style.height = BASE_H + 'px';
+    var scaledW = Math.ceil(BASE_W * s);
+    var scaledH = Math.ceil(BASE_H * s);
+    document.documentElement.style.width = scaledW + 'px';
+    document.documentElement.style.height = scaledH + 'px';
+    document.body.style.width = scaledW + 'px';
+    document.body.style.height = scaledH + 'px';
   }
   window.addEventListener('resize', rescale);
   window.addEventListener('DOMContentLoaded', rescale);

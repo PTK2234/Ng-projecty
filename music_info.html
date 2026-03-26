@@ -9,8 +9,10 @@
   <style>
     body.page-enter { opacity: 0; }
     body.page-enter.loaded { opacity: 1; transition: opacity 600ms ease; }
-    html, body { margin: 0; padding: 0; background: #fff; overflow-x: hidden; }
-    .slide-16-9-music-selection { transform-origin: top left; }
+    html, body { margin: 0; padding: 0; background: #fff; height: 100%; min-height: 100vh; overflow: auto; }
+    body { -webkit-font-smoothing:antialiased; -webkit-overflow-scrolling:touch; }
+    /* scale from top-left and allow scrolling to reach edges */
+    .slide-16-9-music-selection { transform-origin: top left; position: absolute; left: 0; top: 0; }
   </style>
 </head>
 <body>
@@ -43,11 +45,16 @@
   var BASE_W=1920, BASE_H=1080;
   function rescale(){
     var el=document.querySelector('.slide-16-9-music-selection'); if(!el) return;
-    var s=window.innerWidth/BASE_W;
-    el.style.transform='scale('+s+')';
-    el.style.width=BASE_W+'px'; el.style.height=BASE_H+'px';
-    document.body.style.width=Math.ceil(BASE_W*s)+'px';
-    document.body.style.height=Math.ceil(BASE_H*s)+'px';
+    var s = Math.max(window.innerWidth/BASE_W, window.innerHeight/BASE_H);
+    el.style.transform = 'scale(' + s + ')';
+    el.style.left = '0px'; el.style.top = '0px';
+    el.style.width = BASE_W + 'px'; el.style.height = BASE_H + 'px';
+    var scaledW = Math.ceil(BASE_W * s);
+    var scaledH = Math.ceil(BASE_H * s);
+    document.documentElement.style.width = scaledW + 'px';
+    document.documentElement.style.height = scaledH + 'px';
+    document.body.style.width = scaledW + 'px';
+    document.body.style.height = scaledH + 'px';
   }
   window.addEventListener('resize', rescale);
   window.addEventListener('DOMContentLoaded', rescale);

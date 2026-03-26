@@ -538,12 +538,12 @@
 
 /* Make the icon groups cover the clickable area so inner elements are part of the button
    Position each group where the original ellipses were and center the icon inside */
-.icon-group { position: absolute; background: transparent; border: none; padding: 0; margin: 0; cursor: pointer; }
+.icon-group { position: absolute; background: transparent; border: none; padding: 0; margin: 0; cursor: pointer; z-index: 9999; }
 .icon-group:focus{ outline: none }
 .icon-group:focus-visible{ outline: 3px solid rgba(184,13,13,0.25); outline-offset:4px }
 
 /* group-left matches ellipse-8 placement */
-.group-left{ left:85.57%; top:32.59%; width:4.48%; height:7.96%; }
+.group-left{ left:85.57%; top:32.59%; width:4.48%; height:7.96%; z-index: 10001; }
 .group-left .ellipse-8{ position:absolute; left:0; top:0; width:100%; height:100%; right:auto; bottom:auto }
 
 /* group-right matches ellipse-9 placement */
@@ -552,6 +552,70 @@
 
 /* center icons inside each group */
 .icon-group img{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); pointer-events:none }
+
+/* ── Track info panel (.group-49) ── */
+.group-49,
+.group-49 * {
+  box-sizing: border-box;
+  top:180px;
+  left:0px;
+}
+.group-49 {
+  /* stick to the bottom of the viewport to avoid gaps on varying screens */
+  position: fixed;
+  left: 0px;
+  bottom: 0;
+  width: 100vw;
+  max-width: 1920px;
+  z-index: 10000;
+}
+.group-49 .rectangle-15 {
+  background: #ffffff;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px;
+  width: 1920px;
+  height: 424px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.group-49 .youtube-widget-by-feat-paper {
+  width: 859.46px;
+  height: 259px;
+  position: static;
+}
+.group-49 .s-ng-t-c-b-i-nh-c-s-ph-m-nh-ch-ng-d-c-bi-u-di-n-l-n-u-b-i-n-danh-ca-th-i-thanh-nh-ng-ph-i-nghe-b-n-thu-c-a-nh-qu-nh-th-ta-m-i-c-m-th-y-linh-h-n-c-a-b-i-h-t-tung-bay-m-t-ca-kh-c-tr-n-nh-a-s-ng-ng-i-ca-m-a-xu-n-c-ng-t-nh-y-u-ng-t-ng-o-m-ch-i {
+  color: #000000;
+  text-align: left;
+  font-family: "MonaSans-Regular", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  position: absolute;
+  right: 22.01%;
+  left: 33.23%;
+  width: 44.76%;
+  bottom: 27.12%;
+  top: 11.79%;
+  height: 61.08%;
+  overflow-y: auto;
+}
+.group-49 .rectangle-16 {
+  width: 337px;
+  height: 424px;
+  position: absolute;
+  left: 246px;
+  top: 0px;
+  object-fit: cover;
+}
+.group-49 .group-43 {
+  width: 22px;
+  height: 53px;
+  position: absolute;
+  left: 1807px;
+  top: 8px;
+  overflow: visible;
+}
 
 .music5 {
   width: 38.42px;
