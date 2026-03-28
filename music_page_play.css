@@ -663,3 +663,20 @@
   top: 31.48%;
   overflow: visible;
 }
+
+.rectangle-10,
+.rectangle-10 * {
+  box-sizing: border-box;
+}
+.rectangle-10 {
+  background: #ffffff;
+  border-radius: 42px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px;
+  width: 86px;
+  height: 241px;
+  position: relative;
+  left: 1642px;
+  top: 450px;
+}

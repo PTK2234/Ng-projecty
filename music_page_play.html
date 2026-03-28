@@ -11,10 +11,25 @@
   body.page-enter { opacity: 0; }
   body.page-enter.loaded { opacity: 1; transition: opacity 600ms ease; }
   body.page-exit { opacity: 0; transition: opacity 600ms ease; }
-  html, body { margin: 0; padding: 0; background: #fff; height: 100%; min-height: 100vh; overflow: auto; }
+  html, body { margin: 0; padding: 0; background: #fff; height: 100%; min-height: 100vh; overflow: auto; scrollbar-width: none; -ms-overflow-style: none; }
   body { -webkit-font-smoothing:antialiased; -webkit-overflow-scrolling:touch; }
+  /* hide scrollbars but keep scrolling */
+  body::-webkit-scrollbar { width: 0; height: 0; }
   /* scale from top-left and allow scrolling to reach edges */
   .slide-16-9-music-page { transform-origin: top left; position: absolute; left: 0; top: 0; }
+  /* Dropdown animation: keep style consistent with existing look */
+  .rectangle-10{
+    display: block;
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+    transition: opacity 200ms cubic-bezier(.2,.9,.2,1), transform 200ms cubic-bezier(.2,.9,.2,1);
+    pointer-events: none;
+  }
+  .rectangle-10.open{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
 </style>
 </head>
 <body>
@@ -62,7 +77,7 @@
     </div>
   </button>
 
-  <button class="track-btn" aria-label="Play Mùa xuân đầu tiên" data-id="track-4" data-embed="https://www.youtube.com/embed/nwEv2dkIr_w?si=en_JuetR3H6xKuQs" data-lrc="lyrics/mua_xuan_dau_tien.lrc" 
+  <button class="track-btn" aria-label="Play Mùa xuân đầu tiên" data-id="track-4" data-embed="https://www.youtube.com/embed/etODmtt7AV4?si=6Ytb6f2mP7cL8nz0" data-lrc="lyrics/lang_nghe_mua_xuan.lrc" 
   data-info="'Mùa xuân đầu tiên' là một ca khúc đặc biệt. Được ví như ca khúc 'hồi sinh' tâm hồn âm nhạc của cố nghệ sĩ Văn Cao sau nhiều năm dài lặng lẽ mưu sinh, bài hát đánh dấu mùa xuân đầu tiên của dân tộc Việt Nam thoát khỏi gông cùm của chiến tranh. Thời khắc chuyển giao năm mới không cần phải đặc biệt, bởi sau bao máu và nước mắt để đổi lấy độc lập tự do, một 'mùa bình thường' cũng thật hoành tráng rồi." data-info-img="Assest/rectangle-60.png">
     <img class="rectangle-6" src="Assest/rectangle-60.png" />
     <div class="group-11">
@@ -79,7 +94,7 @@ Với Thì Thầm mùa xuân, không thể không nhắc tới giọng hát đã
       <div class="m-linh">Mỹ Linh</div>
     </div>
   </button>
-  <button class="track-btn" aria-label="Play Lắng nghe mùa xuân về" data-id="track-6" data-embed="https://www.youtube.com/embed/etODmtt7AV4?si=6Ytb6f2mP7cL8nz0" data-lrc="lyrics/lang_nghe_mua_xuan.lrc" 
+  <button class="track-btn" aria-label="Play Lắng nghe mùa xuân về" data-id="track-6" data-embed="https://www.youtube.com/embed/nwEv2dkIr_w?si=en_JuetR3H6xKuQs" data-lrc="lyrics/mua_xuan_dau_tien.lrc" 
   data-info="'... Chúng ta nên lắng nghe mùa xuân về chứ không nên lắng nghe những tai họa ập đến đời mình, bởi vì nó 'cứu' chúng ta để chúng ta tiếp tục sống' - trích lời nhạc sĩ Dương Thụ với Báo Bình Phước Online. Qua giọng ca cover của Phương Phương Thảo, ca khúc như được tiếp thêm nội lực, mà vẫn thật tình tứ. Bài hát đặt ở vị trí cuối cùng trong Mâmlody, với mong muốn chúng ta cùng kết lại những tiêu cực của một năm cũ, và đón chào một năm mới thật rực rỡ." data-info-img="Assest/rectangle-80.png">
     <img class="rectangle-8" src="Assest/rectangle-80.png" />
     <div class="group-9">
@@ -106,14 +121,25 @@ Với Thì Thầm mùa xuân, không thể không nhắc tới giọng hát đã
     <div class="group-43"></div>
   </div>
 
-  <button class="icon-group group-left" aria-label="Toggle track info">
+  <div class="rectangle-10" id="dropdown-panel" aria-hidden="true">
+    <div style="display:flex;flex-direction:column;gap:8px;padding:6px;align-items:center;top:85px;position:relative;">
+      <button type="button" class="dropdown-item" aria-label="Action 1" style="background:transparent;border:none;padding:4px;">
+        <img src="Assest/image 2.svg" alt="Image 2" style="width:56px;height:auto;display:block;" />
+      </button>
+      <button type="button" class="dropdown-item" aria-label="Action 2" style="background:transparent;border:none;padding:4px;">
+        <img src="Assest/image 1.svg" alt="Image 1" style="width:56px;height:auto;display:block;" />
+      </button>
+    </div>
+  </div>
+
+  <button class="icon-group group-left" aria-label="Toggle track info" type="button">
     <div class="ellipse-8"></div>
-    <img class="music3" src="Assest/music2.svg" />
+    <img class="group-toggle-icon" src="Assest/Group 18.svg" alt="Toggle track info" data-off="Assest/Group 18.svg" data-on="Assest/Group 53.svg" />
   </button>
 
-  <button class="icon-group group-right">
+  <button class="icon-group group-right" type="button" aria-label="Open actions">
     <div class="ellipse-9"></div>
-    <img class="music4" src="Assest/music3.svg" />
+    <img class="group-right-icon" src="Assest/Group 44.svg" alt="Actions" data-off="Assest/Group 44.svg" data-on="Assest/Group 38.svg" />
   </button>
   
   <button class="nav-btn prev-btn" aria-label="Previous track" title="Previous track">
@@ -278,14 +304,37 @@ document.addEventListener('DOMContentLoaded', function(){
         if(prevBtn) prevBtn.addEventListener('click', ()=> goToTrack(-1));
         if(nextBtn) nextBtn.addEventListener('click', ()=> goToTrack(1));
 
-        // Toggle track info panel with group-left button
+        // Toggle track info panel with group-left button and update icon
         const groupLeftBtn = document.querySelector('.group-left');
         const trackInfoPanel = document.getElementById('track-info-panel');
         if(groupLeftBtn && trackInfoPanel){
+          const icon = groupLeftBtn.querySelector('.group-toggle-icon') || groupLeftBtn.querySelector('img');
+          // set initial icon according to panel visibility
+          try{ const visible = trackInfoPanel.style.display !== 'none' && trackInfoPanel.style.display !== '' && trackInfoPanel.style.display !== 'none'; if(icon && icon.dataset){ icon.src = (visible ? icon.dataset.on : icon.dataset.off) || icon.src; } }catch(e){}
           groupLeftBtn.addEventListener('click', function(){
             if(!window._currentTrackBtn){ return; }
-            trackInfoPanel.style.display = (trackInfoPanel.style.display === 'none') ? 'block' : 'none';
+            // toggle panel
+            trackInfoPanel.style.display = (trackInfoPanel.style.display === 'none' || trackInfoPanel.style.display === '') ? 'block' : 'none';
+            // update icon based on new visibility
+            try{ const nowVisible = trackInfoPanel.style.display === 'block'; if(icon && icon.dataset){ icon.src = (nowVisible ? icon.dataset.on : icon.dataset.off) || icon.src; } }catch(e){}
           });
+        }
+
+        // Toggle dropdown panel with group-right button and update its icon
+        const groupRightBtn = document.querySelector('.group-right');
+        const dropdown = document.getElementById('dropdown-panel');
+        if(groupRightBtn && dropdown){
+          const rightIcon = groupRightBtn.querySelector('.group-right-icon') || groupRightBtn.querySelector('img');
+          // set initial icon based on dropdown visibility (class-based)
+          try{ const visible = dropdown.classList.contains('open'); if(rightIcon && rightIcon.dataset){ rightIcon.src = visible ? rightIcon.dataset.on : rightIcon.dataset.off; } }catch(e){}
+          groupRightBtn.addEventListener('click', function(e){
+            e.stopPropagation();
+            const isOpen = dropdown.classList.contains('open');
+            if(isOpen){ dropdown.classList.remove('open'); dropdown.setAttribute('aria-hidden','true'); } else { dropdown.classList.add('open'); dropdown.setAttribute('aria-hidden','false'); }
+            try{ if(rightIcon && rightIcon.dataset){ rightIcon.src = isOpen ? rightIcon.dataset.off : rightIcon.dataset.on; } }catch(e){}
+          });
+          // close when clicking outside
+          document.addEventListener('click', function(ev){ if(!groupRightBtn.contains(ev.target) && !dropdown.contains(ev.target)){ dropdown.classList.remove('open'); dropdown.setAttribute('aria-hidden','true'); try{ if(rightIcon && rightIcon.dataset){ rightIcon.src = rightIcon.dataset.off; } }catch(e){} } });
         }
   
         // auto-load from URL `?track=...` if present
