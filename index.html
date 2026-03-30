@@ -20,9 +20,12 @@
 	<div class="quote-wrapper quote1">
 		<span id="quote1" class="quote" data-i18n="quote1">Như tiếng hí vang của chú ngựa chuẩn bị phi nước đại, những giai điệu sắc màu sẽ là bước khởi động hoàn hảo cho một năm đầy nhiệt huyết.</span>
 	</div>
-	<div class="quote-wrapper quote2">
-		<span id="quote2" class="quote" data-i18n="quote2">Series Bốn mùa Việt Nam được ra đời (bởi ba người bạn tuổi Ngọ) để đem tới một trải nghiệm Mùa Xuân Việt Nam, là khởi đầu của hành trình bước vào một năm mới.</span>
-	</div>
+    <div class="quote-wrapper quote2">
+        <span id="quote2" class="quote">
+            <span class="quote-red" data-i18n="quote2_part1">Series Bốn mùa Việt Nam</span>
+            <span class="quote-rest" data-i18n="quote2_part2"> được ra đời (bởi ba người bạn tuổi Ngọ) để đem tới một trải nghiệm Mùa Xuân Việt Nam, là khởi đầu của hành trình bước vào một năm mới.</span>
+        </span>
+    </div>
 	<div class="dots">
 		<span class="dot"></span>
 		<span class="dot"></span>
@@ -111,10 +114,20 @@
             });
 
             /* I18N: EN/VI toggle (adds floating toggle if page has no header) */
-            (function(){
+                (function(){
                 const I18N = {
-                    en: { title: 'Landing Page', quote1: 'Like the neigh of a horse ready to gallop, colorful melodies are the perfect warm-up for a spirited year.', quote2: 'The Four Seasons of Vietnam series was created to bring a Spring Vietnam experience — the start of a new year journey.' },
-                    vi: { title: 'Trang chính', quote1: 'Như tiếng hí vang của chú ngựa chuẩn bị phi nước đại, những giai điệu sắc màu sẽ là bước khởi động hoàn hảo cho một năm đầy nhiệt huyết.', quote2: 'Series Bốn mùa Việt Nam được ra đời (bởi ba người bạn tuổi Ngọ) để đem tới một trải nghiệm Mùa Xuân Việt Nam, là khởi đầu của hành trình bước vào một năm mới.' }
+                    en: {
+                        title: 'Landing Page',
+                        quote1: 'Like the neigh of a horse ready to gallop, colorful melodies are the perfect warm-up for a spirited year.',
+                        quote2_part1: 'The Four Seasons of Vietnam series',
+                        quote2_part2: ' was created to bring a Spring Vietnam experience — the start of a new year journey.'
+                    },
+                    vi: {
+                        title: 'Trang chính',
+                        quote1: 'Như tiếng hí vang của chú ngựa chuẩn bị phi nước đại, những giai điệu sắc màu sẽ là bước khởi động hoàn hảo cho một năm đầy nhiệt huyết.',
+                        quote2_part1: 'Series Bốn mùa Việt Nam',
+                        quote2_part2: ' được ra đời (bởi ba người bạn tuổi Ngọ) để đem tới một trải nghiệm Mùa Xuân Việt Nam, là khởi đầu của hành trình bước vào một năm mới.'
+                    }
                 };
                 let currentLang = localStorage.getItem('site_lang') || 'vi';
                 function applyLang(lang){
