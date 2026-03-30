@@ -14,12 +14,15 @@
 	</style>
 </head>
 <body>
+	<!-- slide 1-->
 	<div class="video-wrapper video">
 			<video src="Assest/Animation Prototype (1).mp4" autoplay loop muted playsinline></video>
 	</div>
+	<!-- slide 2-->
 	<div class="quote-wrapper quote1">
 		<span id="quote1" class="quote" data-i18n="quote1">Như tiếng hí vang của chú ngựa chuẩn bị phi nước đại, những giai điệu sắc màu sẽ là bước khởi động hoàn hảo cho một năm đầy nhiệt huyết.</span>
 	</div>
+	<!-- slide 3-->
     <div class="quote-wrapper quote2">
         <span id="quote2" class="quote">
             <span class="quote-red" data-i18n="quote2_part1">Series Bốn mùa Việt Nam</span>
@@ -37,12 +40,23 @@
         (function(){
             'use strict';
 
+            /*
+             Landing page behavior:
+             - Handles page transitions (fade on load/exit)
+             - Slideshow: video -> quote1 -> quote2 using class-driven crossfades
+             - Click-to-navigate after slideshow
+             - Language toggle (EN/VI) using data-i18n attributes
+            */
+
+            // Fade the page out and then navigate to the provided URL.
             function navigateWithTransition(url) {
                 document.body.classList.remove('loaded');
                 document.body.classList.add('page-exit');
                 setTimeout(function(){ window.location.href = url; }, 620);
             }
 
+            // Allow a single global document click to trigger navigation,
+            // but only after `delayMs` has elapsed (prevents accidental early clicks).
             function startClickAfterDelay(delayMs) {
                 var allowClick = false;
                 function onDocClick(e) {
@@ -57,6 +71,7 @@
                 document.addEventListener('click', onDocClick, true);
             }
 
+            // DOM ready: initialize animations, slideshow state, and language toggle.
             document.addEventListener('DOMContentLoaded', function() {
                 // trigger page enter animation
                 document.body.classList.add('page-enter');
@@ -66,6 +81,7 @@
                 var q1 = document.getElementById('quote1');
                 var q2 = document.getElementById('quote2');
 
+                // Helper: find the nearest .quote-wrapper ancestor for a quote element.
                 var findQuoteWrapper = function(el) {
                     if (!el) return null;
                     return el.closest('.quote-wrapper') || el.parentElement || null;
@@ -74,46 +90,45 @@
                 var wrapper1 = findQuoteWrapper(q1);
                 var wrapper2 = findQuoteWrapper(q2);
 
-                // Ensure initial safe states
-                if (q1) q1.style.opacity = 0;
-                if (q2) q2.style.opacity = 0;
-                if (wrapper1) { wrapper1.style.opacity = 0; wrapper1.style.pointerEvents = 'none'; wrapper1.style.zIndex = 2; }
-                if (wrapper2) { wrapper2.style.opacity = 0; wrapper2.style.pointerEvents = 'none'; wrapper2.style.zIndex = 2; }
-                if (videoWrapper) { videoWrapper.style.opacity = 1; videoWrapper.style.zIndex = 1; }
+                // Ensure initial safe states (use class-based visibility)
+                if (wrapper1) { wrapper1.classList.remove('visible'); wrapper1.style.pointerEvents = 'none'; wrapper1.style.zIndex = 2; }
+                if (wrapper2) { wrapper2.classList.remove('visible'); wrapper2.style.pointerEvents = 'none'; wrapper2.style.zIndex = 2; }
+                if (videoWrapper) { videoWrapper.classList.remove('hidden'); videoWrapper.style.zIndex = 1; }
 
                 // timings (ms)
-                var videoDelay = 3000; // when to switch from video to quotes
-                var quoteDisplay = 3000; // how long quote1 stays visible before replacing
-                var fadeOverlap = 200;
+                var videoDelay = 3000; // delay before starting the first crossfade (3s)
+                var quoteDisplay = 3000; // how long the first quote stays fully visible (3s)
+                var fadeDuration = 1000; // must match CSS transition: opacity 1s
 
+                // Start sequence: after videoDelay, crossfade video -> quote1.
                 setTimeout(function() {
-                    // fade out video
-                    if (videoWrapper) videoWrapper.style.opacity = 0;
-
                     // ensure wrappers exist and are stacked above video
                     if (wrapper1) { wrapper1.style.zIndex = 3; }
                     if (wrapper2) { wrapper2.style.zIndex = 3; }
+                    if (videoWrapper) { videoWrapper.style.zIndex = 1; }
 
-                    // Fade in wrapper holding quote1
-                    if (wrapper1) { wrapper1.style.opacity = 1; wrapper1.style.pointerEvents = 'auto'; }
-                    if (q1) { setTimeout(function() { q1.style.opacity = 1; }, fadeOverlap); }
+                    // Simultaneously hide video and show quote1 to produce a synchronized crossfade.
+                    if (videoWrapper) { videoWrapper.classList.add('hidden'); }
+                    if (wrapper1) { wrapper1.classList.add('visible'); wrapper1.style.pointerEvents = 'auto'; }
 
-                    // After quoteDisplay: swap to quote2
+                    // After quote1 has faded in and remained visible for `quoteDisplay`, crossfade to quote2.
                     setTimeout(function() {
-                        if (q1) q1.style.opacity = 0;
-                        if (wrapper2 && wrapper2 !== wrapper1) {
-                            wrapper2.style.opacity = 1;
-                            wrapper2.style.pointerEvents = 'auto';
-                            setTimeout(function() { if (q2) q2.style.opacity = 1; startClickAfterDelay(5000); }, fadeOverlap);
-                        } else {
-                            if (q2) { q2.style.opacity = 1; startClickAfterDelay(5000); }
-                        }
-                    }, quoteDisplay + fadeOverlap);
+                        if (wrapper1) { wrapper1.classList.remove('visible'); wrapper1.style.pointerEvents = 'none'; }
+                        if (wrapper2 && wrapper2 !== wrapper1) { wrapper2.classList.add('visible'); wrapper2.style.pointerEvents = 'auto'; }
 
+                        // Once quote2's fade completes, enable click-to-navigate after an additional safety delay.
+                        setTimeout(function() {
+                            startClickAfterDelay(3000);
+                        }, fadeDuration);
+                    }, fadeDuration + quoteDisplay);
                 }, videoDelay);
             });
 
-            /* I18N: EN/VI toggle (adds floating toggle if page has no header) */
+            /* I18N: EN/VI toggle (adds floating toggle if page has no header)
+               - `I18N` stores translations keyed by `data-i18n` attributes.
+               - `applyLang` writes translations to matching elements and persists choice.
+               - `ensureToggle` creates a small top-right button to switch languages.
+            */
                 (function(){
                 const I18N = {
                     en: {
@@ -130,6 +145,7 @@
                     }
                 };
                 let currentLang = localStorage.getItem('site_lang') || 'vi';
+                // Apply language strings to all elements with a `data-i18n` attribute.
                 function applyLang(lang){
                     currentLang = (lang==='en') ? 'en' : 'vi';
                     localStorage.setItem('site_lang', currentLang);
@@ -142,6 +158,7 @@
                     });
                 }
 
+                // Create a floating language toggle button if one doesn't already exist.
                 function ensureToggle(){
                     const existing = document.querySelector('.language-btn');
                     if(existing) return existing;

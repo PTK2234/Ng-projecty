@@ -33,6 +33,23 @@ body {
 	opacity: 1;
 }
 
+/* Support toggling video visibility via a class for smooth crossfade */
+.video-wrapper.hidden {
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* Quote wrappers: use class-based visibility so transitions are consistent */
+.quote-wrapper {
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 1s ease;
+}
+.quote-wrapper.visible {
+	opacity: 1;
+	pointer-events: auto;
+}
+
 .video-wrapper.video {
 	max-width: 900px;
 	margin: 0 auto;
