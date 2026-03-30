@@ -1,24 +1,17 @@
-.quote {
-	display: block;
-	opacity: 0;
-	transition: opacity 1s;
-	margin-bottom: 2vh;
-}
-.quote-wrapper {
-	display: none;
-	text-align: center;
-	color: #c00;
-	font-size: 1.2em;
-	margin-top: 2vh;
-	padding: 0 2vw;
-}
+/* Refactored style.css — consolidated duplicate rules and simplified structure */
+
+/* Base layout & reset */
 html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
 	width: 100vw;
-	height: 100vh;
+	min-height: 100vh;
 }
+
+/* Global font override: force Mona Sans for all elements (only changing font) */
+html, body, * { font-family: 'Mona Sans', sans-serif !important; }
+
 body {
 	width: 100vw;
 	height: 100vh;
@@ -29,83 +22,73 @@ body {
 	min-width: 100vw;
 	overflow: hidden;
 }
-.container {
-	background: #fff;
-	width: 90vw;
-	max-width: 1200px;
-	min-width: 280px;
-	height: 90vh;
-	max-height: 800px;
-	min-height: 320px;
+
+.video-wrapper {
 	display: flex;
-	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	box-sizing: border-box;
-	position: relative;
-	border-radius: 2vw;
-}
-
-/* media area holds the video and quotes and keeps them centered */
-.media-area {
 	width: 100%;
-	min-height: 50vh;
-	max-height: 70vh;
-	height: 60vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: relative;
-}
-
-/* stack video and quotes on top of each other */
-.video-wrapper,
-.quote-wrapper {
-	position: absolute;
-	inset: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	transition: opacity 1s ease;
+	position: relative;
+	opacity: 1;
 }
 
-.video-wrapper { opacity: 1; }
-.quote-wrapper { opacity: 0; pointer-events: none; }
-.quote-wrapper.visible { opacity: 1; pointer-events: auto; }
-
-/* Ensure video and quotes occupy the same central area */
-
-.quote {
-	text-align: center;
+.video-wrapper.video {
 	max-width: 900px;
-	padding: 0 2vw;
-}
-
-/* Keep quote text width equal to the video so both align exactly */
-.quote-inner {
-	width: 60vw;
-	max-width: 600px;
-	min-width: 180px;
 	margin: 0 auto;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+	left:50%;
+	transform: translateX(-50%);
+	position:absolute;
+}
+.quote-wrapper.quote1 {
+	color: #aa0000;
+	text-align: center;
+	font-family: "MonaSans-Regular", sans-serif;
+	font-size: 32px;
+	font-weight: 400;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 1474px;
+}
+.quote-wrapper.quote2 {
+	color: #aa0000;
+	text-align: center;
+	font-family: "MonaSans-Regular", sans-serif;
+	font-size: 32px;
+	font-weight: 400;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 1474px;
 }
 
 /* Keep the dots fixed at the bottom of the container so media stays centered */
 .dots {
 	position: absolute;
-	bottom: 4vh;
+	bottom: 30vh;
 	left: 50%;
 	transform: translateX(-50%);
 	display: flex;
 	gap: 6vw;
 }
 
+/* Dot indicator */
 .dot {
+	width: 5vw;
+	max-width: 32px;
+	min-width: 16px;
+	height: 5vw;
+	max-height: 32px;
+	min-height: 16px;
+	background: #c00;
+	border-radius: 50%;
+	display: inline-block;
 	margin: 0 0.5vw;
 }
+
 video {
 	width: 60vw;
 	max-width: 600px;
@@ -119,18 +102,7 @@ video {
 	object-fit: contain;
 	display: block;
 }
-.dot {
-  width: 5vw;
-  max-width: 32px;
-  min-width: 16px;
-  height: 5vw;
-  max-height: 32px;
-  min-height: 16px;
-  background: #c00;
-  border-radius: 50%;
-  display: inline-block;
-  margin: 0 0.5vw;
-}
+
 @media (max-width: 900px) {
 	.container {
 		width: 98vw;
@@ -150,39 +122,40 @@ video {
 		margin-top: 3vh;
 	}
 }
+
 @media (max-width: 600px) {
-   .container {
-	   width: 100vw;
-	   height: 100vh;
-	   max-width: 100vw;
-	   max-height: 100vh;
-	   min-width: 180px;
-	   min-height: 240px;
-	   border-radius: 0;
-	   padding: 0 2vw;
-   }
-   .video-wrapper {
-	   padding-top: 6vw;
-   }
-   video {
-	   width: 100vw;
-	   max-width: 100vw;
-	   min-width: 80px;
-	   max-height: 32vh;
-	   border-radius: 0;
-	   object-fit: contain;
-   }
-   .dots {
-	   gap: 12vw;
-	   margin-top: 6vw;
-   }
-   .dot {
-	   width: 14vw;
-	   height: 14vw;
-	   min-width: 24px;
-	   min-height: 24px;
-	   max-width: 40px;
-	   max-height: 40px;
-	   margin: 0 2vw;
-   }
+	.container {
+		width: 100vw;
+		height: 100vh;
+		max-width: 100vw;
+		max-height: 100vh;
+		min-width: 180px;
+		min-height: 240px;
+		border-radius: 0;
+		padding: 0 2vw;
+	}
+	.video-wrapper {
+		padding-top: 6vw;
+	}
+	video {
+		width: 100vw;
+		max-width: 100vw;
+		min-width: 80px;
+		max-height: 32vh;
+		border-radius: 0;
+		object-fit: contain;
+	}
+	.dots {
+		gap: 12vw;
+		margin-top: 6vw;
+	}
+	.dot {
+		width: 14vw;
+		height: 14vw;
+		min-width: 24px;
+		min-height: 24px;
+		max-width: 40px;
+		max-height: 40px;
+		margin: 0 2vw;
+	}
 }

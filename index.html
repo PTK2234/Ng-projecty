@@ -14,147 +14,141 @@
 	</style>
 </head>
 <body>
-	<div class="container">
-		<div class="media-area">
-			<div class="video-wrapper">
-				<video src="Assest/Animation Prototype (1).mp4" autoplay loop muted playsinline></video>
-			</div>
-			<div class="quote-wrapper">
-				<div class="quote-inner">
-						<span id="quote1" class="quote" data-i18n="quote1">Như tiếng hí vang của chú ngựa chuẩn bị phi nước đại, những giai điệu sắc màu sẽ là bước khởi động hoàn hảo cho một năm đầy nhiệt huyết.</span>
-				</div>
-			</div>
-			<div class="quote-wrapper">
-				<div class="quote-inner">
-						<span id="quote2" class="quote" data-i18n="quote2">Series Bốn mùa Việt Nam được ra đời (bởi ba người bạn tuổi Ngọ) để đem tới một trải nghiệm Mùa Xuân Việt Nam, là khởi đầu của hành trình bước vào một năm mới.</span>
-				</div>
-			</div>
-		</div>
-		<div class="dots">
-			<span class="dot"></span>
-			<span class="dot"></span>
-			<span class="dot"></span>
-		</div>
-		<script>
-		document.addEventListener('DOMContentLoaded', function() {
-			// trigger page enter animation
-			document.body.classList.add('page-enter');
-			setTimeout(function(){ document.body.classList.add('loaded'); document.body.classList.remove('page-exit'); }, 20);
-			var videoWrapper = document.querySelector('.video-wrapper');
-			var q1 = document.getElementById('quote1');
-			var q2 = document.getElementById('quote2');
+	<div class="video-wrapper video">
+			<video src="Assest/Animation Prototype (1).mp4" autoplay loop muted playsinline></video>
+	</div>
+	<div class="quote-wrapper quote1">
+		<span id="quote1" class="quote" data-i18n="quote1">Như tiếng hí vang của chú ngựa chuẩn bị phi nước đại, những giai điệu sắc màu sẽ là bước khởi động hoàn hảo cho một năm đầy nhiệt huyết.</span>
+	</div>
+	<div class="quote-wrapper quote2">
+		<span id="quote2" class="quote" data-i18n="quote2">Series Bốn mùa Việt Nam được ra đời (bởi ba người bạn tuổi Ngọ) để đem tới một trải nghiệm Mùa Xuân Việt Nam, là khởi đầu của hành trình bước vào một năm mới.</span>
+	</div>
+	<div class="dots">
+		<span class="dot"></span>
+		<span class="dot"></span>
+		<span class="dot"></span>
+	</div>
 
-			// helper to find the wrapper that holds a quote
-			function findQuoteWrapper(el) {
-				if (!el) return null;
-				return el.closest('.quote-wrapper') || el.parentElement || null;
-			}
+<!-- Consolidated scripts: page behaviour + I18N toggle -->
+        <script>
+        (function(){
+            'use strict';
 
-			var wrapper1 = findQuoteWrapper(q1);
-			var wrapper2 = findQuoteWrapper(q2);
+            function navigateWithTransition(url) {
+                document.body.classList.remove('loaded');
+                document.body.classList.add('page-exit');
+                setTimeout(function(){ window.location.href = url; }, 620);
+            }
 
-			// Ensure initial safe states
-			if (q1) q1.style.opacity = 0;
-			if (q2) q2.style.opacity = 0;
-			if (wrapper1) { wrapper1.style.opacity = 0; wrapper1.style.pointerEvents = 'none'; wrapper1.style.zIndex = 2; }
-			if (wrapper2) { wrapper2.style.opacity = 0; wrapper2.style.pointerEvents = 'none'; wrapper2.style.zIndex = 2; }
-			if (videoWrapper) { videoWrapper.style.opacity = 1; videoWrapper.style.zIndex = 1; }
+            function startClickAfterDelay(delayMs) {
+                var allowClick = false;
+                function onDocClick(e) {
+                    if (!allowClick) return;
+                    document.removeEventListener('click', onDocClick, true);
+                    navigateWithTransition('collection_page.html');
+                }
+                setTimeout(function() {
+                    allowClick = true;
+                    document.body.style.cursor = 'pointer';
+                }, delayMs);
+                document.addEventListener('click', onDocClick, true);
+            }
 
-			// timings (ms)
-			var videoDelay = 3000; // when to switch from video to quotes
-			var quoteDisplay = 3000; // how long quote1 stays visible before replacing
-			var fadeOverlap = 200;
+            document.addEventListener('DOMContentLoaded', function() {
+                // trigger page enter animation
+                document.body.classList.add('page-enter');
+                setTimeout(function(){ document.body.classList.add('loaded'); document.body.classList.remove('page-exit'); }, 20);
 
-			setTimeout(function() {
-				// fade out video
-				if (videoWrapper) videoWrapper.style.opacity = 0;
+                var videoWrapper = document.querySelector('.video-wrapper');
+                var q1 = document.getElementById('quote1');
+                var q2 = document.getElementById('quote2');
 
-				// ensure wrappers exist and are stacked above video
-				if (wrapper1) { wrapper1.style.zIndex = 3; }
-				if (wrapper2) { wrapper2.style.zIndex = 3; }
+                var findQuoteWrapper = function(el) {
+                    if (!el) return null;
+                    return el.closest('.quote-wrapper') || el.parentElement || null;
+                };
 
-				// Fade in wrapper holding quote1 (if separate wrappers exist, keep them positioned)
-				if (wrapper1) { wrapper1.style.opacity = 1; wrapper1.style.pointerEvents = 'auto'; }
-				if (q1) {
-					// small delay so wrapper opacity transition starts first
-					setTimeout(function() { q1.style.opacity = 1; }, fadeOverlap);
-				}
+                var wrapper1 = findQuoteWrapper(q1);
+                var wrapper2 = findQuoteWrapper(q2);
 
-				// After quoteDisplay: swap to quote2
-				setTimeout(function() {
-					if (q1) q1.style.opacity = 0;
-					// if quote2 in same wrapper, just fade it in; if in another wrapper, bring that wrapper up
-					if (wrapper2 && wrapper2 !== wrapper1) {
-						// show wrapper2 then its quote
-						wrapper2.style.opacity = 1;
-						wrapper2.style.pointerEvents = 'auto';
-						setTimeout(function() {
-							if (q2) q2.style.opacity = 1;
-							// start 5s wait then enable global click navigation
-							startClickAfterDelay(5000);
-						}, fadeOverlap);
-					} else {
-						if (q2) {
-							q2.style.opacity = 1;
-							startClickAfterDelay(5000);
-						}
-					}
-				}, quoteDisplay + fadeOverlap);
+                // Ensure initial safe states
+                if (q1) q1.style.opacity = 0;
+                if (q2) q2.style.opacity = 0;
+                if (wrapper1) { wrapper1.style.opacity = 0; wrapper1.style.pointerEvents = 'none'; wrapper1.style.zIndex = 2; }
+                if (wrapper2) { wrapper2.style.opacity = 0; wrapper2.style.pointerEvents = 'none'; wrapper2.style.zIndex = 2; }
+                if (videoWrapper) { videoWrapper.style.opacity = 1; videoWrapper.style.zIndex = 1; }
 
-			}, videoDelay);
-		});
+                // timings (ms)
+                var videoDelay = 3000; // when to switch from video to quotes
+                var quoteDisplay = 3000; // how long quote1 stays visible before replacing
+                var fadeOverlap = 200;
 
-		// helper to enable global click navigation after a delay
-		function startClickAfterDelay(delayMs) {
-			var allowClick = false;
-			// prevent accidental early navigation
-			setTimeout(function() {
-				allowClick = true;
-				// change cursor to indicate clickable area
-				document.body.style.cursor = 'pointer';
-			}, delayMs);
+                setTimeout(function() {
+                    // fade out video
+                    if (videoWrapper) videoWrapper.style.opacity = 0;
 
-			function onDocClick(e) {
-				if (!allowClick) return;
-				// remove listener to avoid double navigation
-				document.removeEventListener('click', onDocClick, true);
-				navigateWithTransition('collection_page.html');
-			}
+                    // ensure wrappers exist and are stacked above video
+                    if (wrapper1) { wrapper1.style.zIndex = 3; }
+                    if (wrapper2) { wrapper2.style.zIndex = 3; }
 
-			function navigateWithTransition(url) {
-				// start exit animation then navigate
-				document.body.classList.remove('loaded');
-				document.body.classList.add('page-exit');
-				setTimeout(function(){ window.location.href = url; }, 620);
-			}
+                    // Fade in wrapper holding quote1
+                    if (wrapper1) { wrapper1.style.opacity = 1; wrapper1.style.pointerEvents = 'auto'; }
+                    if (q1) { setTimeout(function() { q1.style.opacity = 1; }, fadeOverlap); }
 
-			// use capture to catch clicks anywhere
-			document.addEventListener('click', onDocClick, true);
-		}
-		</script>
-		</div>
+                    // After quoteDisplay: swap to quote2
+                    setTimeout(function() {
+                        if (q1) q1.style.opacity = 0;
+                        if (wrapper2 && wrapper2 !== wrapper1) {
+                            wrapper2.style.opacity = 1;
+                            wrapper2.style.pointerEvents = 'auto';
+                            setTimeout(function() { if (q2) q2.style.opacity = 1; startClickAfterDelay(5000); }, fadeOverlap);
+                        } else {
+                            if (q2) { q2.style.opacity = 1; startClickAfterDelay(5000); }
+                        }
+                    }, quoteDisplay + fadeOverlap);
 
-<!-- I18N: EN/VI toggle (adds floating toggle if page has no header) -->
-	<script>
-	(function(){
-		const I18N = {
-			en: { title: 'Landing Page', quote1: 'Like the neigh of a horse ready to gallop, colorful melodies are the perfect warm-up for a spirited year.', quote2: 'The Four Seasons of Vietnam series was created to bring a Spring Vietnam experience — the start of a new year journey.' },
-			vi: { title: 'Trang chính', quote1: 'Như tiếng hí vang của chú ngựa chuẩn bị phi nước đại, những giai điệu sắc màu sẽ là bước khởi động hoàn hảo cho một năm đầy nhiệt huyết.', quote2: 'Series Bốn mùa Việt Nam được ra đời (bởi ba người bạn tuổi Ngọ) để đem tới một trải nghiệm Mùa Xuân Việt Nam, là khởi đầu của hành trình bước vào một năm mới.' }
-		};
-		let currentLang = localStorage.getItem('site_lang') || 'vi';
-		function applyLang(lang){ currentLang = (lang==='en') ? 'en' : 'vi'; localStorage.setItem('site_lang', currentLang); try{ document.title = I18N[currentLang].title || document.title; }catch(e){}
-			document.querySelectorAll('[data-i18n]').forEach(el => {
-				const key = el.getAttribute('data-i18n');
-				if(!key) return;
-				const txt = (I18N[currentLang] && I18N[currentLang][key]) ? I18N[currentLang][key] : el.textContent;
-				el.textContent = txt;
-			});
-		}
+                }, videoDelay);
+            });
 
-		function ensureToggle(){ const existing = document.querySelector('.language-btn'); if(existing) return existing; const btn = document.createElement('button'); btn.className='language-btn'; btn.style.position='fixed'; btn.style.top='12px'; btn.style.right='12px'; btn.style.zIndex='9999'; btn.style.border='none'; btn.style.background='transparent'; btn.style.padding='6px'; btn.setAttribute('aria-label','Toggle language'); const eng = document.createElement('img'); eng.className='eng'; eng.src='Assest/eng.svg'; eng.alt='ENG'; eng.style.width='28px'; eng.style.height='28px'; const vie = document.createElement('img'); vie.className='vie'; vie.src='Assest/vie.svg'; vie.alt='VIE'; vie.style.width='28px'; vie.style.height='28px'; btn.appendChild(eng); btn.appendChild(vie); document.body.appendChild(btn); return btn; }
-		const toggleBtn = ensureToggle(); toggleBtn.style.cursor='pointer'; toggleBtn.addEventListener('click', function(e){ e.stopPropagation(); const next = (currentLang==='en')?'vi':'en'; applyLang(next); });
-		try{ applyLang(currentLang); }catch(e){}
-	})();
-</script>
-		</body>
-		</html>
+            /* I18N: EN/VI toggle (adds floating toggle if page has no header) */
+            (function(){
+                const I18N = {
+                    en: { title: 'Landing Page', quote1: 'Like the neigh of a horse ready to gallop, colorful melodies are the perfect warm-up for a spirited year.', quote2: 'The Four Seasons of Vietnam series was created to bring a Spring Vietnam experience — the start of a new year journey.' },
+                    vi: { title: 'Trang chính', quote1: 'Như tiếng hí vang của chú ngựa chuẩn bị phi nước đại, những giai điệu sắc màu sẽ là bước khởi động hoàn hảo cho một năm đầy nhiệt huyết.', quote2: 'Series Bốn mùa Việt Nam được ra đời (bởi ba người bạn tuổi Ngọ) để đem tới một trải nghiệm Mùa Xuân Việt Nam, là khởi đầu của hành trình bước vào một năm mới.' }
+                };
+                let currentLang = localStorage.getItem('site_lang') || 'vi';
+                function applyLang(lang){
+                    currentLang = (lang==='en') ? 'en' : 'vi';
+                    localStorage.setItem('site_lang', currentLang);
+                    try{ document.title = I18N[currentLang].title || document.title; }catch(e){}
+                    document.querySelectorAll('[data-i18n]').forEach(el => {
+                        const key = el.getAttribute('data-i18n');
+                        if(!key) return;
+                        const txt = (I18N[currentLang] && I18N[currentLang][key]) ? I18N[currentLang][key] : el.textContent;
+                        el.textContent = txt;
+                    });
+                }
+
+                function ensureToggle(){
+                    const existing = document.querySelector('.language-btn');
+                    if(existing) return existing;
+                    const btn = document.createElement('button');
+                    btn.className='language-btn';
+                    btn.style.position='fixed';
+                    btn.style.top='12px';
+                    btn.style.right='12px';
+                    btn.style.zIndex='9999';
+                    btn.style.border='none';
+                    btn.style.background='transparent';
+                    btn.style.padding='6px';
+                    btn.setAttribute('aria-label','Toggle language');
+                    const eng = document.createElement('img'); eng.className='eng'; eng.src='Assest/eng.svg'; eng.alt='ENG'; eng.style.width='28px'; eng.style.height='28px';
+                    const vie = document.createElement('img'); vie.className='vie'; vie.src='Assest/vie.svg'; vie.alt='VIE'; vie.style.width='28px'; vie.style.height='28px';
+                    btn.appendChild(eng); btn.appendChild(vie); document.body.appendChild(btn); return btn;
+                }
+                const toggleBtn = ensureToggle(); toggleBtn.style.cursor='pointer'; toggleBtn.addEventListener('click', function(e){ e.stopPropagation(); const next = (currentLang==='en')?'vi':'en'; applyLang(next); });
+                try{ applyLang(currentLang); }catch(e){}
+            })();
+
+        })();
+        </script>

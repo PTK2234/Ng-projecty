@@ -2,12 +2,26 @@
 .slide-16-9-music-page * {
   box-sizing: border-box;
 }
+/* Global font override: force Mona Sans for all elements (only changing font) */
+html, body, * { font-family: 'Mona Sans', sans-serif !important; }
+/* Page transition: fade in on load, fade out on navigate */
+body.page-enter { opacity: 0; }
+body.page-enter.loaded { opacity: 1; transition: opacity 600ms ease; }
+body.page-exit { opacity: 0; transition: opacity 600ms ease; }
+html, body { margin: 0; padding: 0; background: #fff; height: 100%; min-height: 100vh; overflow: auto; scrollbar-width: none; -ms-overflow-style: none; }
+body { -webkit-font-smoothing:antialiased; -webkit-overflow-scrolling:touch; }
+/* hide scrollbars but keep scrolling */
+body::-webkit-scrollbar { width: 0; height: 0; }
+/* scale from top-left and allow scrolling to reach edges */
 .slide-16-9-music-page {
   background: #ffffff;
   width: 1920px;
   height: 1080px;
-  position: relative;
+  position: absolute;
+  left: 0;
+  top: 0;
   overflow: hidden;
+  transform-origin: top left;
 }
 .ellipse-12 {
   background: radial-gradient(
@@ -221,11 +235,19 @@
 .track-btn img { display: block; }
 .track-btn:focus { outline: none; }
 .track-btn:focus-visible { outline: 3px solid rgba(184, 13, 13, 0.25); outline-offset: 4px; }
-.n-xu-n {
+/* Shared track text styles (deduplicated common properties) */
+.track-text-common,
+.n-xu-n, .nh-qu-nh, .xu-n-v-tu-i-tr, .th-i-thanh, .xu-n-v, .thanh-lan,
+.m-a-xu-n-u-ti-n, .thanh-th-y, .l-ng-nghe-m-a-xu-n-v, .ph-ng-ph-ng-th-o,
+.th-th-m-m-a-xu-n, .m-linh {
   color: #000000;
   text-align: left;
-  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.n-xu-n {
   line-height: 0px;
   font-weight: 500;
   position: absolute;
@@ -233,15 +255,8 @@
   top: 945px;
   width: 244px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .nh-qu-nh {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 300;
   position: absolute;
@@ -249,19 +264,12 @@
   top: 976px;
   width: 145px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .group-5 {
   position: absolute;
   inset: 0;
 }
 .xu-n-v-tu-i-tr {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 500;
   position: absolute;
@@ -269,15 +277,8 @@
   top: 944px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .th-i-thanh {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 300;
   position: absolute;
@@ -285,19 +286,12 @@
   top: 975px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .group-4 {
   position: absolute;
   inset: 0;
 }
 .xu-n-v {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 500;
   position: absolute;
@@ -305,15 +299,8 @@
   top: 946px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .thanh-lan {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 300;
   position: absolute;
@@ -321,19 +308,12 @@
   top: 977px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .group-6 {
   position: absolute;
   inset: 0;
 }
 .m-a-xu-n-u-ti-n {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 500;
   position: absolute;
@@ -341,15 +321,8 @@
   top: 941px;
   width: 244px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .thanh-th-y {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 300;
   position: absolute;
@@ -357,15 +330,8 @@
   top: 972px;
   width: 145px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .l-ng-nghe-m-a-xu-n-v {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 30px;
   font-weight: 500;
   position: absolute;
@@ -373,15 +339,8 @@
   top: 938px;
   width: 211px;
   height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .ph-ng-ph-ng-th-o {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 300;
   position: absolute;
@@ -389,19 +348,12 @@
   top: 999px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .group-7 {
   position: absolute;
   inset: 0;
 }
 .th-th-m-m-a-xu-n {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 500;
   position: absolute;
@@ -409,15 +361,8 @@
   top: 939px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .m-linh {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 300;
   position: absolute;
@@ -425,9 +370,6 @@
   top: 970px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .layer-12 {
   width: 138px;
@@ -547,7 +489,7 @@
 .group-left .ellipse-8{ position:absolute; left:0; top:0; width:100%; height:100%; right:auto; bottom:auto }
 
 /* group-right matches ellipse-9 placement */
-.group-right{ left:85.57%; top:43.61%; width:4.48%; height:7.96%; }
+.group-right{ left:85.57%; top:43.61%; width:4.48%; height:7.96%; z-index: 10003; }
 .group-right .ellipse-9{ position:absolute; left:0; top:0; width:100%; height:100%; right:auto; bottom:auto }
 
 /* center icons inside each group */
@@ -676,7 +618,43 @@
   border-width: 1px;
   width: 86px;
   height: 241px;
-  position: relative;
+  position: absolute;
   left: 1642px;
-  top: 450px;
+  top: 470px;
+  /* animation defaults (hidden) */
+  opacity: 0;
+  transform: translateY(-6px) scale(0.98);
+  transition: opacity 200ms cubic-bezier(.2,.9,.2,1), transform 200ms cubic-bezier(.2,.9,.2,1);
+  pointer-events: none;
+  z-index: 10002;
+}
+
+.rectangle-10.open{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto !important;
+}
+
+/* dropdown inner layout */
+.dropdown-inner{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 6px;
+  align-items: center;
+  top: 85px;
+  position: relative;
+}
+.dropdown-item{
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+}
+.dropdown-item:focus{ outline: none }
+.dropdown-item:focus-visible{ outline: 3px solid rgba(184,13,13,0.25); outline-offset: 4px }
+.dropdown-item img{
+  width: 56px;
+  height: auto;
+  display: block;
 }

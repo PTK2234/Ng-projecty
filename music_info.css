@@ -2,6 +2,8 @@
 .slide-16-9-music-selection * {
   box-sizing: border-box;
 }
+/* Global font override: force Mona Sans for all elements (only changing font) */
+html, body, * { font-family: 'Mona Sans', sans-serif !important; }
 .slide-16-9-music-selection {
   background: #ffffff;
   width: 1920px;
@@ -171,11 +173,19 @@
   position: absolute;
   inset: 0;
 }
-.n-xu-n {
+/* Shared track text styles (deduplicated common properties) */
+.track-text-common,
+.n-xu-n, .nh-qu-nh, .xu-n-v-tu-i-tr, .th-i-thanh, .xu-n-v, .thanh-lan,
+.m-a-xu-n-u-ti-n, .thanh-th-y, .th-th-m-m-a-xu-n, .m-linh, .l-ng-nghe-m-a-xu-n-v,
+.ph-ng-ph-ng-th-o {
   color: #000000;
   text-align: left;
-  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.n-xu-n {
   line-height: 0px;
   font-weight: 500;
   position: absolute;
@@ -183,15 +193,8 @@
   top: 945px;
   width: 244px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .nh-qu-nh {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 300;
   position: absolute;
@@ -199,19 +202,12 @@
   top: 976px;
   width: 145px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .group-5 {
   position: absolute;
   inset: 0;
 }
 .xu-n-v-tu-i-tr {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 500;
   position: absolute;
@@ -219,15 +215,8 @@
   top: 944px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .th-i-thanh {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 300;
   position: absolute;
@@ -235,19 +224,12 @@
   top: 975px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .group-4 {
   position: absolute;
   inset: 0;
 }
 .xu-n-v {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 500;
   position: absolute;
@@ -255,15 +237,8 @@
   top: 946px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .thanh-lan {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 300;
   position: absolute;
@@ -271,19 +246,12 @@
   top: 977px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .group-6 {
   position: absolute;
   inset: 0;
 }
 .m-a-xu-n-u-ti-n {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 500;
   position: absolute;
@@ -291,15 +259,8 @@
   top: 941px;
   width: 244px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .thanh-th-y {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 300;
   position: absolute;
@@ -307,19 +268,12 @@
   top: 972px;
   width: 145px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .group-7 {
   position: absolute;
   inset: 0;
 }
 .th-th-m-m-a-xu-n {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 500;
   position: absolute;
@@ -327,15 +281,8 @@
   top: 939px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .m-linh {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 300;
   position: absolute;
@@ -343,9 +290,6 @@
   top: 970px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .layer-1 {
   width: 138px;

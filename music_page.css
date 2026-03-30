@@ -2,6 +2,8 @@
 .slide-16-9-music-page * {
   box-sizing: border-box;
 }
+/* Global font override: force Mona Sans for all elements (only changing font) */
+html, body, * { font-family: 'Mona Sans', sans-serif !important; }
 .slide-16-9-music-page {
   background: #ffffff;
   width: 1920px;
@@ -128,11 +130,19 @@
   height: 60px;
   position: static;
 }
-.n-xu-n {
+/* Shared track text styles (deduplicated common properties) */
+.track-text-common,
+.n-xu-n, .nh-qu-nh, .xu-n-v, .thanh-lan, .xu-n-v-tu-i-tr,
+.m-a-xu-n-u-ti-n, .thanh-th-y, .th-th-m-m-a-xu-n, .m-linh, .l-ng-nghe-m-a-xu-n-v,
+.th-i-thanh, .ph-ng-ph-ng-th-o {
   color: #000000;
   text-align: left;
-  font-family: 'MonaSans', sans-serif;
   font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.n-xu-n {
   line-height: 0px;
   font-weight: 700;
   position: absolute;
@@ -140,15 +150,8 @@
   top: 216px;
   width: 244px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .nh-qu-nh {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 300;
   position: absolute;
@@ -156,9 +159,6 @@
   top: 247px;
   width: 145px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .group-20 {
   position: absolute;
@@ -179,10 +179,6 @@
   position: static;
 }
 .xu-n-v {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 700;
   position: absolute;
@@ -190,15 +186,8 @@
   top: 342px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .thanh-lan {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 300;
   position: absolute;
@@ -206,9 +195,6 @@
   top: 373px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .group-21 {
   position: absolute;
@@ -229,10 +215,6 @@
   position: static;
 }
 .xu-n-v-tu-i-tr {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 700;
   position: absolute;
@@ -240,15 +222,8 @@
   top: 468px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .th-i-thanh {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 300;
   position: absolute;
@@ -256,9 +231,6 @@
   top: 499px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .group-22 {
   position: absolute;
@@ -279,10 +251,6 @@
   position: static;
 }
 .m-a-xu-n-u-ti-n {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 700;
   position: absolute;
@@ -290,15 +258,8 @@
   top: 594px;
   width: 244px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .thanh-th-y {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 300;
   position: absolute;
@@ -306,9 +267,6 @@
   top: 625px;
   width: 145px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .group-23 {
   position: absolute;
@@ -330,10 +288,6 @@
   position: static;
 }
 .th-th-m-m-a-xu-n {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 700;
   position: absolute;
@@ -341,15 +295,8 @@
   top: 720px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .m-linh {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 300;
   position: absolute;
@@ -357,9 +304,6 @@
   top: 751px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .group-24 {
   position: absolute;
@@ -454,10 +398,6 @@
   font-weight: 300;
 }
 .l-ng-nghe-m-a-xu-n-v {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 700;
   position: absolute;
@@ -465,15 +405,8 @@
   top: 846px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .ph-ng-ph-ng-th-o {
-  color: #000000;
-  text-align: left;
-  font-family: 'MonaSans', sans-serif;
-  font-size: 24px;
   line-height: 0px;
   font-weight: 300;
   position: absolute;
@@ -481,9 +414,6 @@
   top: 877px;
   width: 274px;
   height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 .layer-12 {
   width: 138px;

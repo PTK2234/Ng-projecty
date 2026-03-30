@@ -2,6 +2,8 @@
 .slide-16-9-collection-page * {
   box-sizing: border-box;
 }
+/* Global font override: force Mona Sans for all elements (only changing font) */
+html, body, * { font-family: 'Mona Sans', sans-serif !important; }
 .slide-16-9-collection-page {
   background: #ffffff;
   width: 1920px;
@@ -138,9 +140,9 @@
   font-size: 18px;
   font-weight: 400;
   position: absolute;
-  left: 725px;
+  left: 660px;
   top: 463px;
-  width: 498px;
+  width: 610px;
 }
 .v-album {
   color: #3b0000;
@@ -302,7 +304,7 @@
   height: 61px;
   position: absolute;
   left: 59px; /* 1712 - 1653 */
-  top: 52px;  /* 230 - 178 */
+  top: 58px;  /* 230 - 178 */
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .music2 {
@@ -310,7 +312,7 @@
   height: 32px;
   position: absolute;
   left: 81px; /* 1734 - 1653 */
-  top: 66px;  /* 244 - 178 */
+  top: 74px;  /* 244 - 178 */
   overflow: visible;
 }
 
@@ -328,6 +330,23 @@
 .disk-btn:focus-visible{outline:3px solid rgba(184,13,13,0.25);outline-offset:4px}
 .disk-btn:active{outline:none}
 .disk-btn img{display:block}
+/* Rotate disk cover from its center after a 3s delay on page load */
+.disk-cv-1 {
+  display: block;
+  transform-origin: 50% 50%;
+  will-change: transform;
+  animation-name: disk-spin;
+  animation-duration: 6s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-delay: 3s;
+  animation-fill-mode: both;
+}
+
+@keyframes disk-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 
 /* header action and brand button wrappers (keeps existing absolute children positions) */
 .header-action-btn{background:transparent;border:none;padding:0;margin:0;cursor:pointer;z-index:11}
