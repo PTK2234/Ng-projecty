@@ -503,13 +503,15 @@ body::-webkit-scrollbar { width: 0; height: 0; }
   left:0px;
 }
 .group-49 {
-  /* stick to the bottom of the viewport to avoid gaps on varying screens */
-  position: fixed;
+  /* Position absolute so the panel scales with the .slide-16-9-music-page transform
+     (was fixed to viewport previously which prevented scaling). */
+  position: absolute;
   left: 0px;
-  bottom: 0;
-  width: 100vw;
+  bottom: 0px;
+  width: 1920px;
   max-width: 1920px;
   z-index: 10000;
+  transform-origin: bottom left;
 }
 .group-49 .rectangle-15 {
   background: #ffffff;
